@@ -8,7 +8,7 @@ from pathlib import Path
 import scipy.stats as stats
 import scipy.signal as signal
 from scipy.interpolate import interp1d
-from scipy.integrate import trapz
+from scipy.integrate import trapezoid
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -228,10 +228,10 @@ def rsp_freq(array, sampling_rate=1000, upsample_rate=6, freqband_limits=(.1,.05
         # The power (PSD) of each frequency band is obtained by integrating the spectral density 
         # by trapezoidal rule, using the scipy.integrate.trapz function.
 
-        vlf = trapz(power[lim_vlf], freq[lim_vlf])
-        lf = trapz(power[lim_lf], freq[lim_lf])
-        hf = trapz(power[lim_hf], freq[lim_hf])
-        vhf = trapz(power[lim_vhf], freq[lim_vhf])
+        vlf = trapezoid(power[lim_vlf], freq[lim_vlf])
+        lf = trapezoid(power[lim_lf], freq[lim_lf])
+        hf = trapezoid(power[lim_hf], freq[lim_hf])
+        vhf = trapezoid(power[lim_vhf], freq[lim_vhf])
 
         totalpower = vlf + lf + hf + vhf 
         lfhf = lf / hf
@@ -370,8 +370,7 @@ def resp_stat_features(dictionnary):
         df_stat = pd.concat([df_stat, rsp_stat(v)], axis=0)
         names.append(k)
         
-    df_stat.set_axis(names, inplace=True)
-    return df_stat
+    return df_stat.set_axis(names)
 
 
 def resp_time_features(dictionnary, sampling_freq =500):
@@ -386,8 +385,7 @@ def resp_time_features(dictionnary, sampling_freq =500):
         df_time = pd.concat([df_time, rsp_time(v, sampling_freq)], axis=0)
         names.append(k)
         
-    df_time.set_axis(names, inplace=True)
-    return df_time
+    return df_time.set_axis(names)
 
 
 def resp_freq_features(dictionnary, sampling_freq =500):
@@ -402,8 +400,7 @@ def resp_freq_features(dictionnary, sampling_freq =500):
         df_freq = pd.concat([df_freq, rsp_freq(v, sampling_freq)], axis=0)
         names.append(k)
         
-    df_freq.set_axis(names, inplace=True)
-    return df_freq
+    return df_freq.set_axis(names)
 
 
 
@@ -419,8 +416,7 @@ def resp_nonlinear_features(dictionnary, sampling_freq =500):
         df_nonlinear = pd.concat([df_nonlinear, rsp_nonlinear(v, sampling_freq)], axis=0)
         names.append(k)
         
-    df_nonlinear.set_axis(names, inplace=True)
-    return df_nonlinear
+    return df_nonlinear.set_axis(names)
 
 
 def get_resp_features(dictionnary, sampling_freq =500):

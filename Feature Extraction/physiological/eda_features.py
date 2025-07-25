@@ -79,8 +79,7 @@ def eda_stat_features(dictionary, sampling_freq: int=1000):
         df_stat = pd.concat([df_stat, eda_stat(v, sampling_freq)], axis=0)
         names.append(k)
         
-    df_stat.set_axis(names, inplace=True)
-    return df_stat
+    return df_stat.set_axis(names)
 
 
 def eda_time_features(dictionary, sampling_freq =1000):
@@ -95,12 +94,10 @@ def eda_time_features(dictionary, sampling_freq =1000):
         df_time = pd.concat([df_time, eda_time(v, sampling_freq)], axis=0)
         names.append(k)
         
-    df_time.set_axis(names, inplace=True)
-    return df_time
+    return df_time.set_axis(names)
 
 def get_eda_features(dictionary, sampling_freq =500):
     df_stat = eda_stat_features(dictionary, sampling_freq)
     df_time = eda_time_features(dictionary, sampling_freq)
     
-    df = pd.concat([df_stat,df_time], axis=1)
-    return df
+    return pd.concat([df_stat,df_time], axis=1)

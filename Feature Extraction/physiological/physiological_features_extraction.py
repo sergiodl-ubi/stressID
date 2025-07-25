@@ -17,7 +17,7 @@ from respiration_features import *
 
 
 ####### LOAD DATA
-path_data = "../../../Dataset/Physiological/"
+path_data = "../../../stressid-dataset/Physiological/"
 
 filelist= [f for f_sub in [f_names for root,d_names,f_names in os.walk(path_data)] for f in f_sub]
 dirlist= [d for d_sub in [d_names for root,d_names,f_names in os.walk(path_data)] for d in d_sub]
@@ -54,7 +54,7 @@ rsp_clean = data_rsp.copy()
 
 for ecg,eda,rsp in zip(data_ecg.items(), data_eda.items(), data_rsp.items()):
     ecg_clean[ecg[0]] = nk.ecg_clean(ecg[1], sampling_rate=500, method="biosppy")
-    eda_clean[eda[0]] = nk.eda_clean(eda[1], sampling_rate=500,method='biosppy')
+    eda_clean[eda[0]] = nk.eda_clean(eda[1], sampling_rate=500, method='biosppy')
     rsp_clean[rsp[0]] = nk.rsp_clean(rsp[1], sampling_rate=500, method="biosppy")
 
     
@@ -77,10 +77,10 @@ df_features = pd.concat([df_ecg_features, df_rsp_features], axis=1).merge(df_eda
 
 
 ####### EXPORT
-df_eda_features.to_csv('../Features/eda_features.csv', sep=",", index=True)
-df_rsp_features.to_csv('../Features/resp_features.csv', sep=",", index=True)
-df_ecg_features.to_csv('../Features/ecg_features.csv', sep=",", index=True)
-df_features.to_csv('../Features/all_physiological_features.csv', sep=",", index=True)
+df_eda_features.to_csv('../TestFeatures/eda_features.csv', sep=",", index=True)
+df_rsp_features.to_csv('../TestFeatures/resp_features.csv', sep=",", index=True)
+df_ecg_features.to_csv('../TestFeatures/ecg_features.csv', sep=",", index=True)
+df_features.to_csv('../TestFeatures/all_physiological_features.csv', sep=",", index=True)
 
 
         

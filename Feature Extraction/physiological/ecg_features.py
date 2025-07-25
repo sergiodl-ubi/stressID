@@ -8,7 +8,7 @@ from pathlib import Path
 import scipy.stats as stats
 import scipy.signal as signal
 from scipy.interpolate import interp1d
-from scipy.integrate import trapz
+from scipy.integrate import trapezoid
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -167,11 +167,11 @@ def ecg_freq(array, sampling_rate=1000, upsample_rate=4, freqband_limits=(.0, .0
     # The power (PSD) of each frequency band is obtained by integrating the spectral density 
     # by trapezoidal rule, using the scipy.integrate.trapz function.
     
-    ulf = trapz(power[lim_ulf], freq[lim_ulf])
-    vlf = trapz(power[lim_vlf], freq[lim_vlf])
-    lf = trapz(power[lim_lf], freq[lim_lf])
-    hf = trapz(power[lim_hf], freq[lim_hf])
-    vhf = trapz(power[lim_vhf], freq[lim_vhf])
+    ulf = trapezoid(power[lim_ulf], freq[lim_ulf])
+    vlf = trapezoid(power[lim_vlf], freq[lim_vlf])
+    lf = trapezoid(power[lim_lf], freq[lim_lf])
+    hf = trapezoid(power[lim_hf], freq[lim_hf])
+    vhf = trapezoid(power[lim_vhf], freq[lim_vhf])
     totalpower = ulf + vlf + lf + hf + vhf
     lfhf = lf / hf
     rlf = lf / (lf + hf) * 100
@@ -296,8 +296,7 @@ def ecg_stat_features(dictionnary):
         df_stat = pd.concat([df_stat, ecg_stat(v)], axis=0) 
         names.append(k)
     
-    df_stat.set_axis(names, inplace=True)
-    return df_stat
+    return df_stat.set_axis(names)
 
 def ecg_time_features(dictionnary, sampling_freq=500):
     data = dictionnary.copy()
@@ -311,8 +310,7 @@ def ecg_time_features(dictionnary, sampling_freq=500):
         df_time = pd.concat([df_time, ecg_time(v, sampling_freq)], axis=0)
         names.append(k)
         
-    df_time.set_axis(names, inplace=True)
-    return df_time
+    return df_time.set_axis(names)
 
 
 def ecg_freq_features(dictionnary, sampling_freq =500):
@@ -327,8 +325,7 @@ def ecg_freq_features(dictionnary, sampling_freq =500):
         df_freq = pd.concat([df_freq, ecg_freq(v, sampling_freq)], axis=0)
         names.append(k)
         
-    df_freq.set_axis(names, inplace=True)
-    return df_freq
+    return df_freq.set_axis(names)
 
 def ecg_nonlinear_features(dictionnary, sampling_freq =500):
     data = dictionnary.copy()
@@ -342,8 +339,7 @@ def ecg_nonlinear_features(dictionnary, sampling_freq =500):
         df_nonlinear = pd.concat([df_nonlinear, ecg_nonlinear(v, sampling_freq)], axis=0)
         names.append(k)
         
-    df_nonlinear.set_axis(names, inplace=True)
-    return df_nonlinear
+    return df_nonlinear.set_axis(names)
 
 
 def get_ecg_features(dictionnary, sampling_freq =500):
