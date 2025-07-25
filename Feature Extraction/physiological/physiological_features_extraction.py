@@ -1,86 +1,88 @@
+# pyright: reportAny=false
 import numpy as np
-import scipy.io
-import matplotlib.pyplot as plt
 import pandas as pd
-from sklearn.preprocessing import StandardScaler
+import glob
 
-import os
-from pathlib import Path
-
-import pylab 
-import scipy.stats as stats
 import neurokit2 as nk
 
-from ecg_features import *
-from eda_features import *
-from respiration_features import *
+from ecg_features import get_ecg_features
+from eda_features import get_eda_features
 
+EXPECTED_NUM_FILES = 21
+dataset_path = "../../../experiment-data"
 
 ####### LOAD DATA
-path_data = "../../../stressid-dataset/Physiological/"
-
-filelist= [f for f_sub in [f_names for root,d_names,f_names in os.walk(path_data)] for f in f_sub]
-dirlist= [d for d_sub in [d_names for root,d_names,f_names in os.walk(path_data)] for d in d_sub]
+filelist = glob.glob(f"{dataset_path}/*.Annotated.csv")
+if len(filelist) != EXPECTED_NUM_FILES:
+    raise ValueError(f"Expected {EXPECTED_NUM_FILES} files, found: {len(filelist)}")
 
 data_ecg = dict()
 data_eda = dict()
-data_rsp = dict()
 
 filelist.sort()
 
-for i in filelist:
-    if not i.startswith('.'):
-        path = os.path.join(path_data,i.split('_')[0]+'/')
-        file = pd.read_csv(path+i, sep=",")
-        if file.isnull().sum().sum() != 0:
-            print('There are ', file.isnull().sum().sum(), ' nan values in the recording', i)
+def split_by_label(df: pd.DataFrame) -> list[tuple[str, pd.DataFrame]]:
+    output: list[tuple[str, pd.DataFrame]] = []
+    labels = ["Baseline", "AmusementClip", "StressClip", "EmoReset", "FormL", "FormM", "Debriefing"]
+    for label in labels:
+        if label == "FormL":
+            start_idx = df.index.get_loc(df[df["Event"] == "FormLRead"].index[0])
+            end_idx = df.index.get_loc(df[df["Event"] == "L15"].index[-1])
+        elif label == "FormM":
+            start_idx = df.index.get_loc(df[df["Event"] == "FormMRead"].index[0])
+            end_idx = df.index.get_loc(df[df["Event"] == "M15"].index[-1])
+        else:
+            start_idx = df.index.get_loc(df[df["Event"] == label].index[0])
+            end_idx = df.index.get_loc(df[df["Event"] == label].index[-1])
+        output.append((label, df[start_idx:end_idx]))
+    return output
 
-        file_ecg = np.array(file['ECG'])
-        file_eda = np.array(file['EDA'])
-        file_rsp = np.array(file['RR'])
+for item in filelist:
+    file = pd.read_csv(
+        item,
+        delimiter=";",
+        parse_dates=["Datetime",],
+        index_col=["Datetime",])
+    print(file.shape)
+    participant_id = item.split("-")[1]
+    if file.isnull().sum().sum() != 0:
+        print('There are ', file.isnull().sum().sum(), ' nan values in the recording', item)
 
-        data_ecg[i.split('.')[0]] = (file_ecg - file_ecg.mean())/file_ecg.std()
-        data_eda[i.split('.')[0]] = (file_eda - file_eda.mean())/file_eda.std()
-        data_rsp[i.split('.')[0]] = (file_rsp - file_rsp.mean())/file_rsp.std()
-        
-        
-del data_eda['r5s8_Counting3'] 
+    for label, event_df in split_by_label(file):
+        sample_name = f"{participant_id}-{label}"
+        file_ecg = np.array(event_df['PPG_Uncal'])
+        file_eda = np.array(event_df['Skin_Conductance_Uncal'])
+
+        data_ecg[sample_name] = (file_ecg - file_ecg.mean())/file_ecg.std()
+        data_eda[sample_name] = (file_eda - file_eda.mean())/file_eda.std()
 
 
 ####### CLEAN USING NK
 ecg_clean = data_ecg.copy()
 eda_clean = data_eda.copy()
-rsp_clean = data_rsp.copy()
 
-for ecg,eda,rsp in zip(data_ecg.items(), data_eda.items(), data_rsp.items()):
-    ecg_clean[ecg[0]] = nk.ecg_clean(ecg[1], sampling_rate=500, method="biosppy")
-    eda_clean[eda[0]] = nk.eda_clean(eda[1], sampling_rate=500, method='biosppy')
-    rsp_clean[rsp[0]] = nk.rsp_clean(rsp[1], sampling_rate=500, method="biosppy")
+for ecg,eda in zip(data_ecg.items(), data_eda.items()):
+    ecg_clean[ecg[0]] = nk.ecg_clean(ecg[1], sampling_rate=51, method="biosppy")
+    eda_clean[eda[0]] = nk.eda_clean(eda[1], sampling_rate=51, method='biosppy')
 
     
     
 ######## EXTRACT FEATURES BY MODALITY    
-df_eda_features = get_eda_features(eda_clean, 500)
+df_eda_features = get_eda_features(eda_clean, 51)
 print('EDA: {0:2d} trials and {1:2d} features'.format(df_eda_features.shape[0], df_eda_features.shape[1]))
 
-df_rsp_features = get_resp_features(rsp_clean, 500)
-print('Respiration : {0:2d} trials and {1:2d} features'.format(df_rsp_features.shape[0], df_rsp_features.shape[1]))
-
-df_ecg_features = get_ecg_features(ecg_clean, 500)
+df_ecg_features = get_ecg_features(ecg_clean, 51)
 print('ECG : {0:2d} trials and {1:2d} features'.format(df_ecg_features.shape[0], df_ecg_features.shape[1]))
 
 
 ######## MERGE
-df_features = pd.concat([df_ecg_features, df_rsp_features], axis=1).merge(df_eda_features, left_index= True, right_index=True)
-
-
+df_features = pd.concat([df_ecg_features, df_eda_features], axis=1)
 
 
 ####### EXPORT
-df_eda_features.to_csv('../TestFeatures/eda_features.csv', sep=",", index=True)
-df_rsp_features.to_csv('../TestFeatures/resp_features.csv', sep=",", index=True)
-df_ecg_features.to_csv('../TestFeatures/ecg_features.csv', sep=",", index=True)
-df_features.to_csv('../TestFeatures/all_physiological_features.csv', sep=",", index=True)
+df_eda_features.to_csv(f'{dataset_path}/extracted-features/eda_features.csv', sep=";", index=True)
+df_ecg_features.to_csv(f'{dataset_path}/extracted-features/ecg_features.csv', sep=";", index=True)
+df_features.to_csv(f'{dataset_path}/extracted-features/all_features.csv', sep=";", index=True)
 
 
         
