@@ -13,12 +13,12 @@ from scipy.integrate import trapezoid
 import warnings
 warnings.filterwarnings('ignore')
 
+from numpy.typing import ArrayLike
+type FeatureDict = dict[str, np.ndarray]
+
 ############################ STAT FEATURES ##############################
 
-def ecg_stat(array):
-    # Input: An array (numpy, dataframe, list) 
-    # -> Output : A pd.DataFrame
-    
+def ecg_stat(array: ArrayLike) -> pd.DataFrame:
     x = np.array(array)
     df = pd.DataFrame(data = [x.max(), x.min(), x.mean(), x.std(),
                               stats.kurtosis(x), stats.skew(x), np.quantile(x,0.5),
@@ -32,10 +32,7 @@ def ecg_stat(array):
  
 ############################ HRV FEATURES ##############################    
 
-def ecg_peaks(array, sampling_rate=1000):
-    # Input: An array (numpy, dataframe, list) 
-    # -> Output : A numpy array
-    
+def ecg_peaks(array: ArrayLike, sampling_rate: float=1000) -> np.ndarray:
     x = np.array(array)
     
     # distance : minimal horizontal distance (>= 1) in samples between neighbouring peaks. By default = None
@@ -50,10 +47,7 @@ def ecg_peaks(array, sampling_rate=1000):
     
     
 
-def heart_rate(r_peaks, sampling_rate=1000, upsample_rate=4):
-    # Input: An array (numpy, dataframe, list) 
-    # -> Output : A pd.DataFrame
-    
+def heart_rate(r_peaks: ArrayLike, sampling_rate: float=1000, upsample_rate: int=4) -> tuple[np.ndarray, np.ndarray]:
     x = np.array(r_peaks)
     rri = np.diff(x)
     rri = 1000 * rri / sampling_rate #convert to ms
@@ -69,10 +63,7 @@ def heart_rate(r_peaks, sampling_rate=1000, upsample_rate=4):
     return hr_interpolated, x
     
     
-def ecg_time(array, sampling_rate=1000):
-    # Input: An array (numpy, dataframe, list) 
-    # -> Output : A pd.DataFrame
-    
+def ecg_time(array: ArrayLike, sampling_rate: float = 1000) -> pd.DataFrame:
     x = np.array(array)
     r_peaks = ecg_peaks(x, sampling_rate=sampling_rate)
     
@@ -124,7 +115,7 @@ def ecg_time(array, sampling_rate=1000):
 
 ############################ FREQ FEATURES ##############################
 
-def interpolate_Rpeaks(peaks, sampling_rate=1000, upsample_rate=4):
+def interpolate_Rpeaks(peaks: ArrayLike, sampling_rate: float=1000, upsample_rate: int=4) -> tuple[np.ndarray, np.ndarray]:
     # Input: An array (numpy, dataframe, list) 
     # -> Output : A numpy array 
     
@@ -146,10 +137,11 @@ def interpolate_Rpeaks(peaks, sampling_rate=1000, upsample_rate=4):
     
     
     
-def ecg_freq(array, sampling_rate=1000, upsample_rate=4, freqband_limits=(.0, .0033,.04,.15,.4, .5)):
-    # Input: An array (numpy, dataframe, list) 
-    # -> Output : A numpy array 
-    
+def ecg_freq(
+    array: ArrayLike,
+    sampling_rate: float=1000,
+    upsample_rate: int=4,
+    freqband_limits: tuple[float, float, float, float, float, float]=(.0, .0033,.04,.15,.4, .5)) -> pd.DataFrame:
     # FFT needs evenly sampled data, so the RR-interval can't be used directly and need to
     # be interpolated. Then the spectral density of the signal is computed using Welch method.
     
@@ -157,6 +149,8 @@ def ecg_freq(array, sampling_rate=1000, upsample_rate=4, freqband_limits=(.0, .0
     r_peaks = ecg_peaks(x, sampling_rate=sampling_rate)
     rri, _ = interpolate_Rpeaks(r_peaks, upsample_rate=upsample_rate)
     freq, power = signal.welch(x=rri, fs=upsample_rate)
+    print(freq)
+    print(power)
     
     lim_ulf= (freq >= freqband_limits[0]) & (freq < freqband_limits[1])
     lim_vlf = (freq >= freqband_limits[1]) & (freq < freqband_limits[2])
@@ -192,7 +186,7 @@ def ecg_freq(array, sampling_rate=1000, upsample_rate=4, freqband_limits=(.0, .0
 ############################ NONLIN FEATURES ##############################  
 
 
-def apEntropy(array, m=2, r=None):
+def apEntropy(array: ArrayLike, m: int=2, r: float | None=None) -> float:
     # Input: An array (numpy, dataframe, list) 
     # -> Output : A Float
     
@@ -226,7 +220,7 @@ def apEntropy(array, m=2, r=None):
     return apEn
     
     
-def sampEntropy(array, m=2, r=None):
+def sampEntropy(array: ArrayLike, m: int=2, r: float | None=None) -> float:
     # Input: An array (numpy, dataframe, list) 
     # -> Output : A Float
     
@@ -254,10 +248,7 @@ def sampEntropy(array, m=2, r=None):
     return -np.log(A / B)
     
     
-def ecg_nonlinear(array, sampling_rate=1000, m=2, r=None):
-    # Input: An array (numpy, dataframe, list) 
-    # -> Output : A numpy array 
-    
+def ecg_nonlinear(array: ArrayLike, sampling_rate: float=1000, m: int=2, r: float | None=None) -> pd.DataFrame:
     # The Poincaré ellipse plot is diagram in which each RR intervals are plotted as a function 
     # of the previous RR interval value. SD1 is the standard deviation spread orthogonally 
     # to the identity line (y=x) and is the ellipse width. SD2 is the standard deviation spread
@@ -284,8 +275,8 @@ def ecg_nonlinear(array, sampling_rate=1000, m=2, r=None):
 
 ############################ DATABASE ##############################
 
-def ecg_stat_features(dictionnary):
-    data = dictionnary.copy()
+def ecg_stat_features(dictionary: FeatureDict) -> pd.DataFrame:
+    data = dictionary.copy()
     df_stat = ecg_stat( list(data.values())[0] )
     names = [list(data.keys())[0]]
     
@@ -298,8 +289,8 @@ def ecg_stat_features(dictionnary):
     
     return df_stat.set_axis(names)
 
-def ecg_time_features(dictionnary, sampling_freq=500):
-    data = dictionnary.copy()
+def ecg_time_features(dictionary: FeatureDict, sampling_freq: float =500) -> pd.DataFrame:
+    data = dictionary.copy()
     df_time = ecg_time(list(data.values())[0] , sampling_freq)
     names = [list(data.keys())[0]]
     
@@ -313,22 +304,23 @@ def ecg_time_features(dictionnary, sampling_freq=500):
     return df_time.set_axis(names)
 
 
-def ecg_freq_features(dictionnary, sampling_freq =500):
-    data = dictionnary.copy()
+def ecg_freq_features(dictionary: FeatureDict, sampling_freq: float =500) -> pd.DataFrame:
+    data = dictionary.copy()
     df_freq = ecg_freq( list(data.values())[0], sampling_freq)
     names = [list(data.keys())[0]]
-    
     items = iter(data.items())
     first_item = next(items)
     
     for k,v in items:
+        print(f"analyzing {k}, length: {len(v)}")
+        print(v)
         df_freq = pd.concat([df_freq, ecg_freq(v, sampling_freq)], axis=0)
         names.append(k)
         
     return df_freq.set_axis(names)
 
-def ecg_nonlinear_features(dictionnary, sampling_freq =500):
-    data = dictionnary.copy()
+def ecg_nonlinear_features(dictionary: FeatureDict, sampling_freq: float =500) -> pd.DataFrame:
+    data = dictionary.copy()
     df_nonlinear = ecg_nonlinear( list(data.values())[0], sampling_freq)
     names = [list(data.keys())[0]]
     
@@ -342,11 +334,11 @@ def ecg_nonlinear_features(dictionnary, sampling_freq =500):
     return df_nonlinear.set_axis(names)
 
 
-def get_ecg_features(dictionnary, sampling_freq =500):
-    df_stat = ecg_stat_features(dictionnary)
-    df_time = ecg_time_features(dictionnary, sampling_freq)
-    df_freq = ecg_freq_features(dictionnary, sampling_freq)
-    df_nonlinear = ecg_nonlinear_features(dictionnary, sampling_freq)
+def get_ecg_features(dictionary: FeatureDict, sampling_freq: float=500) -> pd.DataFrame:
+    df_stat = ecg_stat_features(dictionary)
+    df_time = ecg_time_features(dictionary, sampling_freq)
+    df_freq = ecg_freq_features(dictionary, sampling_freq)
+    df_nonlinear = ecg_nonlinear_features(dictionary, sampling_freq)
     
     df = pd.concat([df_time, df_stat, df_freq, df_nonlinear], axis=1)
     #df.set_axis(names, inplace=True)

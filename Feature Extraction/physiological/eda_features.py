@@ -11,14 +11,16 @@ from pathlib import Path
 import scipy.stats as stats
 import neurokit2 as nk
 
-from numpy.typing import ArrayLike
 import warnings
 warnings.filterwarnings('ignore')
+
+from numpy.typing import ArrayLike
+type FeatureDict = dict[str, np.ndarray]
 
 
 ############################ STAT FEATURES ##############################
 
-def eda_stat(array: ArrayLike, sampling_freq: int=1000) -> pd.DataFrame:
+def eda_stat(array: ArrayLike, sampling_freq: float=1000) -> pd.DataFrame:
     x = np.array(array)
     eda = nk.eda_phasic(eda_signal=x, sampling_rate=sampling_freq)
     scr = np.array(eda['EDA_Phasic'])
@@ -39,7 +41,7 @@ def eda_stat(array: ArrayLike, sampling_freq: int=1000) -> pd.DataFrame:
 
 ############################ TIME FEATURES ##############################
 
-def eda_time(array: ArrayLike, sampling_freq: int=1000) -> pd.DataFrame:
+def eda_time(array: ArrayLike, sampling_freq: float=1000) -> pd.DataFrame:
     x = np.array(array)
     eda = nk.eda_phasic(x, sampling_freq)
     scr = np.array(eda['EDA_Phasic'])
@@ -67,7 +69,7 @@ def eda_time(array: ArrayLike, sampling_freq: int=1000) -> pd.DataFrame:
 
 ############################ DATABASE ##############################
 
-def eda_stat_features(dictionary, sampling_freq: int=1000):
+def eda_stat_features(dictionary: FeatureDict, sampling_freq: float=1000):
     data = dictionary.copy()
     df_stat = eda_stat(list(data.values())[0], sampling_freq)
     names = [list(data.keys())[0]]
@@ -82,7 +84,7 @@ def eda_stat_features(dictionary, sampling_freq: int=1000):
     return df_stat.set_axis(names)
 
 
-def eda_time_features(dictionary, sampling_freq =1000):
+def eda_time_features(dictionary: FeatureDict, sampling_freq: float=1000) -> pd.DataFrame:
     data = dictionary.copy()
     df_time = eda_time(list(data.values())[0], sampling_freq)
     names = [list(data.keys())[0]]
@@ -96,7 +98,7 @@ def eda_time_features(dictionary, sampling_freq =1000):
         
     return df_time.set_axis(names)
 
-def get_eda_features(dictionary, sampling_freq =500):
+def get_eda_features(dictionary: FeatureDict, sampling_freq: float=500) -> pd.DataFrame:
     df_stat = eda_stat_features(dictionary, sampling_freq)
     df_time = eda_time_features(dictionary, sampling_freq)
     
