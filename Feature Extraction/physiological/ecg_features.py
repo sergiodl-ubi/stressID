@@ -157,7 +157,12 @@ def ecg_freq(
     pd.set_option("display.max_columns", 10)
     pd.set_option("display.max_colwidth", None)
     hrv_freq = nk.hrv_frequency(r_peaks, sampling_rate=sampling_rate, normalize=False, interpolation_rate=upsample_rate)
-    print(hrv_freq)
+    rlf = hrv_freq['HRV_LF'].iloc[0] / (hrv_freq['HRV_LF'].iloc[0] + hrv_freq['HRV_HF'].iloc[0]) * 100
+    rhf = hrv_freq['HRV_HF'].iloc[0] / (hrv_freq['HRV_LF'].iloc[0] + hrv_freq['HRV_HF'].iloc[0]) * 100
+    print("HRVFreq Total: {0:.4f}, ulf: {1:.2f}, vlf: {2:.2f}, lf: {3:.2f}, hf: {4:.2f}, vhf: {5:.2f}, lfhf: {6:.2f}, rlf: {7:.2f}, rhf: {8:.2f}".format(
+        hrv_freq['HRV_TP'].iloc[0], hrv_freq['HRV_ULF'].iloc[0], hrv_freq['HRV_VLF'].iloc[0], hrv_freq['HRV_LF'].iloc[0],
+        hrv_freq['HRV_HF'].iloc[0], hrv_freq['HRV_VHF'].iloc[0], hrv_freq['HRV_LFHF'].iloc[0], rlf, rhf)
+    )
     
     lim_ulf= (freq >= freqband_limits[0]) & (freq < freqband_limits[1])
     lim_vlf = (freq >= freqband_limits[1]) & (freq < freqband_limits[2])
@@ -178,8 +183,7 @@ def ecg_freq(
     rlf = lf / (lf + hf) * 100
     rhf = hf / (lf + hf) * 100
 
-    print(f"Total: {totalpower}, ulf: {ulf:.2f}, vlf: {vlf:.2f}, lf: {lf:.2f}, hf: {hf:.2f}, vhf: {vhf:.2f}")
-    print(f"lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}")
+    print(f"Manual Total: {totalpower:.4f}, ulf: {ulf:.2f}, vlf: {vlf:.2f}, lf: {lf:.2f}, hf: {hf:.2f}, vhf: {vhf:.2f}, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}")
 
     peaklf = freq[lim_lf][np.argmax(power[lim_lf])]
     peakhf = freq[lim_hf][np.argmax(power[lim_hf])]
