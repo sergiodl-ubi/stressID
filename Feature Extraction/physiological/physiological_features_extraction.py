@@ -94,7 +94,8 @@ ecg_clean = data_ecg.copy()
 eda_clean = data_eda.copy()
 
 for ecg,eda in zip(data_ecg.items(), data_eda.items()):
-    ecg_clean[ecg[0]] = nk.ecg_clean(ecg[1], sampling_rate=51.2, method="neurokit")
+    #ecg_clean[ecg[0]] = nk.ecg_clean(ecg[1], sampling_rate=51.2, method="neurokit")
+    ecg_clean[ecg[0]] = ecg[1].copy()
     eda_clean[eda[0]] = nk.eda_clean(eda[1], sampling_rate=51.2, method='neurokit')
 
 

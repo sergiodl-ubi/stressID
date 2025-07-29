@@ -1,3 +1,4 @@
+from random import sample
 import numpy as np
 import scipy.io
 import pandas as pd
@@ -9,6 +10,7 @@ import scipy.stats as stats
 import scipy.signal as signal
 from scipy.interpolate import interp1d
 from scipy.integrate import trapezoid
+import neurokit2 as nk
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -151,6 +153,11 @@ def ecg_freq(
     freq, power = signal.welch(x=rri, fs=upsample_rate)
     print(freq)
     print(power)
+
+    pd.set_option("display.max_columns", 10)
+    pd.set_option("display.max_colwidth", None)
+    hrv_freq = nk.hrv_frequency(r_peaks, sampling_rate=sampling_rate, normalize=False, interpolation_rate=upsample_rate)
+    print(hrv_freq)
     
     lim_ulf= (freq >= freqband_limits[0]) & (freq < freqband_limits[1])
     lim_vlf = (freq >= freqband_limits[1]) & (freq < freqband_limits[2])
@@ -170,6 +177,10 @@ def ecg_freq(
     lfhf = lf / hf
     rlf = lf / (lf + hf) * 100
     rhf = hf / (lf + hf) * 100
+
+    print(f"Total: {totalpower}, ulf: {ulf:.2f}, vlf: {vlf:.2f}, lf: {lf:.2f}, hf: {hf:.2f}, vhf: {vhf:.2f}")
+    print(f"lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}")
+
     peaklf = freq[lim_lf][np.argmax(power[lim_lf])]
     peakhf = freq[lim_hf][np.argmax(power[lim_hf])]
     
@@ -178,6 +189,7 @@ def ecg_freq(
     
     df.columns = ['totalpower', 'LF', 'HF', 'ULF', 'VLF', 'VHF', 'LF/HF',
                  'rLF', 'rHF', 'peakLF', 'peakHF']
+
     return df
     
     
@@ -281,7 +293,7 @@ def ecg_stat_features(dictionary: FeatureDict) -> pd.DataFrame:
     names = [list(data.keys())[0]]
     
     items = iter(data.items())
-    first_item = next(items)
+    _ = next(items)
     
     for k,v in items:
         df_stat = pd.concat([df_stat, ecg_stat(v)], axis=0) 
@@ -295,7 +307,7 @@ def ecg_time_features(dictionary: FeatureDict, sampling_freq: float =500) -> pd.
     names = [list(data.keys())[0]]
     
     items = iter(data.items())
-    first_item = next(items)
+    _ = next(items)
     
     for k,v in items:
         df_time = pd.concat([df_time, ecg_time(v, sampling_freq)], axis=0)
@@ -306,14 +318,14 @@ def ecg_time_features(dictionary: FeatureDict, sampling_freq: float =500) -> pd.
 
 def ecg_freq_features(dictionary: FeatureDict, sampling_freq: float =500) -> pd.DataFrame:
     data = dictionary.copy()
-    df_freq = ecg_freq( list(data.values())[0], sampling_freq)
+    print(f"analyzing {list(data.keys())[0]}")
+    df_freq = ecg_freq(list(data.values())[0], sampling_freq)
     names = [list(data.keys())[0]]
     items = iter(data.items())
-    first_item = next(items)
+    _ = next(items)
     
     for k,v in items:
         print(f"analyzing {k}, length: {len(v)}")
-        print(v)
         df_freq = pd.concat([df_freq, ecg_freq(v, sampling_freq)], axis=0)
         names.append(k)
         
@@ -325,7 +337,7 @@ def ecg_nonlinear_features(dictionary: FeatureDict, sampling_freq: float =500) -
     names = [list(data.keys())[0]]
     
     items = iter(data.items())
-    first_item = next(items)
+    _ = next(items)
     
     for k,v in items:
         df_nonlinear = pd.concat([df_nonlinear, ecg_nonlinear(v, sampling_freq)], axis=0)
