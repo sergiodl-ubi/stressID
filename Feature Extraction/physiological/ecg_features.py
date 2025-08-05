@@ -9,6 +9,9 @@ import scipy.stats as stats
 import scipy.signal as signal
 from scipy.interpolate import interp1d
 from scipy.integrate import trapezoid
+import neurokit2 as nk
+from neurokit2.hrv import hrv_utils
+from neurokit2.signal import signal_psd
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -44,23 +47,6 @@ def ecg_peaks(array: ArrayLike, sampling_rate: float=1000) -> np.ndarray:
     r_peaks, _ = signal.find_peaks(x, distance= distance, height=height)
     
     return r_peaks
-    
-    
-
-def heart_rate(r_peaks: ArrayLike, sampling_rate: float=1000, upsample_rate: int=4) -> tuple[np.ndarray, np.ndarray]:
-    x = np.array(r_peaks)
-    rri = np.diff(x)
-    rri = 1000 * rri / sampling_rate #convert to ms
-    hr = 1000 * 60 / rri
-    
-    hr_time = np.cumsum(rri) / 1000
-    hr_time -= hr_time[0] 
-    
-    interpolation_f = interp1d(hr_time, hr, kind='cubic')
-    
-    x = np.arange(1, hr_time.max(), 1/upsample_rate)
-    hr_interpolated = interpolation_f(x)
-    return hr_interpolated, x
     
     
 def ecg_time(array: ArrayLike, sampling_rate: float = 1000) -> pd.DataFrame:
@@ -114,87 +100,57 @@ def ecg_time(array: ArrayLike, sampling_rate: float = 1000) -> pd.DataFrame:
     
 
 ############################ FREQ FEATURES ##############################
-
-def interpolate_Rpeaks(peaks: ArrayLike, sampling_rate: float=1000, upsample_rate: int=4) -> tuple[np.ndarray, np.ndarray]:
-    # The RR intervals are aranged over time, and the values are summed up to find the time points.
-    # An interpolation function is defined, to use to sample from with any upsampling resolution. 
-    # By default upsample_rate = 4 : 4 evenly spaced data points per seconds are added. 
-    
-    rr = np.diff(peaks)
-    rr = 1000 * rr / sampling_rate # convert to ms
-    rr_time = np.cumsum(rr) / 1000 # convert to s
-    rr_time -= rr_time[0] 
-    
-    interpolation_f = interp1d(rr_time, rr, kind='cubic')
-    
-    x = np.arange(1, rr_time.max(), 1/upsample_rate)
-    rr_interpolated = interpolation_f(x)
-    
-    return rr_interpolated, x
-    
-    
     
 def ecg_freq(
     array: ArrayLike,
     sampling_rate: float=1000,
-    upsample_rate: int=4,
-    freqband_limits: tuple[float, float, float, float, float, float]=(.0, .0033,.04,.15,.4, .5)) -> pd.DataFrame:
+    interpolation_rate: int=100,
+    ) -> pd.DataFrame:
+
     columns = ['totalpower', 'LF', 'HF', 'ULF', 'VLF', 'VHF', 'LF/HF', 'rLF', 'rHF', 'peakLF', 'peakHF']
-    
-    # FFT needs evenly sampled data, so the RR-interval can't be used directly and need to
-    # be interpolated. Then the spectral density of the signal is computed using Welch method.
-    
     x = np.array(array)
     r_peaks = ecg_peaks(x, sampling_rate=sampling_rate)
 
     if len(r_peaks) < 3:
-        return pd.DataFrame([[np.nan]*11], columns=columns)
+        return pd.DataFrame([[np.nan]*len(columns)], columns=columns)
 
-    rri, _ = interpolate_Rpeaks(r_peaks, upsample_rate=upsample_rate)
+    # Sanitize input
+    # If given peaks, compute R-R intervals (also referred to as NN) in milliseconds
+    rri, rri_time, _ = hrv_utils._hrv_format_input(r_peaks, sampling_rate=sampling_rate)
 
-    # optimized welch analysis parameters for this dataset
-    nperseg = min(len(rri), 256)  # windowsize
-    noverlap = nperseg // 2       # 50% overlap
-    freq, power = signal.welch(
-        x=rri, fs=upsample_rate,
-        nperseg=nperseg, noverlap=noverlap,
-        window='hann', detrend='constant')
+    # Process R-R intervals (interpolated at 100 Hz by default)
+    rri, rri_time, sampling_rate = nk.intervals_process(
+        rri, intervals_time=rri_time, interpolate=True, interpolation_rate=interpolation_rate
+    )
 
-    lim_ulf= (freq >= freqband_limits[0]) & (freq < freqband_limits[1])
-    lim_vlf = (freq >= freqband_limits[1]) & (freq < freqband_limits[2])
-    lim_lf = (freq >= freqband_limits[2]) & (freq < freqband_limits[3])
-    lim_hf = (freq >= freqband_limits[3]) & (freq < freqband_limits[4])
-    lim_vhf = (freq >= freqband_limits[4]) & (freq < freqband_limits[5])
-    
-    # The power (PSD) of each frequency band is obtained by integrating the spectral density 
-    # by trapezoidal rule, using the scipy.integrate.trapezoid function.
-    ulf = trapezoid(power[lim_ulf], freq[lim_ulf]) if np.any(lim_ulf) else 0
-    vlf = trapezoid(power[lim_vlf], freq[lim_vlf]) if np.any(lim_vlf) else 0
-    lf = trapezoid(power[lim_lf], freq[lim_lf]) if np.any(lim_lf) else 0
-    hf = trapezoid(power[lim_hf], freq[lim_hf]) if np.any(lim_hf) else 0
-    vhf = trapezoid(power[lim_vhf], freq[lim_vhf]) if np.any(lim_vhf) else 0
+    psd = signal_psd(
+        rri, sampling_rate=sampling_rate,
+        min_frequency=0.001, max_frequency=0.5, normalize=False, order_criteria=None)
 
-    totalpower = ulf + vlf + lf + hf + vhf
-    lfhf = lf / hf if hf > 0 else 0
-    if (lf + hf) > 0:
-        rlf = lf / (lf + hf) * 100
-        rhf = hf / (lf + hf) * 100
+
+
+    hrv_freq = nk.hrv_frequency(r_peaks, sampling_rate=sampling_rate, normalize=False, interpolation_rate=interpolation_rate)
+
+    hrv_lf = hrv_freq['HRV_LF'].iloc[0]
+    hrv_hf = hrv_freq['HRV_HF'].iloc[0]
+    if (hrv_lf + hrv_hf) > 0:
+        hrv_rlf = hrv_lf / (hrv_lf + hrv_hf) * 100
+        hrv_rhf = hrv_hf / (hrv_lf + hrv_hf) * 100
     else:
-        rlf = 0
-        rhf = 0
+        hrv_rlf = np.nan
+        hrv_rhf = np.nan
 
-    # error handling to avoid using argmax on empty arrays
-    if np.any(lim_lf) and np.sum(power[lim_lf]) > 0:
-        peaklf = freq[lim_lf][np.argmax(power[lim_lf])]
-    else:
-        peaklf = 0
-
-    if np.any(lim_hf) and np.sum(power[lim_hf]) > 0:
-        peakhf = freq[lim_hf][np.argmax(power[lim_hf])]
-    else:
-        peakhf = 0
-    
-    df = pd.DataFrame(data = [totalpower, lf, hf, ulf, vlf, vhf, lfhf, rlf, rhf, peaklf, peakhf]).T
+    df = pd.DataFrame(data = [
+        hrv_freq['HRV_TP'].iloc[0],
+        hrv_freq['HRV_LF'].iloc[0],
+        hrv_freq['HRV_HF'].iloc[0],
+        hrv_freq['HRV_ULF'].iloc[0],
+        hrv_freq['HRV_VLF'].iloc[0],
+        hrv_freq['HRV_VHF'].iloc[0],
+        hrv_freq['HRV_LFHF'].iloc[0],
+        hrv_rlf, hrv_rhf, peaklf, peakhf,
+        ]
+    ).T
     df.columns = columns
 
     return df

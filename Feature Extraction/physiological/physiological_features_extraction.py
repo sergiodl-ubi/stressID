@@ -77,10 +77,10 @@ df_features = pd.concat([df_ecg_features, df_rsp_features], axis=1).merge(df_eda
 
 
 ####### EXPORT
-df_eda_features.to_csv('../../../Reprod-Features-OptWelch/eda_features.csv', sep=",", index=True)
-df_rsp_features.to_csv('../../../Reprod-Features-OptWelch/resp_features.csv', sep=",", index=True)
-df_ecg_features.to_csv('../../../Reprod-Features-OptWelch/ecg_features.csv', sep=",", index=True)
-df_features.to_csv('../../../Reprod-Features-OptWelch/all_physiological_features.csv', sep=",", index=True)
+df_eda_features.to_csv('../../../Reprod-Features-NK/eda_features.csv', sep=",", index=True)
+df_rsp_features.to_csv('../../../Reprod-Features-NK/resp_features.csv', sep=",", index=True)
+df_ecg_features.to_csv('../../../Reprod-Features-NK/ecg_features.csv', sep=",", index=True)
+df_features.to_csv('../../../Reprod-Features-NK/all_physiological_features.csv', sep=",", index=True)
 
 
         
