@@ -149,20 +149,32 @@ def ecg_freq(
     
     x = np.array(array)
     r_peaks = ecg_peaks(x, sampling_rate=sampling_rate)
-    rri, _ = interpolate_Rpeaks(r_peaks, upsample_rate=upsample_rate)
-    freq, power = signal.welch(x=rri, fs=upsample_rate)
-    print(freq)
-    print(power)
 
-    pd.set_option("display.max_columns", 10)
-    pd.set_option("display.max_colwidth", None)
+    if len(r_peaks) < 3:
+        return pd.DataFrame(
+            [[np.nan]*11],
+            columns=['totalpower', 'LF', 'HF', 'ULF', 'VLF', 'VHF', 'LF/HF', 'rLF', 'rHF', 'peakLF', 'peakHF'])
+
+    rri, _ = interpolate_Rpeaks(r_peaks, upsample_rate=upsample_rate)
+
+    # optimized welch analysis parameters for this dataset
+    nperseg = min(len(rri), 256)  # windowsize
+    noverlap = nperseg // 2       # 50% overlap
+    freq, power = signal.welch(x=rri, fs=upsample_rate,
+        nperseg=nperseg, noverlap=noverlap, window='hann', detrend='constant')
+    #print(freq)
+    #print(power)
+
     hrv_freq = nk.hrv_frequency(r_peaks, sampling_rate=sampling_rate, normalize=False, interpolation_rate=upsample_rate)
-    rlf = hrv_freq['HRV_LF'].iloc[0] / (hrv_freq['HRV_LF'].iloc[0] + hrv_freq['HRV_HF'].iloc[0]) * 100
-    rhf = hrv_freq['HRV_HF'].iloc[0] / (hrv_freq['HRV_LF'].iloc[0] + hrv_freq['HRV_HF'].iloc[0]) * 100
-    print("HRVFreq Total: {0:.4f}, ulf: {1:.2f}, vlf: {2:.2f}, lf: {3:.2f}, hf: {4:.2f}, vhf: {5:.2f}, lfhf: {6:.2f}, rlf: {7:.2f}, rhf: {8:.2f}".format(
-        hrv_freq['HRV_TP'].iloc[0], hrv_freq['HRV_ULF'].iloc[0], hrv_freq['HRV_VLF'].iloc[0], hrv_freq['HRV_LF'].iloc[0],
-        hrv_freq['HRV_HF'].iloc[0], hrv_freq['HRV_VHF'].iloc[0], hrv_freq['HRV_LFHF'].iloc[0], rlf, rhf)
-    )
+    hrv_lf = hrv_freq['HRV_LF'].iloc[0]
+    hrv_hf = hrv_freq['HRV_HF'].iloc[0]
+    if (hrv_lf + hrv_hf) > 0:
+        hrv_rlf = hrv_lf / (hrv_lf + hrv_hf) * 100
+        hrv_rhf = hrv_hf / (hrv_lf + hrv_hf) * 100
+    else:
+        hrv_rlf = np.nan
+        hrv_rhf = np.nan
+
     
     lim_ulf= (freq >= freqband_limits[0]) & (freq < freqband_limits[1])
     lim_vlf = (freq >= freqband_limits[1]) & (freq < freqband_limits[2])
@@ -177,21 +189,41 @@ def ecg_freq(
     
     # The power (PSD) of each frequency band is obtained by integrating the spectral density 
     # by trapezoidal rule, using the scipy.integrate.trapz function.
-    
-    ulf = trapezoid(power[lim_ulf], freq[lim_ulf])
-    vlf = trapezoid(power[lim_vlf], freq[lim_vlf])
-    lf = trapezoid(power[lim_lf], freq[lim_lf])
-    hf = trapezoid(power[lim_hf], freq[lim_hf])
-    vhf = trapezoid(power[lim_vhf], freq[lim_vhf])
+    ulf = trapezoid(power[lim_ulf], freq[lim_ulf]) if np.any(lim_ulf) else 0
+    vlf = trapezoid(power[lim_vlf], freq[lim_vlf]) if np.any(lim_vlf) else 0
+    lf = trapezoid(power[lim_lf], freq[lim_lf]) if np.any(lim_lf) else 0
+    hf = trapezoid(power[lim_hf], freq[lim_hf]) if np.any(lim_hf) else 0
+    vhf = trapezoid(power[lim_vhf], freq[lim_vhf]) if np.any(lim_vhf) else 0
+
     totalpower = ulf + vlf + lf + hf + vhf
-    lfhf = lf / hf
-    rlf = lf / (lf + hf) * 100
-    rhf = hf / (lf + hf) * 100
+    lfhf = lf / hf if hf > 0 else 0
+    if (lf + hf) > 0:
+        rlf = lf / (lf + hf) * 100
+        rhf = hf / (lf + hf) * 100
+    else:
+        rlf = 0
+        rhf = 0
 
-    print(f"Manual Total: {totalpower:.4f}, ulf: {ulf:.2f}, vlf: {vlf:.2f}, lf: {lf:.2f}, hf: {hf:.2f}, vhf: {vhf:.2f}, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}")
+    # error handling to avoid using argmax on empty arrays
+    if np.any(lim_lf) and np.sum(power[lim_lf]) > 0:
+        peaklf = freq[lim_lf][np.argmax(power[lim_lf])]
+    else:
+        peaklf = 0
 
-    peaklf = freq[lim_lf][np.argmax(power[lim_lf])]
-    peakhf = freq[lim_hf][np.argmax(power[lim_hf])]
+    if np.any(lim_hf) and np.sum(power[lim_hf]) > 0:
+        peakhf = freq[lim_hf][np.argmax(power[lim_hf])]
+    else:
+        peakhf = 0
+
+    print((
+        "NK Total: {0:.4f}, ulf: {1:.2f}, vlf: {2:.2f}, lf: {3:.2f}, hf: {4:.2f}, vhf: {5:.2f}" +
+        ", lfhf: {6:.2f}, rlf: {7:.2f}, rhf: {8:.2f}").format(
+        hrv_freq['HRV_TP'].iloc[0], hrv_freq['HRV_ULF'].iloc[0], hrv_freq['HRV_VLF'].iloc[0], hrv_freq['HRV_LF'].iloc[0],
+        hrv_freq['HRV_HF'].iloc[0], hrv_freq['HRV_VHF'].iloc[0], hrv_freq['HRV_LFHF'].iloc[0], hrv_rlf, hrv_rhf)
+    )
+    print((
+        f"Manual Total: {totalpower:.4f}, ulf: {ulf:.2f}, vlf: {vlf:.2f}, lf: {lf:.2f}, hf: {hf:.2f}, vhf: {vhf:.2f}, " +
+        "lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}"))
     
     df = pd.DataFrame(data = [totalpower, lf, hf, ulf, vlf, vhf, lfhf,
                              rlf, rhf, peaklf, peakhf]).T
@@ -334,7 +366,7 @@ def ecg_freq_features(dictionary: FeatureDict, sampling_freq: float =500) -> pd.
     _ = next(items)
     
     for k,v in items:
-        print(f"analyzing {k}, length: {len(v)}")
+        print(f"\nanalyzing {k}, length: {len(v)}")
         df_freq = pd.concat([df_freq, ecg_freq(v, sampling_freq)], axis=0)
         names.append(k)
         

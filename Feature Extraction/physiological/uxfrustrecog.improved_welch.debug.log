@@ -1,0 +1,1336 @@
+EDA: 147 trials and 24 features
+analyzing 01-Baseline
+ulf: freq [0.] power [9552.25884825]
+vlf: freq [] power []
+lf: freq [0.08888889] power [175675.95000592]
+hf: freq [0.17777778 0.26666667 0.35555556] power [198696.08233784 169619.18070705  89398.86506345]
+vhf: freq [0.44444444] power [118371.52157842]
+NK Total: 50567656.3827, ulf: nan, vlf: 22138796.01, lf: 27881761.20, hf: 536343.86, vhf: 10755.31, lfhf: 51.98, rlf: 98.11, rhf: 1.89
+Manual Total: 27881.4804, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 27881.48, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 01-AmusementClip, length: 9216
+ulf: freq [0.] power [1501.95921009]
+vlf: freq [] power []
+lf: freq [0.12121212] power [4996.66731226]
+hf: freq [0.24242424 0.36363636] power [6351.15783913  580.24184477]
+vhf: freq [0.48484848] power [13965.83916777]
+NK Total: 2258468.0738, ulf: nan, vlf: 191625.63, lf: 1609920.53, hf: 452962.03, vhf: 3959.88, lfhf: 3.55, rlf: 78.04, rhf: 21.96
+Manual Total: 420.0848, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 420.08, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 01-StressClip, length: 9216
+ulf: freq [0.] power [723.58310237]
+vlf: freq [] power []
+lf: freq [0.12121212] power [4816.21849051]
+hf: freq [0.24242424 0.36363636] power [1595.1994459  2016.22445091]
+vhf: freq [0.48484848] power [1604.43907391]
+NK Total: 1957248.7041, ulf: nan, vlf: 369346.45, lf: 1389530.14, hf: 196024.82, vhf: 2347.29, lfhf: 7.09, rlf: 87.64, rhf: 12.36
+Manual Total: 218.8742, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 218.87, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 01-EmoReset, length: 9216
+ulf: freq [0.] power [4299.81040303]
+vlf: freq [] power []
+lf: freq [0.12121212] power [139017.14036619]
+hf: freq [0.24242424 0.36363636] power [124145.3264165   55450.14613126]
+vhf: freq [0.48484848] power [64139.83559061]
+NK Total: 39753077.5843, ulf: nan, vlf: 16818074.05, lf: 22404320.60, hf: 519580.93, vhf: 11102.01, lfhf: 43.12, rlf: 97.73, rhf: 2.27
+Manual Total: 10884.5741, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 10884.57, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 01-FormL, length: 15360
+ulf: freq [0.] power [81.92717654]
+vlf: freq [] power []
+lf: freq [0.07017544 0.14035088] power [1253.09379666 2119.32248757]
+hf: freq [0.21052632 0.28070175 0.35087719] power [1831.96705955 2062.43393222 1454.6500055 ]
+vhf: freq [0.42105263 0.49122807] power [1170.3331132 2491.4676358]
+NK Total: 1256718.7043, ulf: nan, vlf: 161395.86, lf: 884335.56, hf: 208065.56, vhf: 2921.72, lfhf: 4.25, rlf: 80.95, rhf: 19.05
+Manual Total: 506.8667, ulf: 0.00, vlf: 0.00, lf: 118.33, hf: 260.05, vhf: 128.48, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 01-FormM, length: 18432
+ulf: freq [0.] power [1434.46761038]
+vlf: freq [] power []
+lf: freq [0.05714286 0.11428571] power [4377.60658    5610.40071963]
+hf: freq [0.17142857 0.22857143 0.28571429 0.34285714 0.4       ] power [ 7579.92072493 24231.9699219  26442.92623614 18936.64155719
+ 11143.06555333]
+vhf: freq [0.45714286] power [34079.66245714]
+NK Total: 7424180.5864, ulf: nan, vlf: 2883111.54, lf: 3920031.83, hf: 612182.94, vhf: 8854.28, lfhf: 6.40, rlf: 86.49, rhf: 13.51
+Manual Total: 4798.1163, ulf: 0.00, vlf: 0.00, lf: 285.37, hf: 4512.74, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 01-Debriefing, length: 13306
+ulf: freq [0.] power [6929.10535331]
+vlf: freq [] power []
+lf: freq [0.08163265] power [574256.62929731]
+hf: freq [0.16326531 0.24489796 0.32653061] power [934738.57551753 398790.38217059 315962.33216964]
+vhf: freq [0.40816327 0.48979592] power [207298.32870241  63506.00929444]
+NK Total: 99744536.1034, ulf: nan, vlf: 24135567.26, lf: 74145563.53, hf: 1428001.58, vhf: 35403.73, lfhf: 51.92, rlf: 98.11, rhf: 1.89
+Manual Total: 94656.5718, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 83603.33, vhf: 11053.24, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 02-Baseline, length: 9574
+ulf: freq [0.] power [1113859.57885447]
+vlf: freq [] power []
+lf: freq [0.11764706] power [4962301.65420337]
+hf: freq [0.23529412 0.35294118] power [8591017.20505632 7648134.6193432 ]
+vhf: freq [0.47058824] power [6317238.39604621]
+NK Total: 348564687.8442, ulf: nan, vlf: 232452220.36, lf: 114814856.87, hf: 1269396.98, vhf: 28213.63, lfhf: 90.45, rlf: 98.91, rhf: 1.09
+Manual Total: 955244.2250, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 955244.22, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 02-AmusementClip, length: 8498
+ulf: freq [0.] power [1550.96492809]
+vlf: freq [] power []
+lf: freq [0.13333333] power [8324.73984457]
+hf: freq [0.26666667] power [2251.24143565]
+vhf: freq [0.4] power [2131.36345004]
+NK Total: 5261075.9748, ulf: nan, vlf: 447061.99, lf: 3356042.31, hf: 1441065.64, vhf: 16906.04, lfhf: 2.33, rlf: 69.96, rhf: 30.04
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 02-StressClip, length: 5375
+ulf: freq [0.] power [2228.25741931]
+vlf: freq [] power []
+lf: freq [] power []
+hf: freq [0.25] power [11358.55644244]
+vhf: freq [] power []
+NK Total: 100100.1758, ulf: nan, vlf: nan, lf: 48270.75, hf: 48571.30, vhf: 3258.13, lfhf: 0.99, rlf: 49.84, rhf: 50.16
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 02-EmoReset, length: 9574
+ulf: freq [0.] power [1.11181873]
+vlf: freq [] power []
+lf: freq [0.11764706] power [5.07847627]
+hf: freq [0.23529412 0.35294118] power [7.87073893 4.271514  ]
+vhf: freq [0.47058824] power [22.4890771]
+NK Total: 10886.7432, ulf: nan, vlf: 866.90, lf: 4862.39, hf: 4784.12, vhf: 373.34, lfhf: 1.02, rlf: 50.41, rhf: 49.59
+Manual Total: 0.7143, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.71, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 02-FormL, length: 17458
+ulf: freq [0.] power [19225.36291131]
+vlf: freq [] power []
+lf: freq [0.06153846 0.12307692] power [153689.70738825  71681.39832018]
+hf: freq [0.18461538 0.24615385 0.30769231 0.36923077] power [43603.58831455 17565.97950011 12456.07580553 25229.29950576]
+vhf: freq [0.43076923 0.49230769] power [13503.95139674 25882.51102114]
+NK Total: 23835242.9873, ulf: nan, vlf: 12072677.87, lf: 11283064.44, hf: 468379.17, vhf: 11121.51, lfhf: 24.09, rlf: 96.01, rhf: 3.99
+Manual Total: 12111.8328, ulf: 0.00, vlf: 0.00, lf: 6934.50, hf: 3965.45, vhf: 1211.89, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 02-FormM, length: 22648
+ulf: freq [0.] power [4042.80446755]
+vlf: freq [] power []
+lf: freq [0.04597701 0.09195402 0.13793103] power [132710.52905971  79732.56086144  44019.44940249]
+hf: freq [0.18390805 0.22988506 0.27586207 0.32183908 0.36781609] power [18928.52978079 14621.45215507 24595.89862107 40737.06121292
+ 51625.65830113]
+vhf: freq [0.4137931  0.45977011] power [48582.292358   31964.97793053]
+NK Total: 22196238.5805, ulf: nan, vlf: 9642014.58, lf: 12241904.71, hf: 304874.38, vhf: 7444.91, lfhf: 40.15, rlf: 97.57, rhf: 2.43
+Manual Total: 14878.2847, ulf: 0.00, vlf: 0.00, lf: 7728.62, hf: 5298.00, vhf: 1851.66, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 02-Debriefing, length: 9522
+ulf: freq [0.] power [22523.86910397]
+vlf: freq [] power []
+lf: freq [0.11764706] power [142787.33563291]
+hf: freq [0.23529412 0.35294118] power [231639.93999237 221664.29108216]
+vhf: freq [0.47058824] power [207354.08786449]
+NK Total: 35337647.5448, ulf: nan, vlf: 11611275.78, lf: 23255374.48, hf: 448780.42, vhf: 22216.86, lfhf: 51.82, rlf: 98.11, rhf: 1.89
+Manual Total: 26664.9548, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 26664.95, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 03-Baseline, length: 9471
+ulf: freq [0.] power [2.59688438]
+vlf: freq [] power []
+lf: freq [0.11764706] power [8.19366043]
+hf: freq [0.23529412 0.35294118] power [4.46865255 0.19275223]
+vhf: freq [0.47058824] power [0.1474909]
+NK Total: 1589.7502, ulf: nan, vlf: 133.07, lf: 620.63, hf: 796.35, vhf: 39.69, lfhf: 0.78, rlf: 43.80, rhf: 56.20
+Manual Total: 0.2742, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.27, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 03-AmusementClip, length: 8395
+ulf: freq [0.] power [0.20308449]
+vlf: freq [] power []
+lf: freq [0.13333333] power [1.05482261]
+hf: freq [0.26666667] power [2.4353469]
+vhf: freq [0.4] power [1.80201441]
+NK Total: 1044.5786, ulf: nan, vlf: 39.35, lf: 420.87, hf: 546.97, vhf: 37.38, lfhf: 0.77, rlf: 43.49, rhf: 56.51
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 03-StressClip, length: 5732
+ulf: freq [0.] power [0.45710552]
+vlf: freq [] power []
+lf: freq [] power []
+hf: freq [0.21052632] power [1.18633568]
+vhf: freq [0.42105263] power [2.55390488]
+NK Total: 967.4114, ulf: nan, vlf: nan, lf: 386.50, hf: 542.40, vhf: 38.51, lfhf: 0.71, rlf: 41.61, rhf: 58.39
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 03-EmoReset, length: 9625
+ulf: freq [0.] power [0.62013167]
+vlf: freq [] power []
+lf: freq [0.11428571] power [12.86811316]
+hf: freq [0.22857143 0.34285714] power [6.21138465 0.1643266 ]
+vhf: freq [0.45714286] power [1.89250906]
+NK Total: 1929.3625, ulf: nan, vlf: 159.42, lf: 722.91, hf: 996.46, vhf: 50.58, lfhf: 0.73, rlf: 42.04, rhf: 57.96
+Manual Total: 0.3643, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.36, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 03-FormL, length: 15666
+ulf: freq [0.] power [1.70502464]
+vlf: freq [] power []
+lf: freq [0.06779661 0.13559322] power [27.98786408 19.08718177]
+hf: freq [0.20338983 0.27118644 0.33898305] power [36.52925586 11.83270273  4.31769234]
+vhf: freq [0.40677966 0.47457627] power [1.98540036 4.60210184]
+NK Total: 32444.7654, ulf: nan, vlf: 2205.98, lf: 10662.45, hf: 17024.08, vhf: 2552.25, lfhf: 0.63, rlf: 38.51, rhf: 61.49
+Manual Total: 4.0059, ulf: 0.00, vlf: 0.00, lf: 1.60, hf: 2.19, vhf: 0.22, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 03-FormM, length: 19966
+ulf: freq [0.] power [4.9093112]
+vlf: freq [] power []
+lf: freq [0.05263158 0.10526316] power [ 9.65242848 12.75979407]
+hf: freq [0.15789474 0.21052632 0.26315789 0.31578947 0.36842105] power [21.63884039  9.0607711   0.97358357 15.4888027  34.8753783 ]
+vhf: freq [0.42105263 0.47368421] power [23.40210695 22.98532586]
+NK Total: 7150.1919, ulf: nan, vlf: 990.29, lf: 3301.61, hf: 2702.11, vhf: 156.19, lfhf: 1.22, rlf: 54.99, rhf: 45.01
+Manual Total: 4.6411, ulf: 0.00, vlf: 0.00, lf: 0.59, hf: 2.83, vhf: 1.22, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 03-Debriefing, length: 9112
+ulf: freq [0.] power [0.76693458]
+vlf: freq [] power []
+lf: freq [0.125] power [4.12099278]
+hf: freq [0.25  0.375] power [8.24169669 6.02530131]
+vhf: freq [] power []
+NK Total: 2048.7570, ulf: nan, vlf: 253.14, lf: 907.87, hf: 831.45, vhf: 56.30, lfhf: 1.09, rlf: 52.20, rhf: 47.80
+Manual Total: 0.8917, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.89, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 04-Baseline, length: 9522
+ulf: freq [0.] power [8.9983191]
+vlf: freq [] power []
+lf: freq [0.11764706] power [123.97831469]
+hf: freq [0.23529412 0.35294118] power [ 75.33646477 113.59775374]
+vhf: freq [0.47058824] power [31.05273777]
+NK Total: 280658.2028, ulf: nan, vlf: 47467.52, lf: 158349.93, hf: 73094.89, vhf: 1745.87, lfhf: 2.17, rlf: 68.42, rhf: 31.58
+Manual Total: 11.1138, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 11.11, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 04-AmusementClip, length: 8550
+ulf: freq [0.] power [0.2887082]
+vlf: freq [] power []
+lf: freq [0.13333333] power [0.54822095]
+hf: freq [0.26666667] power [3.65771708]
+vhf: freq [0.4] power [12.50994724]
+NK Total: 7375.6622, ulf: nan, vlf: 633.56, lf: 3762.42, hf: 2799.16, vhf: 180.52, lfhf: 1.34, rlf: 57.34, rhf: 42.66
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 04-StressClip, length: 8806
+ulf: freq [0.] power [0.01271791]
+vlf: freq [] power []
+lf: freq [0.125] power [9.39107507]
+hf: freq [0.25  0.375] power [ 3.04085496 22.20997733]
+vhf: freq [] power []
+NK Total: 33572.0459, ulf: nan, vlf: 574.00, lf: 7745.57, hf: 23022.16, vhf: 2230.32, lfhf: 0.34, rlf: 25.17, rhf: 74.83
+Manual Total: 1.5782, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 1.58, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 04-EmoReset, length: 9676
+ulf: freq [0.] power [0.07394582]
+vlf: freq [] power []
+lf: freq [0.11428571] power [6.62359778]
+hf: freq [0.22857143 0.34285714] power [ 9.64942945 21.06494857]
+vhf: freq [0.45714286] power [29.04794697]
+NK Total: 8283.2618, ulf: nan, vlf: 1351.64, lf: 3581.41, hf: 3184.46, vhf: 165.75, lfhf: 1.12, rlf: 52.93, rhf: 47.07
+Manual Total: 1.7551, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 1.76, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 04-FormL, length: 13055
+ulf: freq [0.] power [196.67186053]
+vlf: freq [] power []
+lf: freq [0.08333333] power [118.22281673]
+hf: freq [0.16666667 0.25       0.33333333] power [1.25805768 4.57253672 8.00492243]
+vhf: freq [0.41666667] power [4.43364732]
+NK Total: 41860.4666, ulf: nan, vlf: 7764.48, lf: 24262.04, hf: 9559.68, vhf: 274.27, lfhf: 2.54, rlf: 71.74, rhf: 28.26
+Manual Total: 0.7670, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.77, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 04-FormM, length: 20735
+ulf: freq [0.] power [361.08437213]
+vlf: freq [] power []
+lf: freq [0.05063291 0.10126582] power [1798.19865277 3031.30072825]
+hf: freq [0.15189873 0.20253165 0.25316456 0.30379747 0.35443038] power [2771.34205938 2895.98391389 3113.02580369 2860.87446259 2561.47427488]
+vhf: freq [0.40506329 0.4556962 ] power [2783.26531963 3058.28802581]
+NK Total: 1029726.0866, ulf: nan, vlf: 239988.90, lf: 640559.01, hf: 147516.42, vhf: 1661.76, lfhf: 4.34, rlf: 81.28, rhf: 18.72
+Manual Total: 854.2693, ulf: 0.00, vlf: 0.00, lf: 122.27, hf: 584.12, vhf: 147.89, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 04-Debriefing, length: 9574
+ulf: freq [0.] power [1444.59288482]
+vlf: freq [] power []
+lf: freq [0.11764706] power [6029.34490851]
+hf: freq [0.23529412 0.35294118] power [7339.7058096  3235.11954857]
+vhf: freq [0.47058824] power [2860.4188657]
+NK Total: 675130.3063, ulf: nan, vlf: 31499.28, lf: 391594.28, hf: 246623.89, vhf: 5412.85, lfhf: 1.59, rlf: 61.36, rhf: 38.64
+Manual Total: 622.0486, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 622.05, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 05-Baseline, length: 9471
+ulf: freq [0.] power [2020.49674329]
+vlf: freq [] power []
+lf: freq [0.11764706] power [6906.34916691]
+hf: freq [0.23529412 0.35294118] power [1997.62021495 1179.1929488 ]
+vhf: freq [0.47058824] power [4634.37095741]
+NK Total: 3001508.7606, ulf: nan, vlf: 828124.84, lf: 1910751.35, hf: 260028.83, vhf: 2603.73, lfhf: 7.35, rlf: 88.02, rhf: 11.98
+Manual Total: 186.8714, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 186.87, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 05-AmusementClip, length: 8549
+ulf: freq [0.] power [0.6688205]
+vlf: freq [] power []
+lf: freq [0.13333333] power [176.81825778]
+hf: freq [0.26666667] power [198.32002612]
+vhf: freq [0.4] power [43.73923767]
+NK Total: 26918.3049, ulf: nan, vlf: 1618.03, lf: 14179.70, hf: 10618.81, vhf: 501.76, lfhf: 1.34, rlf: 57.18, rhf: 42.82
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 05-StressClip, length: 5733
+ulf: freq [0.] power [2.66317319]
+vlf: freq [] power []
+lf: freq [] power []
+hf: freq [0.21052632] power [72.69138537]
+vhf: freq [0.42105263] power [34.91342652]
+NK Total: 10954.6844, ulf: nan, vlf: nan, lf: 4651.60, hf: 5121.43, vhf: 1181.66, lfhf: 0.91, rlf: 47.60, rhf: 52.40
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 05-EmoReset, length: 9625
+ulf: freq [0.] power [127.8468881]
+vlf: freq [] power []
+lf: freq [0.11428571] power [223.12093822]
+hf: freq [0.22857143 0.34285714] power [ 122.38600703 2410.51957159]
+vhf: freq [0.45714286] power [2642.50095379]
+NK Total: 1082923.1346, ulf: nan, vlf: 128031.29, lf: 699172.17, hf: 253051.38, vhf: 2668.30, lfhf: 2.76, rlf: 73.43, rhf: 26.57
+Manual Total: 144.7375, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 144.74, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 05-FormL, length: 19198
+ulf: freq [0.] power [0.96795859]
+vlf: freq [] power []
+lf: freq [0.05479452 0.10958904] power [0.82525856 8.71862945]
+hf: freq [0.16438356 0.21917808 0.2739726  0.32876712 0.38356164] power [19.20734869  9.45439527  9.21121362 23.35536378  7.66380274]
+vhf: freq [0.43835616 0.49315068] power [1.14411866 3.27697629]
+NK Total: 5580.5955, ulf: nan, vlf: 2022.84, lf: 2356.27, hf: 1176.15, vhf: 25.35, lfhf: 2.00, rlf: 66.70, rhf: 33.30
+Manual Total: 3.4213, ulf: 0.00, vlf: 0.00, lf: 0.26, hf: 3.04, vhf: 0.12, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 05-FormM, length: 24983
+ulf: freq [0.] power [7.81000667]
+vlf: freq [] power []
+lf: freq [0.04166667 0.08333333 0.125     ] power [ 56.68211893 135.6356967  118.41716016]
+hf: freq [0.16666667 0.20833333 0.25       0.29166667 0.33333333 0.375     ] power [152.11486984 233.02270415 168.26863675 113.80499134  60.26054389
+   6.02849572]
+vhf: freq [0.41666667 0.45833333] power [ 6.25870056 43.59950206]
+NK Total: 13899.5989, ulf: nan, vlf: 4500.12, lf: 5323.65, hf: 3954.94, vhf: 120.89, lfhf: 1.35, rlf: 57.38, rhf: 42.62
+Manual Total: 37.6060, ulf: 0.00, vlf: 0.00, lf: 9.30, hf: 27.27, vhf: 1.04, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 05-Debriefing, length: 9675
+ulf: freq [0.] power [112.82837691]
+vlf: freq [] power []
+lf: freq [0.11428571] power [2059.34462239]
+hf: freq [0.22857143 0.34285714] power [3260.62713433 1189.60413174]
+vhf: freq [0.45714286] power [1257.86358033]
+NK Total: 717309.4937, ulf: nan, vlf: 86288.08, lf: 218083.57, hf: 406616.98, vhf: 6320.86, lfhf: 0.54, rlf: 34.91, rhf: 65.09
+Manual Total: 254.2989, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 254.30, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 06-Baseline, length: 9573
+ulf: freq [0.] power [53.01953769]
+vlf: freq [] power []
+lf: freq [0.11428571] power [2710.91299081]
+hf: freq [0.22857143 0.34285714] power [1676.75616863 2393.91641674]
+vhf: freq [0.45714286] power [3850.83149083]
+NK Total: 1289296.4207, ulf: nan, vlf: 164143.10, lf: 715290.63, hf: 405981.15, vhf: 3881.54, lfhf: 1.76, rlf: 63.79, rhf: 36.21
+Manual Total: 232.6099, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 232.61, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 06-AmusementClip, length: 8549
+ulf: freq [0.] power [761.08661667]
+vlf: freq [] power []
+lf: freq [0.13333333] power [10917.00933965]
+hf: freq [0.26666667] power [6525.57364613]
+vhf: freq [0.4] power [7390.65943766]
+NK Total: 293553.1829, ulf: nan, vlf: 43109.05, lf: 139352.92, hf: 106659.07, vhf: 4432.14, lfhf: 1.31, rlf: 56.64, rhf: 43.36
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 06-StressClip, length: 5733
+ulf: freq [0.] power [2264.1522671]
+vlf: freq [] power []
+lf: freq [] power []
+hf: freq [0.22222222] power [6084.83810906]
+vhf: freq [0.44444444] power [1824.15493729]
+NK Total: 203449.0227, ulf: nan, vlf: nan, lf: 114966.43, hf: 87006.15, vhf: 1476.44, lfhf: 1.32, rlf: 56.92, rhf: 43.08
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 06-EmoReset, length: 9420
+ulf: freq [0.] power [6111.04719833]
+vlf: freq [] power []
+lf: freq [0.12121212] power [32453.3603376]
+hf: freq [0.24242424 0.36363636] power [13718.55629707 22120.18469636]
+vhf: freq [0.48484848] power [44106.12807842]
+NK Total: 7420553.2099, ulf: nan, vlf: 1345365.35, lf: 5506373.45, hf: 559389.68, vhf: 9424.73, lfhf: 9.84, rlf: 90.78, rhf: 9.22
+Manual Total: 2172.0449, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 2172.04, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 06-FormL, length: 17049
+ulf: freq [0.] power [15629.60696345]
+vlf: freq [] power []
+lf: freq [0.0625 0.125 ] power [ 73713.24040903 101813.56263362]
+hf: freq [0.1875 0.25   0.3125 0.375 ] power [51967.49379367 10769.98289046  2352.32734486 33497.48041512]
+vhf: freq [0.4375] power [67246.64771106]
+NK Total: 20122674.5069, ulf: nan, vlf: 5599263.87, lf: 13375967.42, hf: 1133198.13, vhf: 14245.09, lfhf: 11.80, rlf: 92.19, rhf: 7.81
+Manual Total: 8976.1374, ulf: 0.00, vlf: 0.00, lf: 5485.21, hf: 3490.92, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 06-FormM, length: 27596
+ulf: freq [0.] power [202.38827404]
+vlf: freq [0.03773585] power [39185.444757]
+lf: freq [0.0754717  0.11320755] power [28204.1215438  27825.07445069]
+hf: freq [0.1509434  0.18867925 0.22641509 0.26415094 0.30188679 0.33962264
+ 0.37735849] power [ 4350.33623135 31497.00354567 15046.9290733   7658.92500528
+ 44210.44824584 35754.33283719 49426.34495125]
+vhf: freq [0.41509434 0.45283019 0.49056604] power [46970.0115636   4159.74716039 28692.1355475 ]
+NK Total: 7519701.6750, ulf: nan, vlf: 2635937.33, lf: 4460250.72, hf: 414255.63, vhf: 9257.99, lfhf: 10.77, rlf: 91.50, rhf: 8.50
+Manual Total: 8719.2980, ulf: 0.00, vlf: 0.00, lf: 1057.15, hf: 6077.58, vhf: 1584.56, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 06-Debriefing, length: 9829
+ulf: freq [0.] power [12743.87248835]
+vlf: freq [] power []
+lf: freq [0.11428571] power [40159.99274606]
+hf: freq [0.22857143 0.34285714] power [37130.60709217 24361.30650395]
+vhf: freq [0.45714286] power [88536.40610751]
+NK Total: 9879529.8795, ulf: nan, vlf: 3902600.65, lf: 4846126.02, hf: 1120664.14, vhf: 10139.07, lfhf: 4.32, rlf: 81.22, rhf: 18.78
+Manual Total: 3513.8236, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 3513.82, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 07-Baseline, length: 9471
+ulf: freq [0.] power [23614.33556017]
+vlf: freq [] power []
+lf: freq [0.11764706] power [123564.69860827]
+hf: freq [0.23529412 0.35294118] power [194143.9692496  177141.00591804]
+vhf: freq [0.47058824] power [157556.54035395]
+NK Total: 12479672.5746, ulf: nan, vlf: 8111887.15, lf: 4230909.24, hf: 134104.94, vhf: 2771.25, lfhf: 31.55, rlf: 96.93, rhf: 3.07
+Manual Total: 21840.2927, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 21840.29, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 07-AmusementClip, length: 8549
+ulf: freq [0.] power [0.12739054]
+vlf: freq [] power []
+lf: freq [0.13333333] power [0.04778737]
+hf: freq [0.26666667] power [7.62575865]
+vhf: freq [0.4] power [15.81253679]
+NK Total: 3650.6450, ulf: nan, vlf: 50.63, lf: 341.55, hf: 3146.40, vhf: 112.06, lfhf: 0.11, rlf: 9.79, rhf: 90.21
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 07-StressClip, length: 5733
+ulf: freq [0.] power [13173.8745128]
+vlf: freq [] power []
+lf: freq [] power []
+hf: freq [0.21052632] power [166875.20359741]
+vhf: freq [0.42105263] power [66595.0310244]
+NK Total: 9772906.0387, ulf: nan, vlf: nan, lf: 9742347.57, hf: 29988.06, vhf: 570.40, lfhf: 324.87, rlf: 99.69, rhf: 0.31
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 07-EmoReset, length: 9573
+ulf: freq [0.] power [3.27737352]
+vlf: freq [] power []
+lf: freq [0.11428571] power [12.4927601]
+hf: freq [0.22857143 0.34285714] power [2.1422627 7.8557619]
+vhf: freq [0.45714286] power [25.12697618]
+NK Total: 4236.7555, ulf: nan, vlf: 164.76, lf: 384.16, hf: 3224.87, vhf: 462.97, lfhf: 0.12, rlf: 10.64, rhf: 89.36
+Manual Total: 0.5713, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.57, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 07-FormL, length: 9830
+ulf: freq [0.] power [0.29626181]
+vlf: freq [] power []
+lf: freq [0.11428571] power [0.29334105]
+hf: freq [0.22857143 0.34285714] power [0.13685887 1.79612585]
+vhf: freq [0.45714286] power [2.6822533]
+NK Total: 17095.9745, ulf: nan, vlf: 2925.08, lf: 11704.97, hf: 2348.15, vhf: 117.77, lfhf: 4.98, rlf: 83.29, rhf: 16.71
+Manual Total: 0.1105, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.11, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 07-FormM, length: 22220
+ulf: freq [0.] power [29.78805215]
+vlf: freq [] power []
+lf: freq [0.04705882 0.09411765 0.14117647] power [60.93662326 24.71435504 22.78444889]
+hf: freq [0.18823529 0.23529412 0.28235294 0.32941176 0.37647059] power [50.20713984 13.73243762  0.30210833 21.39658908 11.81361696]
+vhf: freq [0.42352941 0.47058824] power [12.9852522   9.15438868]
+NK Total: 7913.3785, ulf: nan, vlf: 858.53, lf: 1685.64, hf: 4584.79, vhf: 784.42, lfhf: 0.37, rlf: 26.88, rhf: 73.12
+Manual Total: 6.7805, ulf: 0.00, vlf: 0.00, lf: 3.13, hf: 3.13, vhf: 0.52, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 07-Debriefing, length: 9420
+ulf: freq [0.] power [0.1689906]
+vlf: freq [] power []
+lf: freq [0.11764706] power [1.6703132]
+hf: freq [0.23529412 0.35294118] power [5.05624912 0.96276547]
+vhf: freq [0.47058824] power [7.66529043]
+NK Total: 2655.1040, ulf: nan, vlf: 348.87, lf: 863.30, hf: 1373.59, vhf: 69.34, lfhf: 0.63, rlf: 38.59, rhf: 61.41
+Manual Total: 0.3541, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.35, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 08-Baseline, length: 9625
+ulf: freq [0.] power [7.2527567]
+vlf: freq [] power []
+lf: freq [0.11428571] power [12.25883936]
+hf: freq [0.22857143 0.34285714] power [ 3.22557818 15.18644006]
+vhf: freq [0.45714286] power [4.60362056]
+NK Total: 1791.9481, ulf: nan, vlf: 262.92, lf: 479.79, hf: 863.80, vhf: 185.43, lfhf: 0.56, rlf: 35.71, rhf: 64.29
+Manual Total: 1.0521, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 1.05, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 08-AmusementClip, length: 8601
+ulf: freq [0.] power [0.0032151]
+vlf: freq [] power []
+lf: freq [0.12903226] power [3.03976464]
+hf: freq [0.25806452 0.38709677] power [2.54492896 2.1676386 ]
+vhf: freq [] power []
+NK Total: 1158.4422, ulf: nan, vlf: 178.31, lf: 458.75, hf: 448.21, vhf: 73.16, lfhf: 1.02, rlf: 50.58, rhf: 49.42
+Manual Total: 0.3040, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.30, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 08-StressClip, length: 5734
+ulf: freq [0.] power [0.17387695]
+vlf: freq [] power []
+lf: freq [] power []
+hf: freq [0.21052632] power [2.24584094]
+vhf: freq [0.42105263] power [1.59367441]
+NK Total: 678.5366, ulf: nan, vlf: nan, lf: 380.62, hf: 271.62, vhf: 26.29, lfhf: 1.40, rlf: 58.36, rhf: 41.64
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 08-EmoReset, length: 9624
+ulf: freq [0.] power [1.12766838]
+vlf: freq [] power []
+lf: freq [0.11764706] power [3.25124884]
+hf: freq [0.23529412 0.35294118] power [1.71727749 1.74551937]
+vhf: freq [0.47058824] power [2.75910485]
+NK Total: 924.1128, ulf: nan, vlf: 156.75, lf: 335.01, hf: 410.92, vhf: 21.44, lfhf: 0.82, rlf: 44.91, rhf: 55.09
+Manual Total: 0.2037, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.20, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 08-FormL, length: 14284
+ulf: freq [0.] power [49.89576106]
+vlf: freq [] power []
+lf: freq [0.0754717] power [240.85431352]
+hf: freq [0.1509434  0.22641509 0.30188679 0.37735849] power [362.73054565 269.16332557 258.56811697 223.85731587]
+vhf: freq [0.45283019] power [191.0423296]
+NK Total: 251446.0839, ulf: nan, vlf: 46772.78, lf: 155950.08, hf: 47869.48, vhf: 853.74, lfhf: 3.26, rlf: 76.51, rhf: 23.49
+Manual Total: 61.9642, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 61.96, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 08-FormM, length: 24422
+ulf: freq [0.] power [14855.51353641]
+vlf: freq [] power []
+lf: freq [0.04255319 0.08510638 0.12765957] power [61236.55065877 66376.63892202 35425.57750296]
+hf: freq [0.17021277 0.21276596 0.25531915 0.29787234 0.34042553 0.38297872] power [39955.4963118  57000.50215494 66109.41091546 58028.34650939
+ 39451.53186    34781.86505226]
+vhf: freq [0.42553191 0.46808511] power [44966.17159452 48071.6516724 ]
+NK Total: 9068443.0343, ulf: nan, vlf: 5293478.95, lf: 3475328.14, hf: 295773.42, vhf: 3862.53, lfhf: 11.75, rlf: 92.16, rhf: 7.84
+Manual Total: 17837.6633, ulf: 0.00, vlf: 0.00, lf: 4881.18, hf: 10976.96, vhf: 1979.53, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 08-Debriefing, length: 9676
+ulf: freq [0.] power [0.2461365]
+vlf: freq [] power []
+lf: freq [0.11428571] power [3.31231921]
+hf: freq [0.22857143 0.34285714] power [2.84261415 1.23072175]
+vhf: freq [0.45714286] power [1.18619452]
+NK Total: 7659.5709, ulf: nan, vlf: 504.31, lf: 3035.40, hf: 3746.57, vhf: 373.29, lfhf: 0.81, rlf: 44.76, rhf: 55.24
+Manual Total: 0.2328, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.23, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 09-Baseline, length: 9624
+ulf: freq [0.] power [0.13427854]
+vlf: freq [] power []
+lf: freq [0.11428571] power [1.12745833]
+hf: freq [0.22857143 0.34285714] power [5.62504275 1.91445689]
+vhf: freq [0.45714286] power [3.25630499]
+NK Total: 1510.7492, ulf: nan, vlf: 232.89, lf: 492.66, hf: 582.40, vhf: 202.80, lfhf: 0.85, rlf: 45.83, rhf: 54.17
+Manual Total: 0.4308, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.43, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 09-AmusementClip, length: 8549
+ulf: freq [0.] power [0.23331334]
+vlf: freq [] power []
+lf: freq [0.13333333] power [0.29702801]
+hf: freq [0.26666667] power [1.06909152]
+vhf: freq [0.4] power [0.4070022]
+NK Total: 550.1927, ulf: nan, vlf: 27.61, lf: 286.08, hf: 176.19, vhf: 60.32, lfhf: 1.62, rlf: 61.89, rhf: 38.11
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 09-StressClip, length: 5733
+ulf: freq [0.] power [0.00812608]
+vlf: freq [] power []
+lf: freq [] power []
+hf: freq [0.21052632] power [0.11802755]
+vhf: freq [0.42105263] power [0.15488682]
+NK Total: 539.9923, ulf: nan, vlf: nan, lf: 352.96, hf: 156.70, vhf: 30.34, lfhf: 2.25, rlf: 69.25, rhf: 30.75
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 09-EmoReset, length: 9573
+ulf: freq [0.] power [1281.5788864]
+vlf: freq [] power []
+lf: freq [0.11764706] power [692.22021363]
+hf: freq [0.23529412 0.35294118] power [3.04320806 0.8917516 ]
+vhf: freq [0.47058824] power [0.43004633]
+NK Total: 825065.8879, ulf: nan, vlf: 236773.37, lf: 519871.75, hf: 67431.35, vhf: 989.42, lfhf: 7.71, rlf: 88.52, rhf: 11.48
+Manual Total: 0.2315, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.23, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 09-FormL, length: 12646
+ulf: freq [0.] power [102.16978085]
+vlf: freq [] power []
+lf: freq [0.08510638] power [84.51314385]
+hf: freq [0.17021277 0.25531915 0.34042553] power [4.80048834 2.09195709 1.02742381]
+vhf: freq [0.42553191] power [2.30318753]
+NK Total: 89765.9493, ulf: nan, vlf: 11167.53, lf: 48181.71, hf: 29820.03, vhf: 596.67, lfhf: 1.62, rlf: 61.77, rhf: 38.23
+Manual Total: 0.4260, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.43, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 09-FormM, length: 20070
+ulf: freq [0.] power [33.02802427]
+vlf: freq [] power []
+lf: freq [0.05263158 0.10526316] power [37.81542764 44.04883723]
+hf: freq [0.15789474 0.21052632 0.26315789 0.31578947 0.36842105] power [301.4563891  397.16460755 547.35147697 206.69111529 141.55028282]
+vhf: freq [0.42105263 0.47368421] power [233.13114641 357.74709952]
+NK Total: 75409.6264, ulf: nan, vlf: 10766.84, lf: 33602.59, hf: 29480.15, vhf: 1560.05, lfhf: 1.14, rlf: 53.27, rhf: 46.73
+Manual Total: 89.9517, ulf: 0.00, vlf: 0.00, lf: 2.15, hf: 72.25, vhf: 15.55, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 09-Debriefing, length: 9522
+ulf: freq [0.] power [148.48272666]
+vlf: freq [] power []
+lf: freq [0.11764706] power [948.6983632]
+hf: freq [0.23529412 0.35294118] power [1337.7141828  1243.49939927]
+vhf: freq [0.47058824] power [1372.44147206]
+NK Total: 1375063.4458, ulf: nan, vlf: 283892.27, lf: 862776.70, hf: 224952.55, vhf: 3441.93, lfhf: 3.84, rlf: 79.32, rhf: 20.68
+Manual Total: 151.8361, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 151.84, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 10-Baseline, length: 9574
+ulf: freq [0.] power [0.15962778]
+vlf: freq [] power []
+lf: freq [0.11764706] power [0.00837564]
+hf: freq [0.23529412 0.35294118] power [ 7.67416702 13.10639319]
+vhf: freq [0.47058824] power [2.05405211]
+NK Total: 7356.0106, ulf: nan, vlf: 386.68, lf: 2359.05, hf: 4202.39, vhf: 407.90, lfhf: 0.56, rlf: 35.95, rhf: 64.05
+Manual Total: 1.2224, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 1.22, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 10-AmusementClip, length: 8498
+ulf: freq [0.] power [11281.00677262]
+vlf: freq [] power []
+lf: freq [0.13793103] power [34257.59173863]
+hf: freq [0.27586207] power [9845.75811756]
+vhf: freq [0.4137931] power [1715.95590229]
+NK Total: 23201672.2098, ulf: nan, vlf: 6169982.29, lf: 16585419.08, hf: 436856.88, vhf: 9413.95, lfhf: 37.97, rlf: 97.43, rhf: 2.57
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 10-StressClip, length: 5682
+ulf: freq [0.] power [0.18963295]
+vlf: freq [] power []
+lf: freq [] power []
+hf: freq [0.22222222] power [1.0047018]
+vhf: freq [0.44444444] power [1.46748876]
+NK Total: 2462.5613, ulf: nan, vlf: nan, lf: 617.64, hf: 1624.02, vhf: 220.90, lfhf: 0.38, rlf: 27.55, rhf: 72.45
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 10-EmoReset, length: 9624
+ulf: freq [0.] power [7.82698692]
+vlf: freq [] power []
+lf: freq [0.12121212] power [493.59096294]
+hf: freq [0.24242424 0.36363636] power [296.04469633 308.66608438]
+vhf: freq [0.48484848] power [254.4429987]
+NK Total: 344703.5341, ulf: nan, vlf: 83689.69, lf: 230193.39, hf: 29911.50, vhf: 908.96, lfhf: 7.70, rlf: 88.50, rhf: 11.50
+Manual Total: 36.6491, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 36.65, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 10-FormL, length: 11775
+ulf: freq [0.] power [108.01876342]
+vlf: freq [] power []
+lf: freq [0.09302326] power [60.24799867]
+hf: freq [0.18604651 0.27906977 0.37209302] power [252.15508608 285.54191222 214.78838811]
+vhf: freq [0.46511628] power [224.74623564]
+NK Total: 170404.4205, ulf: nan, vlf: 28234.10, lf: 101740.12, hf: 39382.53, vhf: 1047.67, lfhf: 2.58, rlf: 72.09, rhf: 27.91
+Manual Total: 48.2803, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 48.28, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 10-FormM, length: 20530
+ulf: freq [0.] power [21.08485578]
+vlf: freq [] power []
+lf: freq [0.05194805 0.1038961 ] power [73.68150907 86.54058269]
+hf: freq [0.15584416 0.20779221 0.25974026 0.31168831 0.36363636] power [77.42869795 22.01201042 60.3368481  17.4135701  16.77782976]
+vhf: freq [0.41558442 0.46753247] power [88.93904433 61.65019854]
+NK Total: 52670.2518, ulf: nan, vlf: 6201.97, lf: 26496.54, hf: 19254.58, vhf: 717.17, lfhf: 1.38, rlf: 57.91, rhf: 42.09
+Manual Total: 15.7024, ulf: 0.00, vlf: 0.00, lf: 4.16, hf: 7.63, vhf: 3.91, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 10-Debriefing, length: 9573
+ulf: freq [0.] power [24.31422183]
+vlf: freq [] power []
+lf: freq [0.12121212] power [111.99774766]
+hf: freq [0.24242424 0.36363636] power [12.1050935 38.4444736]
+vhf: freq [0.48484848] power [28.82254771]
+NK Total: 187936.4555, ulf: nan, vlf: 8384.89, lf: 118049.29, hf: 60717.02, vhf: 785.25, lfhf: 1.94, rlf: 66.04, rhf: 33.96
+Manual Total: 3.0636, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 3.06, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 11-Baseline, length: 9420
+ulf: freq [0.] power [2.03104065]
+vlf: freq [] power []
+lf: freq [0.11764706] power [19.7012754]
+hf: freq [0.23529412 0.35294118] power [22.46136951 13.69368199]
+vhf: freq [0.47058824] power [5.00675169]
+NK Total: 4282.5153, ulf: nan, vlf: 527.49, lf: 2267.08, hf: 1220.46, vhf: 267.48, lfhf: 1.86, rlf: 65.01, rhf: 34.99
+Manual Total: 2.1268, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 2.13, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 11-AmusementClip, length: 8447
+ulf: freq [0.] power [0.35918376]
+vlf: freq [] power []
+lf: freq [0.13333333] power [13.68606775]
+hf: freq [0.26666667] power [19.75246602]
+vhf: freq [0.4] power [3.51420876]
+NK Total: 2111.5619, ulf: nan, vlf: 90.69, lf: 561.25, hf: 1273.53, vhf: 186.10, lfhf: 0.44, rlf: 30.59, rhf: 69.41
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 11-StressClip, length: 5682
+ulf: freq [0.] power [1.15507932]
+vlf: freq [] power []
+lf: freq [] power []
+hf: freq [0.21052632] power [4.4799411]
+vhf: freq [0.42105263] power [7.0777584]
+NK Total: 4470.4556, ulf: nan, vlf: nan, lf: 1794.77, hf: 2467.96, vhf: 207.73, lfhf: 0.73, rlf: 42.10, rhf: 57.90
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 11-EmoReset, length: 9573
+ulf: freq [0.] power [2.37751855]
+vlf: freq [] power []
+lf: freq [0.11764706] power [6.76318316]
+hf: freq [0.23529412 0.35294118] power [0.19421681 9.39807317]
+vhf: freq [0.47058824] power [4.04139099]
+NK Total: 2652.9896, ulf: nan, vlf: 398.33, lf: 1096.11, hf: 949.31, vhf: 209.24, lfhf: 1.15, rlf: 53.59, rhf: 46.41
+Manual Total: 0.5643, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.56, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 11-FormL, length: 8140
+ulf: freq [0.] power [1.53093211]
+vlf: freq [] power []
+lf: freq [0.13793103] power [9.25518102]
+hf: freq [0.27586207] power [10.82899812]
+vhf: freq [0.4137931] power [1.87721535]
+NK Total: 2959.3344, ulf: nan, vlf: 138.88, lf: 1390.09, hf: 1251.31, vhf: 179.06, lfhf: 1.11, rlf: 52.63, rhf: 47.37
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 11-FormM, length: 22783
+ulf: freq [0.] power [2.64857318e+09]
+vlf: freq [] power []
+lf: freq [0.05128205 0.1025641 ] power [1.22467494e+10 3.11367840e+09]
+hf: freq [0.15384615 0.20512821 0.25641026 0.30769231 0.35897436] power [2.07307741e+09 1.09862721e+09 4.88410290e+08 2.31070777e+08
+ 1.21352092e+08]
+vhf: freq [0.41025641 0.46153846] power [61340130.06898928 34304195.83027579]
+NK Total: 213578174859.3645, ulf: nan, vlf: 212799400829.01, lf: 763285485.60, hf: 15067443.41, vhf: 421101.35, lfhf: 50.66, rlf: 98.06, rhf: 1.94
+Manual Total: 545813285.9593, ulf: 0.00, vlf: 0.00, lf: 393857122.48, hf: 149503744.86, vhf: 2452418.61, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 11-Debriefing, length: 9573
+ulf: freq [0.] power [7.90974515]
+vlf: freq [] power []
+lf: freq [0.11764706] power [11.3134669]
+hf: freq [0.23529412 0.35294118] power [15.41891324 20.96829612]
+vhf: freq [0.47058824] power [0.04839915]
+NK Total: 93353.5703, ulf: nan, vlf: 6443.60, lf: 58521.81, hf: 27964.13, vhf: 424.03, lfhf: 2.09, rlf: 67.67, rhf: 32.33
+Manual Total: 2.1404, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 2.14, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 12-Baseline, length: 9419
+ulf: freq [0.] power [23.43220939]
+vlf: freq [] power []
+lf: freq [0.12121212] power [246.10072185]
+hf: freq [0.24242424 0.36363636] power [21.13483725 60.33592407]
+vhf: freq [0.48484848] power [17.90610587]
+NK Total: 829221.3173, ulf: nan, vlf: 122145.34, lf: 575644.21, hf: 130177.18, vhf: 1254.59, lfhf: 4.42, rlf: 81.56, rhf: 18.44
+Manual Total: 4.9376, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 4.94, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 12-AmusementClip, length: 8601
+ulf: freq [0.] power [30.87479786]
+vlf: freq [] power []
+lf: freq [0.13333333] power [11530.06501349]
+hf: freq [0.26666667] power [20889.33148797]
+vhf: freq [0.4] power [13708.48803582]
+NK Total: 601530.5743, ulf: nan, vlf: 38170.42, lf: 395652.67, hf: 166348.07, vhf: 1359.42, lfhf: 2.38, rlf: 70.40, rhf: 29.60
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 12-StressClip, length: 5682
+ulf: freq [0.] power [84.61740822]
+vlf: freq [] power []
+lf: freq [] power []
+hf: freq [0.21052632] power [1332.12397946]
+vhf: freq [0.42105263] power [1182.61549577]
+NK Total: 505141.5168, ulf: nan, vlf: nan, lf: 420514.98, hf: 83729.25, vhf: 897.29, lfhf: 5.02, rlf: 83.40, rhf: 16.60
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 12-EmoReset, length: 9574
+ulf: freq [0.] power [221.44399635]
+vlf: freq [] power []
+lf: freq [0.11764706] power [202.71684245]
+hf: freq [0.23529412 0.35294118] power [610.35588172 555.34914168]
+vhf: freq [0.47058824] power [655.82798491]
+NK Total: 180555.5787, ulf: nan, vlf: 21503.82, lf: 96188.40, hf: 61625.65, vhf: 1237.72, lfhf: 1.56, rlf: 60.95, rhf: 39.05
+Manual Total: 68.5709, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 68.57, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 12-FormL, length: 11110
+ulf: freq [0.] power [376.15965207]
+vlf: freq [] power []
+lf: freq [0.1] power [485.28029109]
+hf: freq [0.2 0.3] power [95.3355579 32.58032  ]
+vhf: freq [0.4] power [18.51552725]
+NK Total: 39337.6968, ulf: nan, vlf: 2356.64, lf: 22007.97, hf: 14645.77, vhf: 327.31, lfhf: 1.50, rlf: 60.04, rhf: 39.96
+Manual Total: 6.3958, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 6.40, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 12-FormM, length: 21196
+ulf: freq [0.] power [142.60701686]
+vlf: freq [] power []
+lf: freq [0.04938272 0.09876543 0.14814815] power [357.51748131  36.31020444  66.89182111]
+hf: freq [0.19753086 0.24691358 0.2962963  0.34567901 0.39506173] power [63.83879983 33.18517784 89.0629566  14.73544226  8.06073827]
+vhf: freq [0.44444444 0.49382716] power [60.82348483 51.19013999]
+NK Total: 20802.4408, ulf: nan, vlf: 6111.91, lf: 7700.09, hf: 6894.18, vhf: 96.26, lfhf: 1.12, rlf: 52.76, rhf: 47.24
+Manual Total: 23.5780, ulf: 0.00, vlf: 0.00, lf: 12.27, hf: 8.54, vhf: 2.77, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 12-Debriefing, length: 9624
+ulf: freq [0.] power [23085.94178786]
+vlf: freq [] power []
+lf: freq [0.11764706] power [90582.15368725]
+hf: freq [0.23529412 0.35294118] power [74091.23637077 42138.74104849]
+vhf: freq [0.47058824] power [23136.14714268]
+NK Total: 12364252.2672, ulf: nan, vlf: 4049941.67, lf: 8062980.72, hf: 247419.15, vhf: 3910.73, lfhf: 32.59, rlf: 97.02, rhf: 2.98
+Manual Total: 6837.0575, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 6837.06, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 13-Baseline, length: 9574
+ulf: freq [0.] power [2.75298014e-05]
+vlf: freq [] power []
+lf: freq [0.11764706] power [4.51698844]
+hf: freq [0.23529412 0.35294118] power [1.12860142 0.72742709]
+vhf: freq [0.47058824] power [1.83715538]
+NK Total: 797.9726, ulf: nan, vlf: 60.17, lf: 269.05, hf: 454.96, vhf: 13.79, lfhf: 0.59, rlf: 37.16, rhf: 62.84
+Manual Total: 0.1092, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.11, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 13-AmusementClip, length: 8549
+ulf: freq [0.] power [0.11992804]
+vlf: freq [] power []
+lf: freq [0.13333333] power [1.95565043]
+hf: freq [0.26666667] power [1.8370924]
+vhf: freq [0.4] power [0.65913561]
+NK Total: 544.7625, ulf: nan, vlf: 31.51, lf: 162.98, hf: 325.30, vhf: 24.98, lfhf: 0.50, rlf: 33.38, rhf: 66.62
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 13-StressClip, length: 5682
+ulf: freq [0.] power [0.04957777]
+vlf: freq [] power []
+lf: freq [] power []
+hf: freq [0.21052632] power [0.08058409]
+vhf: freq [0.42105263] power [0.26565851]
+NK Total: 687.4253, ulf: nan, vlf: nan, lf: 304.51, hf: 359.27, vhf: 23.65, lfhf: 0.85, rlf: 45.87, rhf: 54.13
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 13-EmoReset, length: 9573
+ulf: freq [0.] power [654.6780571]
+vlf: freq [] power []
+lf: freq [0.11764706] power [3407.28567668]
+hf: freq [0.23529412 0.35294118] power [5891.6565882  5750.96339057]
+vhf: freq [0.47058824] power [5471.69475719]
+NK Total: 843935.7943, ulf: nan, vlf: 155582.18, lf: 312596.16, hf: 375093.26, vhf: 664.19, lfhf: 0.83, rlf: 45.46, rhf: 54.54
+Manual Total: 684.8600, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 684.86, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 13-FormL, length: 7470
+ulf: freq [0.] power [0.46202873]
+vlf: freq [] power []
+lf: freq [] power []
+hf: freq [0.15384615 0.30769231] power [2.00103663 1.1176837 ]
+vhf: freq [0.46153846] power [0.63642104]
+NK Total: 993.1781, ulf: nan, vlf: 15.16, lf: 414.99, hf: 479.87, vhf: 83.16, lfhf: 0.86, rlf: 46.37, rhf: 53.63
+Manual Total: 0.2399, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.24, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 13-FormM, length: 15667
+ulf: freq [0.] power [18.11582445]
+vlf: freq [] power []
+lf: freq [0.06779661 0.13559322] power [22.83587949  4.91931198]
+hf: freq [0.20338983 0.27118644 0.33898305] power [ 6.73850964 10.52066467  6.85255593]
+vhf: freq [0.40677966 0.47457627] power [11.89514309 10.18291367]
+NK Total: 26029.8943, ulf: nan, vlf: 2080.02, lf: 11174.05, hf: 11942.72, vhf: 833.11, lfhf: 0.94, rlf: 48.34, rhf: 51.66
+Manual Total: 2.8632, ulf: 0.00, vlf: 0.00, lf: 0.94, hf: 1.17, vhf: 0.75, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 13-Debriefing, length: 9573
+ulf: freq [0.] power [0.84028831]
+vlf: freq [] power []
+lf: freq [0.11764706] power [2.891706]
+hf: freq [0.23529412 0.35294118] power [2.73428602 3.46639844]
+vhf: freq [0.47058824] power [4.18987098]
+NK Total: 1383.9872, ulf: nan, vlf: 257.91, lf: 727.84, hf: 364.94, vhf: 33.30, lfhf: 1.99, rlf: 66.60, rhf: 33.40
+Manual Total: 0.3647, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.36, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 14-Baseline, length: 9573
+ulf: freq [0.] power [162.50378952]
+vlf: freq [] power []
+lf: freq [0.11764706] power [1742.3613517]
+hf: freq [0.23529412 0.35294118] power [2646.10202482 2445.38024746]
+vhf: freq [0.47058824] power [2199.00122656]
+NK Total: 678580.2079, ulf: nan, vlf: 119060.02, lf: 373296.30, hf: 181647.17, vhf: 4576.71, lfhf: 2.06, rlf: 67.27, rhf: 32.73
+Manual Total: 299.4990, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 299.50, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 14-AmusementClip, length: 8498
+ulf: freq [0.] power [0.02380708]
+vlf: freq [] power []
+lf: freq [0.13793103] power [0.39175304]
+hf: freq [0.27586207] power [4.57418122]
+vhf: freq [0.4137931] power [13.11194439]
+NK Total: 803.0179, ulf: nan, vlf: 237.24, lf: 283.90, hf: 257.70, vhf: 24.17, lfhf: 1.10, rlf: 52.42, rhf: 47.58
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 14-StressClip, length: 5683
+ulf: freq [0.] power [1.18676504]
+vlf: freq [] power []
+lf: freq [] power []
+hf: freq [0.22222222] power [5.35469722]
+vhf: freq [0.44444444] power [1.60676337]
+NK Total: 22804.4122, ulf: nan, vlf: nan, lf: 12226.66, hf: 9823.36, vhf: 754.40, lfhf: 1.24, rlf: 55.45, rhf: 44.55
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 14-EmoReset, length: 9522
+ulf: freq [0.] power [551.23733814]
+vlf: freq [] power []
+lf: freq [0.11764706] power [266.96946625]
+hf: freq [0.23529412 0.35294118] power [8.79949772 2.62553407]
+vhf: freq [0.47058824] power [0.07548956]
+NK Total: 263458.2035, ulf: nan, vlf: 40111.50, lf: 167707.37, hf: 54288.86, vhf: 1350.48, lfhf: 3.09, rlf: 75.55, rhf: 24.45
+Manual Total: 0.6721, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.67, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 14-FormL, length: 14284
+ulf: freq [0.] power [2483.12050351]
+vlf: freq [] power []
+lf: freq [0.0754717] power [20882.57699354]
+hf: freq [0.1509434  0.22641509 0.30188679 0.37735849] power [  2179.29200479  27903.12209394 104256.47739004  46166.0546808 ]
+vhf: freq [0.45283019] power [6004.97560953]
+NK Total: 18347401.2826, ulf: nan, vlf: 5033064.66, lf: 12148798.64, hf: 1152283.92, vhf: 13254.06, lfhf: 10.54, rlf: 91.34, rhf: 8.66
+Manual Total: 11798.6621, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 11798.66, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 14-FormM, length: 22271
+ulf: freq [0.] power [1189.34574042]
+vlf: freq [] power []
+lf: freq [0.04705882 0.09411765 0.14117647] power [ 5799.3963666  11402.70948779 23787.93352871]
+hf: freq [0.18823529 0.23529412 0.28235294 0.32941176 0.37647059] power [19387.12725981  5255.38849983   409.86127545  3956.31436709
+  1848.37890016]
+vhf: freq [0.42352941 0.47058824] power [2250.95772468 4881.05373563]
+NK Total: 4754140.2168, ulf: nan, vlf: 1123381.40, lf: 3015200.00, hf: 608803.49, vhf: 6755.33, lfhf: 4.95, rlf: 83.20, rhf: 16.80
+Manual Total: 2353.0211, ulf: 0.00, vlf: 0.00, lf: 1232.77, hf: 952.44, vhf: 167.81, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 14-Debriefing, length: 4504
+ulf: freq [0.] power [170.40523014]
+vlf: freq [] power []
+lf: freq [] power []
+hf: freq [0.28571429] power [615.50092895]
+vhf: freq [] power []
+NK Total: 722183.8864, ulf: nan, vlf: nan, lf: 441459.09, hf: 275815.84, vhf: 4908.96, lfhf: 1.60, rlf: 61.55, rhf: 38.45
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 15-Baseline, length: 9419
+ulf: freq [0.] power [1.33332259]
+vlf: freq [] power []
+lf: freq [0.11764706] power [679.52221752]
+hf: freq [0.23529412 0.35294118] power [749.27235566 644.51442759]
+vhf: freq [0.47058824] power [574.52639722]
+NK Total: 812350.6269, ulf: nan, vlf: 134163.31, lf: 569495.32, hf: 107233.38, vhf: 1458.62, lfhf: 5.31, rlf: 84.15, rhf: 15.85
+Manual Total: 81.9875, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 81.99, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 15-AmusementClip, length: 8498
+ulf: freq [0.] power [0.17464043]
+vlf: freq [] power []
+lf: freq [0.13333333] power [0.35796157]
+hf: freq [0.26666667] power [0.99214369]
+vhf: freq [0.4] power [1.54832566]
+NK Total: 2179.3783, ulf: nan, vlf: 214.19, lf: 909.77, hf: 1013.83, vhf: 41.59, lfhf: 0.90, rlf: 47.30, rhf: 52.70
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 15-StressClip, length: 5683
+ulf: freq [0.] power [0.89977661]
+vlf: freq [] power []
+lf: freq [] power []
+hf: freq [0.21052632] power [1.3399559]
+vhf: freq [0.42105263] power [5.35412949]
+NK Total: 1043.6685, ulf: nan, vlf: nan, lf: 696.02, hf: 302.68, vhf: 44.97, lfhf: 2.30, rlf: 69.69, rhf: 30.31
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 15-EmoReset, length: 9574
+ulf: freq [0.] power [145.32567365]
+vlf: freq [] power []
+lf: freq [0.11428571] power [10027.55129471]
+hf: freq [0.22857143 0.34285714] power [9039.1059298  9642.59931933]
+vhf: freq [0.45714286] power [8572.74240998]
+NK Total: 2802941.2680, ulf: nan, vlf: 609092.52, lf: 2033091.41, hf: 158007.72, vhf: 2749.61, lfhf: 12.87, rlf: 92.79, rhf: 7.21
+Manual Total: 1067.5260, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 1067.53, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 15-FormL, length: 11160
+ulf: freq [0.] power [7.0027041]
+vlf: freq [] power []
+lf: freq [0.09756098] power [2.09623236]
+hf: freq [0.19512195 0.29268293 0.3902439 ] power [0.80212321 0.83463868 2.20335021]
+vhf: freq [0.48780488] power [0.87876573]
+NK Total: 14274.6388, ulf: nan, vlf: 1771.22, lf: 6660.91, hf: 5656.32, vhf: 186.19, lfhf: 1.18, rlf: 54.08, rhf: 45.92
+Manual Total: 0.2280, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.23, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 15-FormM, length: 19557
+ulf: freq [0.] power [6927.95489918]
+vlf: freq [] power []
+lf: freq [0.05405405 0.10810811] power [30644.27712223 46554.23038598]
+hf: freq [0.16216216 0.21621622 0.27027027 0.32432432 0.37837838] power [47013.05382378 45123.15114615 28587.54415733 17226.572235
+ 24553.25411821]
+vhf: freq [0.43243243 0.48648649] power [34438.25045818 32128.7102545 ]
+NK Total: 9550499.7682, ulf: nan, vlf: 3894670.97, lf: 5337882.15, hf: 310982.09, vhf: 6964.56, lfhf: 17.16, rlf: 94.49, rhf: 5.51
+Manual Total: 10735.3057, ulf: 0.00, vlf: 0.00, lf: 2086.45, hf: 6849.75, vhf: 1799.11, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 15-Debriefing, length: 9523
+ulf: freq [0.] power [3394.86358881]
+vlf: freq [] power []
+lf: freq [0.11764706] power [8001.70410585]
+hf: freq [0.23529412 0.35294118] power [1184.00957305  929.88973523]
+vhf: freq [0.47058824] power [1017.48566391]
+NK Total: 7595198.1987, ulf: nan, vlf: 1991608.38, lf: 5333402.33, hf: 263184.33, vhf: 7003.15, lfhf: 20.26, rlf: 95.30, rhf: 4.70
+Manual Total: 124.3470, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 124.35, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 16-Baseline, length: 9522
+ulf: freq [0.] power [307.60662603]
+vlf: freq [] power []
+lf: freq [0.12121212] power [448.18908989]
+hf: freq [0.24242424 0.36363636] power [247.97406339 293.39641634]
+vhf: freq [0.48484848] power [352.48172416]
+NK Total: 1476239.5464, ulf: nan, vlf: 185618.16, lf: 1044279.39, hf: 244502.60, vhf: 1839.40, lfhf: 4.27, rlf: 81.03, rhf: 18.97
+Manual Total: 32.8103, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 32.81, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 16-AmusementClip, length: 8601
+ulf: freq [0.] power [8.19006192]
+vlf: freq [] power []
+lf: freq [0.13333333] power [4258.39451571]
+hf: freq [0.26666667] power [8547.83344964]
+vhf: freq [0.4] power [1094.9584192]
+NK Total: 1724275.2290, ulf: nan, vlf: 256312.45, lf: 1295304.38, hf: 169587.37, vhf: 3071.02, lfhf: 7.64, rlf: 88.42, rhf: 11.58
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 16-StressClip, length: 5734
+ulf: freq [0.] power [798.740596]
+vlf: freq [] power []
+lf: freq [] power []
+hf: freq [0.21052632] power [42387.49209064]
+vhf: freq [0.42105263] power [39575.67330433]
+NK Total: 2868948.0302, ulf: nan, vlf: nan, lf: 2451011.75, hf: 412370.12, vhf: 5566.16, lfhf: 5.94, rlf: 85.60, rhf: 14.40
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 16-EmoReset, length: 9573
+ulf: freq [0.] power [33700.3362574]
+vlf: freq [] power []
+lf: freq [0.11764706] power [305598.27203721]
+hf: freq [0.23529412 0.35294118] power [406531.49465557 393788.79190516]
+vhf: freq [0.47058824] power [387486.69498647]
+NK Total: 58488361.3109, ulf: nan, vlf: 22931261.61, lf: 34425424.94, hf: 1114343.12, vhf: 17331.64, lfhf: 30.89, rlf: 96.86, rhf: 3.14
+Manual Total: 47077.6639, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 47077.66, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 16-FormL, length: 12338
+ulf: freq [0.] power [13188.39059083]
+vlf: freq [] power []
+lf: freq [0.08888889] power [23192.85138354]
+hf: freq [0.17777778 0.26666667 0.35555556] power [3690.56469653 2617.22450405 1324.8470568 ]
+vhf: freq [0.44444444] power [1669.82929186]
+NK Total: 4371039.8769, ulf: nan, vlf: 735906.35, lf: 3189114.13, hf: 438712.97, vhf: 7306.42, lfhf: 7.27, rlf: 87.91, rhf: 12.09
+Manual Total: 455.5494, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 455.55, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 16-FormM, length: 26214
+ulf: freq [0.] power [104649.69125194]
+vlf: freq [0.03960396] power [398880.45702887]
+lf: freq [0.07920792 0.11881188] power [73165.86316584 18006.75436029]
+hf: freq [0.15841584 0.1980198  0.23762376 0.27722772 0.31683168 0.35643564
+ 0.3960396 ] power [13196.26172278  8684.91775108  3568.98621533  8971.37020726
+ 20079.87418232 10100.00655546 17145.20925288]
+vhf: freq [0.43564356 0.47524752] power [26569.91496347 23568.29888156]
+NK Total: 27022308.9474, ulf: nan, vlf: 7741100.04, lf: 18424028.21, hf: 844145.71, vhf: 13034.98, lfhf: 21.83, rlf: 95.62, rhf: 4.38
+Manual Total: 5434.9032, ulf: 0.00, vlf: 0.00, lf: 1805.40, hf: 2636.67, vhf: 992.84, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 16-Debriefing, length: 9522
+ulf: freq [0.] power [3.57662929]
+vlf: freq [] power []
+lf: freq [0.11764706] power [64395.71703922]
+hf: freq [0.23529412 0.35294118] power [ 3454.56559033 44599.46199077]
+vhf: freq [0.47058824] power [31464.65344156]
+NK Total: 26799435.5645, ulf: nan, vlf: 2196159.52, lf: 23628699.88, hf: 954984.56, vhf: 19591.61, lfhf: 24.74, rlf: 96.12, rhf: 3.88
+Manual Total: 2826.7075, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 2826.71, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 17-Baseline, length: 9266
+ulf: freq [0.] power [625.0255985]
+vlf: freq [] power []
+lf: freq [0.12121212] power [5273.96563289]
+hf: freq [0.24242424 0.36363636] power [6927.25593323 8030.29114269]
+vhf: freq [0.48484848] power [9945.60532985]
+NK Total: 1766107.5855, ulf: nan, vlf: 348030.24, lf: 1237175.45, hf: 176905.76, vhf: 3996.14, lfhf: 6.99, rlf: 87.49, rhf: 12.51
+Manual Total: 906.5180, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 906.52, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 17-AmusementClip, length: 8549
+ulf: freq [0.] power [8.04551199]
+vlf: freq [] power []
+lf: freq [0.13333333] power [155.32383908]
+hf: freq [0.26666667] power [256.23260049]
+vhf: freq [0.4] power [50.69820235]
+NK Total: 126190.9423, ulf: nan, vlf: 4730.10, lf: 60978.75, hf: 55044.45, vhf: 5437.65, lfhf: 1.11, rlf: 52.56, rhf: 47.44
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 17-StressClip, length: 5631
+ulf: freq [0.] power [8.23300497]
+vlf: freq [] power []
+lf: freq [] power []
+hf: freq [0.22222222] power [33.35208347]
+vhf: freq [0.44444444] power [15.46422004]
+NK Total: 94604.8349, ulf: nan, vlf: nan, lf: 43887.38, hf: 47619.80, vhf: 3097.66, lfhf: 0.92, rlf: 47.96, rhf: 52.04
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 17-EmoReset, length: 9624
+ulf: freq [0.] power [16.47038163]
+vlf: freq [] power []
+lf: freq [0.11764706] power [1683.35930725]
+hf: freq [0.23529412 0.35294118] power [4864.91517145 3780.98815168]
+vhf: freq [0.47058824] power [4146.15731868]
+NK Total: 1815198.6876, ulf: nan, vlf: 225598.62, lf: 1095667.01, hf: 486770.61, vhf: 7162.44, lfhf: 2.25, rlf: 69.24, rhf: 30.76
+Manual Total: 508.5825, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 508.58, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 17-FormL, length: 15000
+ulf: freq [0.] power [90.54197274]
+vlf: freq [] power []
+lf: freq [0.07142857 0.14285714] power [496.36679946 122.53574584]
+hf: freq [0.21428571 0.28571429 0.35714286] power [256.66261522 183.25016021 171.4685971 ]
+vhf: freq [0.42857143] power [173.62094906]
+NK Total: 568458.2878, ulf: nan, vlf: 113639.24, lf: 367618.84, hf: 86026.71, vhf: 1173.50, lfhf: 4.27, rlf: 81.04, rhf: 18.96
+Manual Total: 50.4834, ulf: 0.00, vlf: 0.00, lf: 22.10, hf: 28.38, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 17-FormM, length: 19761
+ulf: freq [0.] power [12943.43501581]
+vlf: freq [] power []
+lf: freq [0.05333333 0.10666667] power [62493.67013176 68583.97690269]
+hf: freq [0.16       0.21333333 0.26666667 0.32       0.37333333] power [23551.90767571  3037.9948695  18054.16452299 38328.91989324
+ 31703.38774856]
+vhf: freq [0.42666667 0.48      ] power [19356.21125676 11712.92126132]
+NK Total: 9276001.0521, ulf: nan, vlf: 1977155.16, lf: 6906770.98, hf: 386283.55, vhf: 5791.36, lfhf: 17.88, rlf: 94.70, rhf: 5.30
+Manual Total: 8966.5129, ulf: 0.00, vlf: 0.00, lf: 3495.40, hf: 4642.60, vhf: 828.51, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 17-Debriefing, length: 9113
+ulf: freq [0.] power [6966.95311497]
+vlf: freq [] power []
+lf: freq [0.12121212] power [14871.31234878]
+hf: freq [0.24242424 0.36363636] power [26186.39701303   946.55096739]
+vhf: freq [0.48484848] power [2503.10595065]
+NK Total: 32286472.9958, ulf: nan, vlf: 10502326.92, lf: 20485896.71, hf: 1258162.16, vhf: 40087.21, lfhf: 16.28, rlf: 94.21, rhf: 5.79
+Manual Total: 1644.4211, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 1644.42, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 18-Baseline, length: 9574
+ulf: freq [0.] power [4.08080587]
+vlf: freq [] power []
+lf: freq [0.11764706] power [12.44320511]
+hf: freq [0.23529412 0.35294118] power [5.68327988 0.08295912]
+vhf: freq [0.47058824] power [0.24738457]
+NK Total: 1338.4176, ulf: nan, vlf: 112.62, lf: 184.78, hf: 1015.00, vhf: 26.02, lfhf: 0.18, rlf: 15.40, rhf: 84.60
+Manual Total: 0.3392, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.34, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 18-AmusementClip, length: 8498
+ulf: freq [0.] power [180.34334376]
+vlf: freq [] power []
+lf: freq [0.13333333] power [1187.02632008]
+hf: freq [0.26666667] power [1809.61826636]
+vhf: freq [0.4] power [1709.18944792]
+NK Total: 803972.6504, ulf: nan, vlf: 105575.80, lf: 587397.07, hf: 109421.84, vhf: 1577.94, lfhf: 5.37, rlf: 84.30, rhf: 15.70
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 18-StressClip, length: 5631
+ulf: freq [0.] power [0.98694394]
+vlf: freq [] power []
+lf: freq [] power []
+hf: freq [0.21052632] power [3.9387291]
+vhf: freq [0.42105263] power [10.49580146]
+NK Total: 52979.7806, ulf: nan, vlf: nan, lf: 27513.59, hf: 24768.40, vhf: 697.79, lfhf: 1.11, rlf: 52.63, rhf: 47.37
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 18-EmoReset, length: 9574
+ulf: freq [0.] power [2.62641493]
+vlf: freq [] power []
+lf: freq [0.11764706] power [6.73027682]
+hf: freq [0.23529412 0.35294118] power [7.59683923 1.61348532]
+vhf: freq [0.47058824] power [1.72403114]
+NK Total: 888.9675, ulf: nan, vlf: 136.11, lf: 390.50, hf: 345.86, vhf: 16.49, lfhf: 1.13, rlf: 53.03, rhf: 46.97
+Manual Total: 0.5418, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.54, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 18-FormL, length: 12799
+ulf: freq [0.] power [107.23907835]
+vlf: freq [] power []
+lf: freq [0.08888889] power [844.78625245]
+hf: freq [0.17777778 0.26666667 0.35555556] power [1497.88623289  255.63960733 1101.09552273]
+vhf: freq [0.44444444] power [288.61408636]
+NK Total: 1001738.3556, ulf: nan, vlf: 152824.42, lf: 606962.92, hf: 239461.32, vhf: 2489.70, lfhf: 2.53, rlf: 71.71, rhf: 28.29
+Manual Total: 138.2338, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 138.23, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 18-FormM, length: 18174
+ulf: freq [0.] power [5.55386533]
+vlf: freq [] power []
+lf: freq [0.05797101 0.11594203] power [265.63892212  48.99146705]
+hf: freq [0.17391304 0.23188406 0.28985507 0.34782609] power [ 66.26306971 145.94491114 102.43290877   9.95201821]
+vhf: freq [0.4057971  0.46376812] power [ 7.39246565 67.39970304]
+NK Total: 154439.8863, ulf: nan, vlf: 26857.06, lf: 81821.81, hf: 44940.64, vhf: 820.38, lfhf: 1.82, rlf: 64.55, rhf: 35.45
+Manual Total: 27.8955, ulf: 0.00, vlf: 0.00, lf: 9.12, hf: 16.61, vhf: 2.17, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 18-Debriefing, length: 9625
+ulf: freq [0.] power [4782.59724203]
+vlf: freq [] power []
+lf: freq [0.11428571] power [2562.62431222]
+hf: freq [0.22857143 0.34285714] power [7.74813772 6.40503504]
+vhf: freq [0.45714286] power [5.3748158]
+NK Total: 1441436.5629, ulf: nan, vlf: 341303.46, lf: 998821.42, hf: 99682.52, vhf: 1629.16, lfhf: 10.02, rlf: 90.93, rhf: 9.07
+Manual Total: 0.8088, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.81, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 19-Baseline, length: 9573
+ulf: freq [0.] power [0.11386417]
+vlf: freq [] power []
+lf: freq [0.11764706] power [0.39120109]
+hf: freq [0.23529412 0.35294118] power [ 2.41633564 28.60903528]
+vhf: freq [0.47058824] power [40.77861117]
+NK Total: 3830.8974, ulf: nan, vlf: 1184.12, lf: 1221.85, hf: 1397.63, vhf: 27.29, lfhf: 0.87, rlf: 46.64, rhf: 53.36
+Manual Total: 1.8250, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 1.83, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 19-AmusementClip, length: 8242
+ulf: freq [0.] power [0.02490094]
+vlf: freq [] power []
+lf: freq [0.13793103] power [0.06010184]
+hf: freq [0.27586207] power [0.17158569]
+vhf: freq [0.4137931] power [2.55761535]
+NK Total: 2028.9179, ulf: nan, vlf: 230.97, lf: 827.71, hf: 947.03, vhf: 23.21, lfhf: 0.87, rlf: 46.64, rhf: 53.36
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 19-StressClip, length: 5681
+ulf: freq [0.] power [3.56994533]
+vlf: freq [] power []
+lf: freq [] power []
+hf: freq [0.22222222] power [8.12881593]
+vhf: freq [0.44444444] power [19.58994068]
+NK Total: 2872.2051, ulf: nan, vlf: nan, lf: 1616.95, hf: 1232.60, vhf: 22.66, lfhf: 1.31, rlf: 56.74, rhf: 43.26
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 19-EmoReset, length: 9522
+ulf: freq [0.] power [0.04843353]
+vlf: freq [] power []
+lf: freq [0.12121212] power [27.56439131]
+hf: freq [0.24242424 0.36363636] power [29.15865774 13.29166546]
+vhf: freq [0.48484848] power [8.21021708]
+NK Total: 94757.8811, ulf: nan, vlf: 4112.53, lf: 48927.95, hf: 38923.67, vhf: 2793.72, lfhf: 1.26, rlf: 55.69, rhf: 44.31
+Manual Total: 2.5727, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 2.57, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 19-FormL, length: 10187
+ulf: freq [0.] power [0.01808362]
+vlf: freq [] power []
+lf: freq [0.10810811] power [1.78478336]
+hf: freq [0.21621622 0.32432432] power [1.8361611 0.5958791]
+vhf: freq [0.43243243] power [10.73426001]
+NK Total: 5925.7824, ulf: nan, vlf: 1327.03, lf: 3068.81, hf: 1465.73, vhf: 64.20, lfhf: 2.09, rlf: 67.68, rhf: 32.32
+Manual Total: 0.1315, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.13, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 19-FormM, length: 19967
+ulf: freq [0.] power [1.74980425]
+vlf: freq [] power []
+lf: freq [0.05263158 0.10526316] power [6.84354513 1.10547152]
+hf: freq [0.15789474 0.21052632 0.26315789 0.31578947 0.36842105] power [0.06258953 2.53437524 5.1938288  0.21923066 4.05731346]
+vhf: freq [0.42105263 0.47368421] power [1.75917487 4.86427402]
+NK Total: 4426.2225, ulf: nan, vlf: 1040.16, lf: 2162.79, hf: 1162.65, vhf: 60.62, lfhf: 1.86, rlf: 65.04, rhf: 34.96
+Manual Total: 0.9102, ulf: 0.00, vlf: 0.00, lf: 0.21, hf: 0.53, vhf: 0.17, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 19-Debriefing, length: 9625
+ulf: freq [0.] power [0.01788267]
+vlf: freq [] power []
+lf: freq [0.11764706] power [9.32250498]
+hf: freq [0.23529412 0.35294118] power [37.97405651 11.88449547]
+vhf: freq [0.47058824] power [0.26804492]
+NK Total: 2717.2081, ulf: nan, vlf: 205.91, lf: 880.92, hf: 1597.92, vhf: 32.46, lfhf: 0.55, rlf: 35.54, rhf: 64.46
+Manual Total: 2.9329, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 2.93, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 20-Baseline, length: 9625
+ulf: freq [0.] power [0.31879634]
+vlf: freq [] power []
+lf: freq [0.11428571] power [0.26980663]
+hf: freq [0.22857143 0.34285714] power [0.53425166 0.62029831]
+vhf: freq [0.45714286] power [0.82040586]
+NK Total: 401.0102, ulf: nan, vlf: 114.45, lf: 182.85, hf: 83.76, vhf: 19.95, lfhf: 2.18, rlf: 68.58, rhf: 31.42
+Manual Total: 0.0660, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.07, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 20-AmusementClip, length: 8499
+ulf: freq [0.] power [0.00066578]
+vlf: freq [] power []
+lf: freq [0.13333333] power [0.0584778]
+hf: freq [0.26666667] power [0.45348133]
+vhf: freq [0.4] power [0.91719718]
+NK Total: 412.7158, ulf: nan, vlf: 113.75, lf: 179.35, hf: 105.29, vhf: 14.32, lfhf: 1.70, rlf: 63.01, rhf: 36.99
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 20-StressClip, length: 5682
+ulf: freq [0.] power [0.00097742]
+vlf: freq [] power []
+lf: freq [] power []
+hf: freq [0.21052632] power [0.1613868]
+vhf: freq [0.42105263] power [0.42803282]
+NK Total: 273.0149, ulf: nan, vlf: nan, lf: 167.34, hf: 83.16, vhf: 22.51, lfhf: 2.01, rlf: 66.80, rhf: 33.20
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 20-EmoReset, length: 9573
+ulf: freq [0.] power [16018.17412577]
+vlf: freq [] power []
+lf: freq [0.14814815] power [61092.26547689]
+hf: freq [0.2962963] power [69226.56074595]
+vhf: freq [0.44444444] power [69269.58198948]
+NK Total: 30226727.5845, ulf: nan, vlf: 5632376.03, lf: 24090848.15, hf: 493027.34, vhf: 10476.07, lfhf: 48.86, rlf: 97.99, rhf: 2.01
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 20-FormL, length: 16076
+ulf: freq [0.] power [0.79439958]
+vlf: freq [] power []
+lf: freq [0.06666667 0.13333333] power [4.27418662 2.80097548]
+hf: freq [0.2        0.26666667 0.33333333] power [0.48562683 2.92174748 2.44216576]
+vhf: freq [0.4        0.46666667] power [1.7467702  1.69977336]
+NK Total: 504.2600, ulf: nan, vlf: 140.43, lf: 207.99, hf: 108.12, vhf: 47.71, lfhf: 1.92, rlf: 65.80, rhf: 34.20
+Manual Total: 0.6431, ulf: 0.00, vlf: 0.00, lf: 0.24, hf: 0.29, vhf: 0.11, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 20-FormM, length: 21400
+ulf: freq [0.] power [1.81591876]
+vlf: freq [] power []
+lf: freq [0.04878049 0.09756098 0.14634146] power [ 9.89169784 11.93205576  1.69056869]
+hf: freq [0.19512195 0.24390244 0.29268293 0.34146341 0.3902439 ] power [ 1.53072652  0.77498804 11.49243148 10.8335647   5.39687845]
+vhf: freq [0.43902439 0.48780488] power [4.39015998 3.00424269]
+NK Total: 8244.8815, ulf: nan, vlf: 859.08, lf: 2212.89, hf: 4350.26, vhf: 822.65, lfhf: 0.51, rlf: 33.72, rhf: 66.28
+Manual Total: 2.3407, ulf: 0.00, vlf: 0.00, lf: 0.86, hf: 1.30, vhf: 0.18, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 20-Debriefing, length: 9523
+ulf: freq [0.] power [786.48007631]
+vlf: freq [] power []
+lf: freq [0.11764706] power [3658.83417884]
+hf: freq [0.23529412 0.35294118] power [6692.53997573 6738.46687363]
+vhf: freq [0.47058824] power [6685.60560135]
+NK Total: 1786027.7860, ulf: nan, vlf: 317916.28, lf: 1259772.81, hf: 205240.77, vhf: 3097.92, lfhf: 6.14, rlf: 85.99, rhf: 14.01
+Manual Total: 790.0592, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 790.06, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 21-Baseline, length: 9574
+ulf: freq [0.] power [125.73394555]
+vlf: freq [] power []
+lf: freq [0.11764706] power [857.57900148]
+hf: freq [0.23529412 0.35294118] power [1234.35525732 1192.56928523]
+vhf: freq [0.47058824] power [1201.955798]
+NK Total: 233287.4897, ulf: nan, vlf: 28478.34, lf: 137415.05, hf: 66726.06, vhf: 668.04, lfhf: 2.06, rlf: 67.31, rhf: 32.69
+Manual Total: 142.7603, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 142.76, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 21-AmusementClip, length: 8549
+ulf: freq [0.] power [0.43217697]
+vlf: freq [] power []
+lf: freq [0.12903226] power [0.58373828]
+hf: freq [0.25806452 0.38709677] power [0.64097804 0.03848758]
+vhf: freq [] power []
+NK Total: 492.4552, ulf: nan, vlf: 66.48, lf: 245.90, hf: 156.85, vhf: 23.22, lfhf: 1.57, rlf: 61.05, rhf: 38.95
+Manual Total: 0.0438, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.04, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 21-StressClip, length: 5682
+ulf: freq [0.] power [5.13115217]
+vlf: freq [] power []
+lf: freq [] power []
+hf: freq [0.22222222] power [98.92872895]
+vhf: freq [0.44444444] power [605.0783869]
+NK Total: 275893.0636, ulf: nan, vlf: nan, lf: 155783.34, hf: 118536.59, vhf: 1573.14, lfhf: 1.31, rlf: 56.79, rhf: 43.21
+Manual Total: 0.0000, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 0.00, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 21-EmoReset, length: 9522
+ulf: freq [0.] power [348.11772716]
+vlf: freq [] power []
+lf: freq [0.11764706] power [1533.37572514]
+hf: freq [0.23529412 0.35294118] power [2651.01772167 2627.63383545]
+vhf: freq [0.47058824] power [2612.76018654]
+NK Total: 481537.3626, ulf: nan, vlf: 65960.86, lf: 306140.57, hf: 108584.80, vhf: 851.13, lfhf: 2.82, rlf: 73.82, rhf: 26.18
+Manual Total: 310.5089, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 310.51, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 21-FormL, length: 12389
+ulf: freq [0.] power [314.90794815]
+vlf: freq [] power []
+lf: freq [0.08695652] power [718.46558127]
+hf: freq [0.17391304 0.26086957 0.34782609] power [151.1478939  104.89335304 154.0483695 ]
+vhf: freq [0.43478261] power [148.39229043]
+NK Total: 201739.7319, ulf: nan, vlf: 35407.25, lf: 127646.32, hf: 37906.55, vhf: 779.62, lfhf: 3.37, rlf: 77.10, rhf: 22.90
+Manual Total: 22.3906, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 22.39, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 21-FormM, length: 20274
+ulf: freq [0.] power [0.17401207]
+vlf: freq [] power []
+lf: freq [0.05194805 0.1038961 ] power [1.38770222 1.45478539]
+hf: freq [0.15584416 0.20779221 0.25974026 0.31168831 0.36363636] power [0.15904603 1.33427796 2.12442926 0.1671865  0.75205589]
+vhf: freq [0.41558442 0.46753247] power [0.76767285 3.08098768]
+NK Total: 6735.4510, ulf: nan, vlf: 710.88, lf: 2505.59, hf: 3233.22, vhf: 285.76, lfhf: 0.77, rlf: 43.66, rhf: 56.34
+Manual Total: 0.3858, ulf: 0.00, vlf: 0.00, lf: 0.07, hf: 0.21, vhf: 0.10, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+
+analyzing 21-Debriefing, length: 9471
+ulf: freq [0.] power [2914.65104732]
+vlf: freq [] power []
+lf: freq [0.11764706] power [12476.26194372]
+hf: freq [0.23529412 0.35294118] power [2661.02099664 3996.71611266]
+vhf: freq [0.47058824] power [1377.78044733]
+NK Total: 9604127.2442, ulf: nan, vlf: 1672670.40, lf: 7099999.99, hf: 820949.43, vhf: 10507.43, lfhf: 8.65, rlf: 89.64, rhf: 10.36
+Manual Total: 391.6316, ulf: 0.00, vlf: 0.00, lf: 0.00, hf: 391.63, vhf: 0.00, lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}
+ECG : 147 trials and 46 features
