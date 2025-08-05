@@ -128,7 +128,7 @@ def interpolate_Rpeaks(peaks: ArrayLike, sampling_rate: float=1000, upsample_rat
     rr = np.diff(peaks)
     rr = 1000 * rr / sampling_rate # convert to ms
     rr_time = np.cumsum(rr) / 1000 # convert to s
-    rr_time -= rr_time[0] 
+    rr_time -= rr_time[0] # shift time axis so it starts at 0
     
     interpolation_f = interp1d(rr_time, rr, kind='cubic')
     
@@ -169,6 +169,11 @@ def ecg_freq(
     lim_lf = (freq >= freqband_limits[2]) & (freq < freqband_limits[3])
     lim_hf = (freq >= freqband_limits[3]) & (freq < freqband_limits[4])
     lim_vhf = (freq >= freqband_limits[4]) & (freq < freqband_limits[5])
+    print(f"ulf: freq {freq[lim_ulf]} power {power[lim_ulf]}")
+    print(f"vlf: freq {freq[lim_vlf]} power {power[lim_vlf]}")
+    print(f"lf: freq {freq[lim_lf]} power {power[lim_lf]}")
+    print(f"hf: freq {freq[lim_hf]} power {power[lim_hf]}")
+    print(f"vhf: freq {freq[lim_vhf]} power {power[lim_vhf]}")
     
     # The power (PSD) of each frequency band is obtained by integrating the spectral density 
     # by trapezoidal rule, using the scipy.integrate.trapz function.
