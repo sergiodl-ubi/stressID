@@ -1,6 +1,7 @@
 import numpy as np
 import scipy.io
 import pandas as pd
+import matplotlib.pyplot as plt
 
 import os
 from pathlib import Path
@@ -16,6 +17,7 @@ from neurokit2.signal import signal_psd
 import warnings
 warnings.filterwarnings('ignore')
 
+from dataclasses import dataclass
 from numpy.typing import ArrayLike
 type FeatureDict = dict[str, np.ndarray]
 
@@ -101,13 +103,25 @@ def ecg_time(array: ArrayLike, sampling_rate: float = 1000) -> pd.DataFrame:
 
 ############################ FREQ FEATURES ##############################
     
+@dataclass
+class FrequencyBand:
+    low: float
+    high: float
+
 def ecg_freq(
     array: ArrayLike,
     sampling_rate: float=1000,
-    interpolation_rate: int=100,
+    interpolation_rate: int=4,
     ) -> pd.DataFrame:
 
     columns = ['totalpower', 'LF', 'HF', 'ULF', 'VLF', 'VHF', 'LF/HF', 'rLF', 'rHF', 'peakLF', 'peakHF']
+    freq_bands: dict[str, FrequencyBand] = {
+        'ULF': FrequencyBand(0.001, 0.033),
+        'VLF': FrequencyBand(0.033, 0.04),
+        'LF': FrequencyBand(0.04, 0.15),
+        'HF': FrequencyBand(0.15, 0.4),
+        'VHF': FrequencyBand(0.4, 0.5),
+    }
     x = np.array(array)
     r_peaks = ecg_peaks(x, sampling_rate=sampling_rate)
 
@@ -118,41 +132,77 @@ def ecg_freq(
     # If given peaks, compute R-R intervals (also referred to as NN) in milliseconds
     rri, rri_time, _ = hrv_utils._hrv_format_input(r_peaks, sampling_rate=sampling_rate)
 
-    # Process R-R intervals (interpolated at 100 Hz by default)
+    # Process R-R intervals
     rri, rri_time, sampling_rate = nk.intervals_process(
-        rri, intervals_time=rri_time, interpolate=True, interpolation_rate=interpolation_rate
+        rri, intervals_time=rri_time,
+        interpolate=True, interpolation_rate=interpolation_rate,
+        detrend="polynomial",
     )
 
-    psd = signal_psd(
-        rri, sampling_rate=sampling_rate,
-        min_frequency=0.001, max_frequency=0.5, normalize=False, order_criteria=None)
+    psd: pd.DataFrame = signal_psd(
+        rri,
+        sampling_rate=sampling_rate,
+        method="welch",
+        min_frequency=freq_bands['ULF'].low, max_frequency=freq_bands['VHF'].high,
+        normalize=False, order_criteria=None,
+        #show=True,
+        )
+    psd = psd.fillna(0)
 
-
-
-    hrv_freq = nk.hrv_frequency(r_peaks, sampling_rate=sampling_rate, normalize=False, interpolation_rate=interpolation_rate)
-
-    hrv_lf = hrv_freq['HRV_LF'].iloc[0]
-    hrv_hf = hrv_freq['HRV_HF'].iloc[0]
-    if (hrv_lf + hrv_hf) > 0:
-        hrv_rlf = hrv_lf / (hrv_lf + hrv_hf) * 100
-        hrv_rhf = hrv_hf / (hrv_lf + hrv_hf) * 100
+    ulf_bins = psd[(psd['Frequency'] >= freq_bands['ULF'].low) & (psd['Frequency'] <= freq_bands['ULF'].high)]
+    vlf_bins = psd[(psd['Frequency'] > freq_bands['VLF'].low) & (psd['Frequency'] <= freq_bands['VLF'].high)]
+    lf_bins = psd[(psd['Frequency'] > freq_bands['LF'].low) & (psd['Frequency'] <= freq_bands['LF'].high)]
+    hf_bins = psd[(psd['Frequency'] > freq_bands['HF'].low) & (psd['Frequency'] <= freq_bands['HF'].high)]
+    vhf_bins = psd[(psd['Frequency'] > freq_bands['VHF'].low) & (psd['Frequency'] <= freq_bands['VHF'].high)]
+    ulf = trapezoid(ulf_bins["Power"], ulf_bins["Frequency"]) if ulf_bins["Power"].sum() > 0 else 0
+    vlf = trapezoid(vlf_bins["Power"], vlf_bins["Frequency"]) if vlf_bins["Power"].sum() > 0 else 0
+    lf = trapezoid(lf_bins["Power"], lf_bins["Frequency"]) if lf_bins["Power"].sum() > 0 else 0
+    hf = trapezoid(hf_bins["Power"], hf_bins["Frequency"]) if hf_bins["Power"].sum() > 0 else 0
+    vhf = trapezoid(vhf_bins["Power"], vhf_bins["Frequency"]) if vhf_bins["Power"].sum() > 0 else 0
+    total = ulf + vlf + lf + hf + vhf
+    lfhf = lf / hf if hf > 0 else 0
+    if (lf + hf) > 0:
+        rlf = lf / (lf + hf) * 100
+        rhf = hf / (lf + hf) * 100
     else:
-        hrv_rlf = np.nan
-        hrv_rhf = np.nan
+        rlf = rhf = 0
+    peakLF: float = lf_bins['Power'].max() if len(lf_bins['Power']) > 0 else 0
+    peakHF: float = hf_bins['Power'].max() if len(hf_bins['Power']) > 0 else 0
 
-    df = pd.DataFrame(data = [
-        hrv_freq['HRV_TP'].iloc[0],
-        hrv_freq['HRV_LF'].iloc[0],
-        hrv_freq['HRV_HF'].iloc[0],
-        hrv_freq['HRV_ULF'].iloc[0],
-        hrv_freq['HRV_VLF'].iloc[0],
-        hrv_freq['HRV_VHF'].iloc[0],
-        hrv_freq['HRV_LFHF'].iloc[0],
-        hrv_rlf, hrv_rhf, peaklf, peakhf,
-        ]
-    ).T
+    # rri_data = {"RRI": rri, "RRI_Time": rri_time}
+    # hrv_freq: pd.DataFrame = nk.hrv_frequency(
+    #     #r_peaks,
+    #     rri_data,
+    #     sampling_rate=sampling_rate, psd_method="welch",
+    #     normalize=False, interpolation_rate=None)
+    # hrv_freq = hrv_freq.fillna(0)
+
+    # hrv_lf = hrv_freq['HRV_LF'].iloc[0]
+    # hrv_hf = hrv_freq['HRV_HF'].iloc[0]
+    # if (hrv_lf + hrv_hf) > 0:
+    #     hrv_rlf = hrv_lf / (hrv_lf + hrv_hf) * 100
+    #     hrv_rhf = hrv_hf / (hrv_lf + hrv_hf) * 100
+    # else:
+    #     hrv_rlf = hrv_rhf = 0
+
+    # df = pd.DataFrame(data = [
+    #     hrv_freq['HRV_TP'].iloc[0],
+    #     hrv_freq['HRV_LF'].iloc[0],
+    #     hrv_freq['HRV_HF'].iloc[0],
+    #     hrv_freq['HRV_ULF'].iloc[0],
+    #     hrv_freq['HRV_VLF'].iloc[0],
+    #     hrv_freq['HRV_VHF'].iloc[0],
+    #     hrv_freq['HRV_LFHF'].iloc[0],
+    #     hrv_rlf, hrv_rhf, peakLF, peakHF,
+    #     ]
+    df = pd.DataFrame(data = [total, lf, hf, ulf, hf, vhf, lfhf, rlf, rhf, peakLF, peakHF,]).T
+
     df.columns = columns
-
+    #print(psd)
+    #print(df)
+    #print(peakLF, hrv_freq['HRV_LF'].iloc[0], peakHF, hrv_freq['HRV_HF'].iloc[0])
+    #print(hrv_freq['HRV_TP'].iloc[0], psd["Power"].sum())
+    #plt.show()
     return df
     
     
