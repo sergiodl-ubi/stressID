@@ -33,19 +33,11 @@ from imblearn.over_sampling import SMOTE
 # Compare several classification models over K repetition, using K group splits, grouped by subjects
 def make_nclassif(X, y, n_splits=10, feature_selector=None, list_classifiers=None, impute=True, scale=True, verbose=True):
     # Dictionnary to store f1-score and accuracy
-    df_res= pd.DataFrame({'n':[],'f1-score':[],'accuracy':[], 'classifier':[], 'time':[]})
+    df_res = pd.DataFrame({'n':[],'f1-score':[],'accuracy':[], 'classifier':[], 'time':[]})
     conf_matrices = []
     
-    if impute:
-        imputer = IterativeImputer(random_state=0)
-    else:
-        imputer = None
-        
-    if scale:
-        scaler = StandardScaler()
-    else:
-        scaler = None
-    
+    imputer = IterativeImputer(random_state=0) if impute else None
+    scaler = StandardScaler() if scale else None
     
     # Defaut classifiers tested: Logistic regression, Random Forests, Adaboost
     if not list_classifiers :
@@ -72,7 +64,7 @@ def make_nclassif(X, y, n_splits=10, feature_selector=None, list_classifiers=Non
         y_test = y.iloc[test_index]
         
         if verbose:
-        	print('Split {0:2d}/{1:2d}'.format(s+1, n_splits))
+            print('Split {0:2d}/{1:2d}'.format(s+1, n_splits))
         
         # Fit each model
         for model in list_classifiers:
@@ -142,21 +134,16 @@ def avg_res(res):
 
 ##########################################################################################    
        
-def make_nclassif_random_splits(X, y, n_splits=10, feature_selector=None, list_classifiers=None, impute=True, scale=True, verbose=True):
+def make_nclassif_random_splits(
+    X, y, n_splits=10,
+    feature_selector=None, list_classifiers=None, impute=True, scale=True,
+    verbose=True, random_seed: int|None = None):
     # Dictionnary to store f1-score and accuracy
     df_res= pd.DataFrame({'n':[],'f1-score':[],'accuracy':[], 'classifier':[], 'time':[]})
     conf_matrices = []
     
-    if impute:
-        imputer = IterativeImputer()
-    else:
-        imputer = None
-        
-    if scale:
-        scaler = StandardScaler()
-    else:
-        scaler = None
-    
+    imputer = IterativeImputer() if impute else None
+    scaler = StandardScaler() if scale else None
     
     # Defaut classifiers tested: Logistic regression, Random Forests, Adaboost
     if not list_classifiers :
@@ -166,8 +153,7 @@ def make_nclassif_random_splits(X, y, n_splits=10, feature_selector=None, list_c
                         
     # Make n random splits 
     for s in range(n_splits):
-        rstate = random.randint(0,100)
-        x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2,random_state=rstate)
+        x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=random_seed)
         
         if verbose:
             print('Split {0:2d}/{1:2d}'.format(s+1, n_splits))
@@ -219,9 +205,10 @@ def make_nclassif_random_splits(X, y, n_splits=10, feature_selector=None, list_c
             y_pred = clf.predict(x_test)
             conf_matrices.append(confusion_matrix(y_test, y_pred))
             if model.__class__.__name__ == 'MLPClassifier':
-            	modelname = model.__class__.__name__+'_'+str(len(model.hidden_layer_sizes))+'_'+str(model.hidden_layer_sizes[0])
+                suffix = f"_HLs{len(model.hidden_layer_sizes)}_FL{model.hidden_layer_sizes[0]}" if len(model.hidden_layer_sizes) > 0 else ""
+                modelname = model.__class__.__name__ + suffix
             else :
-            	modelname = model.__class__.__name__
+                modelname = model.__class__.__name__
             
             
             
