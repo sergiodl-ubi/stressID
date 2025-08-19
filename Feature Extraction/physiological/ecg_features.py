@@ -1,7 +1,7 @@
-from random import sample
 import numpy as np
 import scipy.io
 import pandas as pd
+import matplotlib.pyplot as plt
 
 import os
 from pathlib import Path
@@ -11,10 +11,13 @@ import scipy.signal as signal
 from scipy.interpolate import interp1d
 from scipy.integrate import trapezoid
 import neurokit2 as nk
+from neurokit2.hrv import hrv_utils
+from neurokit2.signal import signal_psd
 
 import warnings
 warnings.filterwarnings('ignore')
 
+from dataclasses import dataclass
 from numpy.typing import ArrayLike
 type FeatureDict = dict[str, np.ndarray]
 
@@ -46,23 +49,6 @@ def ecg_peaks(array: ArrayLike, sampling_rate: float=1000) -> np.ndarray:
     r_peaks, _ = signal.find_peaks(x, distance= distance, height=height)
     
     return r_peaks
-    
-    
-
-def heart_rate(r_peaks: ArrayLike, sampling_rate: float=1000, upsample_rate: int=4) -> tuple[np.ndarray, np.ndarray]:
-    x = np.array(r_peaks)
-    rri = np.diff(x)
-    rri = 1000 * rri / sampling_rate #convert to ms
-    hr = 1000 * 60 / rri
-    
-    hr_time = np.cumsum(rri) / 1000
-    hr_time -= hr_time[0] 
-    
-    interpolation_f = interp1d(hr_time, hr, kind='cubic')
-    
-    x = np.arange(1, hr_time.max(), 1/upsample_rate)
-    hr_interpolated = interpolation_f(x)
-    return hr_interpolated, x
     
     
 def ecg_time(array: ArrayLike, sampling_rate: float = 1000) -> pd.DataFrame:
@@ -117,120 +103,106 @@ def ecg_time(array: ArrayLike, sampling_rate: float = 1000) -> pd.DataFrame:
 
 ############################ FREQ FEATURES ##############################
 
-def interpolate_Rpeaks(peaks: ArrayLike, sampling_rate: float=1000, upsample_rate: int=4) -> tuple[np.ndarray, np.ndarray]:
-    # Input: An array (numpy, dataframe, list) 
-    # -> Output : A numpy array 
-    
-    # The RR intervals are aranged over time, and the values are summed up to find the time points.
-    # An interpolation function is defined, to use to sample from with any upsampling resolution. 
-    # By default upsample_rate = 4 : 4 evenly spaced data points per seconds are added. 
-    
-    rr = np.diff(peaks)
-    rr = 1000 * rr / sampling_rate # convert to ms
-    rr_time = np.cumsum(rr) / 1000 # convert to s
-    rr_time -= rr_time[0] # shift time axis so it starts at 0
-    
-    interpolation_f = interp1d(rr_time, rr, kind='cubic')
-    
-    x = np.arange(1, rr_time.max(), 1/upsample_rate)
-    rr_interpolated = interpolation_f(x)
-    
-    return rr_interpolated, x
-    
-    
-    
+@dataclass
+class FrequencyBand:
+    low: float
+    high: float
+
 def ecg_freq(
     array: ArrayLike,
     sampling_rate: float=1000,
-    upsample_rate: int=4,
-    freqband_limits: tuple[float, float, float, float, float, float]=(.0, .0033,.04,.15,.4, .5)) -> pd.DataFrame:
-    # FFT needs evenly sampled data, so the RR-interval can't be used directly and need to
-    # be interpolated. Then the spectral density of the signal is computed using Welch method.
-    
+    interpolation_rate: int=4,
+    ) -> pd.DataFrame:
+
+    columns = ['totalpower', 'LF', 'HF', 'ULF', 'VLF', 'VHF', 'LF/HF', 'rLF', 'rHF', 'peakLF', 'peakHF']
+    freq_bands: dict[str, FrequencyBand] = {
+        'ULF': FrequencyBand(0.001, 0.033),
+        'VLF': FrequencyBand(0.033, 0.04),
+        'LF': FrequencyBand(0.04, 0.15),
+        'HF': FrequencyBand(0.15, 0.4),
+        'VHF': FrequencyBand(0.4, 0.5),
+    }
     x = np.array(array)
     r_peaks = ecg_peaks(x, sampling_rate=sampling_rate)
 
     if len(r_peaks) < 3:
-        return pd.DataFrame(
-            [[np.nan]*11],
-            columns=['totalpower', 'LF', 'HF', 'ULF', 'VLF', 'VHF', 'LF/HF', 'rLF', 'rHF', 'peakLF', 'peakHF'])
+        return pd.DataFrame([[np.nan]*len(columns)], columns=columns)
 
-    rri, _ = interpolate_Rpeaks(r_peaks, upsample_rate=upsample_rate)
+    # Sanitize input
+    # If given peaks, compute R-R intervals (also referred to as NN) in milliseconds
+    rri, rri_time, _ = hrv_utils._hrv_format_input(r_peaks, sampling_rate=sampling_rate)
 
-    # optimized welch analysis parameters for this dataset
-    nperseg = min(len(rri), 256)  # windowsize
-    noverlap = nperseg // 2       # 50% overlap
-    freq, power = signal.welch(x=rri, fs=upsample_rate,
-        nperseg=nperseg, noverlap=noverlap, window='hann', detrend='constant')
-    #print(freq)
-    #print(power)
+    # Process R-R intervals
+    rri, rri_time, sampling_rate = nk.intervals_process(
+        rri, intervals_time=rri_time,
+        interpolate=True, interpolation_rate=interpolation_rate,
+        detrend="polynomial",
+    )
 
-    hrv_freq = nk.hrv_frequency(r_peaks, sampling_rate=sampling_rate, normalize=False, interpolation_rate=upsample_rate)
-    hrv_lf = hrv_freq['HRV_LF'].iloc[0]
-    hrv_hf = hrv_freq['HRV_HF'].iloc[0]
-    if (hrv_lf + hrv_hf) > 0:
-        hrv_rlf = hrv_lf / (hrv_lf + hrv_hf) * 100
-        hrv_rhf = hrv_hf / (hrv_lf + hrv_hf) * 100
-    else:
-        hrv_rlf = np.nan
-        hrv_rhf = np.nan
+    psd: pd.DataFrame = signal_psd(
+        rri,
+        sampling_rate=sampling_rate,
+        method="welch",
+        min_frequency=freq_bands['ULF'].low, max_frequency=freq_bands['VHF'].high,
+        normalize=False, order_criteria=None,
+        #show=True,
+        )
+    psd = psd.fillna(0)
 
-    
-    lim_ulf= (freq >= freqband_limits[0]) & (freq < freqband_limits[1])
-    lim_vlf = (freq >= freqband_limits[1]) & (freq < freqband_limits[2])
-    lim_lf = (freq >= freqband_limits[2]) & (freq < freqband_limits[3])
-    lim_hf = (freq >= freqband_limits[3]) & (freq < freqband_limits[4])
-    lim_vhf = (freq >= freqband_limits[4]) & (freq < freqband_limits[5])
-    print(f"ulf: freq {freq[lim_ulf]} power {power[lim_ulf]}")
-    print(f"vlf: freq {freq[lim_vlf]} power {power[lim_vlf]}")
-    print(f"lf: freq {freq[lim_lf]} power {power[lim_lf]}")
-    print(f"hf: freq {freq[lim_hf]} power {power[lim_hf]}")
-    print(f"vhf: freq {freq[lim_vhf]} power {power[lim_vhf]}")
-    
-    # The power (PSD) of each frequency band is obtained by integrating the spectral density 
-    # by trapezoidal rule, using the scipy.integrate.trapz function.
-    ulf = trapezoid(power[lim_ulf], freq[lim_ulf]) if np.any(lim_ulf) else 0
-    vlf = trapezoid(power[lim_vlf], freq[lim_vlf]) if np.any(lim_vlf) else 0
-    lf = trapezoid(power[lim_lf], freq[lim_lf]) if np.any(lim_lf) else 0
-    hf = trapezoid(power[lim_hf], freq[lim_hf]) if np.any(lim_hf) else 0
-    vhf = trapezoid(power[lim_vhf], freq[lim_vhf]) if np.any(lim_vhf) else 0
-
-    totalpower = ulf + vlf + lf + hf + vhf
+    ulf_bins = psd[(psd['Frequency'] >= freq_bands['ULF'].low) & (psd['Frequency'] <= freq_bands['ULF'].high)]
+    vlf_bins = psd[(psd['Frequency'] > freq_bands['VLF'].low) & (psd['Frequency'] <= freq_bands['VLF'].high)]
+    lf_bins = psd[(psd['Frequency'] > freq_bands['LF'].low) & (psd['Frequency'] <= freq_bands['LF'].high)]
+    hf_bins = psd[(psd['Frequency'] > freq_bands['HF'].low) & (psd['Frequency'] <= freq_bands['HF'].high)]
+    vhf_bins = psd[(psd['Frequency'] > freq_bands['VHF'].low) & (psd['Frequency'] <= freq_bands['VHF'].high)]
+    ulf = trapezoid(ulf_bins["Power"], ulf_bins["Frequency"]) if ulf_bins["Power"].sum() > 0 else 0
+    vlf = trapezoid(vlf_bins["Power"], vlf_bins["Frequency"]) if vlf_bins["Power"].sum() > 0 else 0
+    lf = trapezoid(lf_bins["Power"], lf_bins["Frequency"]) if lf_bins["Power"].sum() > 0 else 0
+    hf = trapezoid(hf_bins["Power"], hf_bins["Frequency"]) if hf_bins["Power"].sum() > 0 else 0
+    vhf = trapezoid(vhf_bins["Power"], vhf_bins["Frequency"]) if vhf_bins["Power"].sum() > 0 else 0
+    total = ulf + vlf + lf + hf + vhf
     lfhf = lf / hf if hf > 0 else 0
     if (lf + hf) > 0:
         rlf = lf / (lf + hf) * 100
         rhf = hf / (lf + hf) * 100
     else:
-        rlf = 0
-        rhf = 0
+        rlf = rhf = 0
+    peakLF: float = lf_bins['Power'].max() if len(lf_bins['Power']) > 0 else 0
+    peakHF: float = hf_bins['Power'].max() if len(hf_bins['Power']) > 0 else 0
 
-    # error handling to avoid using argmax on empty arrays
-    if np.any(lim_lf) and np.sum(power[lim_lf]) > 0:
-        peaklf = freq[lim_lf][np.argmax(power[lim_lf])]
-    else:
-        peaklf = 0
+    # rri_data = {"RRI": rri, "RRI_Time": rri_time}
+    # hrv_freq: pd.DataFrame = nk.hrv_frequency(
+    #     #r_peaks,
+    #     rri_data,
+    #     sampling_rate=sampling_rate, psd_method="welch",
+    #     normalize=False, interpolation_rate=None)
+    # hrv_freq = hrv_freq.fillna(0)
 
-    if np.any(lim_hf) and np.sum(power[lim_hf]) > 0:
-        peakhf = freq[lim_hf][np.argmax(power[lim_hf])]
-    else:
-        peakhf = 0
+    # hrv_lf = hrv_freq['HRV_LF'].iloc[0]
+    # hrv_hf = hrv_freq['HRV_HF'].iloc[0]
+    # if (hrv_lf + hrv_hf) > 0:
+    #     hrv_rlf = hrv_lf / (hrv_lf + hrv_hf) * 100
+    #     hrv_rhf = hrv_hf / (hrv_lf + hrv_hf) * 100
+    # else:
+    #     hrv_rlf = hrv_rhf = 0
 
-    print((
-        "NK Total: {0:.4f}, ulf: {1:.2f}, vlf: {2:.2f}, lf: {3:.2f}, hf: {4:.2f}, vhf: {5:.2f}" +
-        ", lfhf: {6:.2f}, rlf: {7:.2f}, rhf: {8:.2f}").format(
-        hrv_freq['HRV_TP'].iloc[0], hrv_freq['HRV_ULF'].iloc[0], hrv_freq['HRV_VLF'].iloc[0], hrv_freq['HRV_LF'].iloc[0],
-        hrv_freq['HRV_HF'].iloc[0], hrv_freq['HRV_VHF'].iloc[0], hrv_freq['HRV_LFHF'].iloc[0], hrv_rlf, hrv_rhf)
-    )
-    print((
-        f"Manual Total: {totalpower:.4f}, ulf: {ulf:.2f}, vlf: {vlf:.2f}, lf: {lf:.2f}, hf: {hf:.2f}, vhf: {vhf:.2f}, " +
-        "lfhf: {lfhf}, rlf: {rlf:.2f}, rhf: {rhf:.2f}, peaklf: {peaklf:.2f}, peakhf: {peakhf:.2f}"))
-    
-    df = pd.DataFrame(data = [totalpower, lf, hf, ulf, vlf, vhf, lfhf,
-                             rlf, rhf, peaklf, peakhf]).T
-    
-    df.columns = ['totalpower', 'LF', 'HF', 'ULF', 'VLF', 'VHF', 'LF/HF',
-                 'rLF', 'rHF', 'peakLF', 'peakHF']
+    # df = pd.DataFrame(data = [
+    #     hrv_freq['HRV_TP'].iloc[0],
+    #     hrv_freq['HRV_LF'].iloc[0],
+    #     hrv_freq['HRV_HF'].iloc[0],
+    #     hrv_freq['HRV_ULF'].iloc[0],
+    #     hrv_freq['HRV_VLF'].iloc[0],
+    #     hrv_freq['HRV_VHF'].iloc[0],
+    #     hrv_freq['HRV_LFHF'].iloc[0],
+    #     hrv_rlf, hrv_rhf, peakLF, peakHF,
+    #     ]
+    df = pd.DataFrame(data = [total, lf, hf, ulf, hf, vhf, lfhf, rlf, rhf, peakLF, peakHF,]).T
 
+    df.columns = columns
+    #print(psd)
+    #print(df)
+    #print(peakLF, hrv_freq['HRV_LF'].iloc[0], peakHF, hrv_freq['HRV_HF'].iloc[0])
+    #print(hrv_freq['HRV_TP'].iloc[0], psd["Power"].sum())
+    #plt.show()
     return df
     
     
@@ -240,9 +212,6 @@ def ecg_freq(
 
 
 def apEntropy(array: ArrayLike, m: int=2, r: float | None=None) -> float:
-    # Input: An array (numpy, dataframe, list) 
-    # -> Output : A Float
-    
     # m : a positive integer representing the length of each compared run of data (a window).
     # By default m = 2
     # r : a positive real number specifying a filtering level. By default r = 0.2 * sd.
@@ -359,14 +328,13 @@ def ecg_time_features(dictionary: FeatureDict, sampling_freq: float =500) -> pd.
 
 def ecg_freq_features(dictionary: FeatureDict, sampling_freq: float =500) -> pd.DataFrame:
     data = dictionary.copy()
-    print(f"analyzing {list(data.keys())[0]}")
     df_freq = ecg_freq(list(data.values())[0], sampling_freq)
     names = [list(data.keys())[0]]
+
     items = iter(data.items())
     _ = next(items)
     
     for k,v in items:
-        print(f"\nanalyzing {k}, length: {len(v)}")
         df_freq = pd.concat([df_freq, ecg_freq(v, sampling_freq)], axis=0)
         names.append(k)
         
