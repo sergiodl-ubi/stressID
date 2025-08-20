@@ -113,6 +113,70 @@ def ecg_freq(
     sampling_rate: float=1000,
     interpolation_rate: int=4,
     ) -> pd.DataFrame:
+    """
+    Extract frequency-domain heart rate variability (HRV) features from an ECG signal.
+
+    This function computes power spectral density (PSD) from R-R intervals derived from
+    detected ECG R-peaks and extracts HRV metrics across standard frequency bands.
+    The Welch method is used to estimate PSD, and the trapezoidal rule integrates
+    power within defined frequency bands.
+
+    Parameters
+    ----------
+    array : ArrayLike
+        Input ECG signal (1D array-like).
+    sampling_rate : float, optional
+        Sampling frequency of the ECG signal in Hz (default is 1000).
+    interpolation_rate : int, optional
+        Interpolation rate (Hz) for R-R interval resampling prior to PSD estimation
+        (default is 4).
+
+    Returns
+    -------
+    pd.DataFrame
+        A single-row DataFrame containing frequency-domain HRV features:
+
+        - **totalpower** : float
+          Total spectral power (ULF + VLF + LF + HF + VHF).
+        - **LF** : float
+          Power in the low-frequency band (0.04–0.15 Hz).
+        - **HF** : float
+          Power in the high-frequency band (0.15–0.40 Hz).
+        - **ULF** : float
+          Power in the ultra-low-frequency band (0.001–0.033 Hz).
+        - **VLF** : float
+          Power in the very-low-frequency band (0.033–0.04 Hz).
+        - **VHF** : float
+          Power in the very-high-frequency band (0.40–0.50 Hz).
+        - **LF/HF** : float
+          Ratio of LF to HF power.
+        - **rLF** : float
+          Relative LF power as a percentage of (LF + HF).
+        - **rHF** : float
+          Relative HF power as a percentage of (LF + HF).
+        - **peakLF** : float
+          Maximum spectral power within the LF band.
+        - **peakHF** : float
+          Maximum spectral power within the HF band.
+
+    Notes
+    -----
+    - If fewer than 3 R-peaks are detected, the function returns a row of NaNs.
+    - PSD is computed using the Welch method.
+    - Frequency bands are defined as:
+        - ULF: 0.001–0.033 Hz
+        - VLF: 0.033–0.04 Hz
+        - LF: 0.04–0.15 Hz
+        - HF: 0.15–0.40 Hz
+        - VHF: 0.40–0.50 Hz
+
+    Examples
+    --------
+    >>> import numpy as np
+    >>> ecg = np.random.randn(5000)  # Simulated ECG signal
+    >>> features = ecg_freq(ecg, sampling_rate=1000)
+    >>> features[["LF", "HF", "LF/HF"]]
+    """
 
     columns = ['totalpower', 'LF', 'HF', 'ULF', 'VLF', 'VHF', 'LF/HF', 'rLF', 'rHF', 'peakLF', 'peakHF']
     freq_bands: dict[str, FrequencyBand] = {
@@ -169,32 +233,6 @@ def ecg_freq(
     peakLF: float = lf_bins['Power'].max() if len(lf_bins['Power']) > 0 else 0
     peakHF: float = hf_bins['Power'].max() if len(hf_bins['Power']) > 0 else 0
 
-    # rri_data = {"RRI": rri, "RRI_Time": rri_time}
-    # hrv_freq: pd.DataFrame = nk.hrv_frequency(
-    #     #r_peaks,
-    #     rri_data,
-    #     sampling_rate=sampling_rate, psd_method="welch",
-    #     normalize=False, interpolation_rate=None)
-    # hrv_freq = hrv_freq.fillna(0)
-
-    # hrv_lf = hrv_freq['HRV_LF'].iloc[0]
-    # hrv_hf = hrv_freq['HRV_HF'].iloc[0]
-    # if (hrv_lf + hrv_hf) > 0:
-    #     hrv_rlf = hrv_lf / (hrv_lf + hrv_hf) * 100
-    #     hrv_rhf = hrv_hf / (hrv_lf + hrv_hf) * 100
-    # else:
-    #     hrv_rlf = hrv_rhf = 0
-
-    # df = pd.DataFrame(data = [
-    #     hrv_freq['HRV_TP'].iloc[0],
-    #     hrv_freq['HRV_LF'].iloc[0],
-    #     hrv_freq['HRV_HF'].iloc[0],
-    #     hrv_freq['HRV_ULF'].iloc[0],
-    #     hrv_freq['HRV_VLF'].iloc[0],
-    #     hrv_freq['HRV_VHF'].iloc[0],
-    #     hrv_freq['HRV_LFHF'].iloc[0],
-    #     hrv_rlf, hrv_rhf, peakLF, peakHF,
-    #     ]
     df = pd.DataFrame(data = [total, lf, hf, ulf, hf, vhf, lfhf, rlf, rhf, peakLF, peakHF,]).T
 
     df.columns = columns
