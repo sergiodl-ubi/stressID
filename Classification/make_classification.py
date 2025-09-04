@@ -35,10 +35,10 @@ def make_nclassif(X, y, n_splits=10, feature_selector=None, list_classifiers=Non
     # Dictionnary to store f1-score and accuracy
     df_res = pd.DataFrame({'n':[],'f1-score':[],'accuracy':[], 'classifier':[], 'time':[]})
     conf_matrices = []
-    
+
     imputer = IterativeImputer(random_state=0) if impute else None
     scaler = StandardScaler() if scale else None
-    
+
     # Defaut classifiers tested: Logistic regression, Random Forests, Adaboost
     if not list_classifiers :
         list_classifiers = [LogisticRegression(max_iter=2000),
@@ -137,7 +137,7 @@ def avg_res(res):
 def make_nclassif_random_splits(
     X, y, n_splits=10,
     feature_selector=None, list_classifiers=None, impute=True, scale=True,
-    verbose=True, random_seed: int|None = None):
+    verbose=True, random_seed: int|None = None, test_size: float = 0.2):
     # Dictionnary to store f1-score and accuracy
     df_res= pd.DataFrame({'n':[],'f1-score':[],'accuracy':[], 'classifier':[], 'time':[]})
     conf_matrices = []
@@ -153,7 +153,7 @@ def make_nclassif_random_splits(
 
     # Make n random splits
     for s in range(n_splits):
-        x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=random_seed)
+        x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=random_seed)
 
         if verbose:
             print('Split {0:2d}/{1:2d}'.format(s+1, n_splits))
@@ -161,7 +161,7 @@ def make_nclassif_random_splits(
         # Fit each model
         for model in list_classifiers:
 
-            if feature_selector == 'l1':
+            if feature_selector == 'L1':
                 clf = Pipeline([
                     ('impute',imputer),
                     ('scale', scaler),
