@@ -28,6 +28,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.utils import shuffle, resample
 from imblearn.over_sampling import SMOTE
 
+from sklearn2pmml import PMMLPipeline
+
 
 # Compare several classification models over K repetition, using K group splits, grouped by subjects
 def make_nclassif(
@@ -151,7 +153,7 @@ def make_nclassif_random_splits(
     random_seed: int | None = None,
     test_size: float = 0.2,
     useStratification: bool = False,
-) -> tuple[pd.DataFrame, list[np.ndarray], dict[str, Pipeline]]:
+) -> tuple[pd.DataFrame, list[np.ndarray], dict[str, PMMLPipeline]]:
     """
     Perform repeated random train/test splits to evaluate multiple classifiers on a dataset.
 
@@ -191,7 +193,7 @@ def make_nclassif_random_splits(
         DataFrame containing f1-score, balanced accuracy, classifier name, and timing for each split.
     conf_matrices : list of np.ndarray
         List of confusion matrices for each classifier and split.
-    models : dict[str, Pipeline]
+    pipelines : dict[str, Pipeline]
         Dictionary mapping classifier names to their fitted sklearn Pipelines from the last split.
 
     """
@@ -199,7 +201,7 @@ def make_nclassif_random_splits(
     # Dictionnary to store f1-score and accuracy
     df_res = pd.DataFrame({"n": [], "f1-score": [], "accuracy": [], "classifier": [], "time": []})
     conf_matrices = []
-    models = {}
+    pipelines = {}
 
     imputer = IterativeImputer() if impute else None
     scaler = StandardScaler() if scale else None
@@ -228,9 +230,9 @@ def make_nclassif_random_splits(
         # Fit each model
         for model in list_classifiers:
             if feature_selector == "L1":
-                clf = Pipeline(
+                clf = PMMLPipeline(
                     [
-                        ("impute", imputer),
+                        # ("impute", imputer),
                         ("scale", scaler),
                         (
                             "feature_selection",
@@ -242,9 +244,9 @@ def make_nclassif_random_splits(
                     ]
                 )
             elif feature_selector == "RFE":
-                clf = Pipeline(
+                clf = PMMLPipeline(
                     [
-                        ("impute", imputer),
+                        # ("impute", imputer),
                         ("scale", scaler),
                         ("feature_selection", RFECV(RandomForestClassifier(max_depth=5), step=2, cv=2)),
                         ("classification", model),
@@ -252,9 +254,22 @@ def make_nclassif_random_splits(
                 )
             elif feature_selector == "PCA":
                 pca = PCA(n_components=0.95, svd_solver="full")
-                clf = Pipeline([("impute", imputer), ("scale", scaler), ("pca", pca), ("classification", model)])
+                clf = PMMLPipeline(
+                    [
+                        # ("impute", imputer),
+                        ("scale", scaler),
+                        ("pca", pca),
+                        ("classification", model),
+                    ]
+                )
             else:
-                clf = Pipeline([("impute", imputer), ("scale", scaler), ("classification", model)])
+                clf = PMMLPipeline(
+                    [
+                        # ("impute", imputer),
+                        ("scale", scaler),
+                        ("classification", model),
+                    ]
+                )
 
             tic = time.perf_counter()
             clf.fit(x_train, y_train)
@@ -273,7 +288,7 @@ def make_nclassif_random_splits(
                 modelname = model_name + suffix
             else:
                 modelname = model_name
-            models[modelname] = clf
+            pipelines[modelname] = clf
 
             new_row = {
                 "n": int(s),
@@ -284,7 +299,7 @@ def make_nclassif_random_splits(
             }
             df_res.loc[len(df_res)] = new_row
 
-    return df_res, conf_matrices, models
+    return df_res, conf_matrices, pipelines
 
 
 ##########################################################################################
