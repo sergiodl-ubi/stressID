@@ -64,7 +64,7 @@ class Task:
         self.quaternaryClassify()
 
     def binaryClassify(self) -> None:
-        self.binaryClass = BinaryClasses.Stressed if self.stressed >= 5 else BinaryClasses.NoStressed
+        self.binaryClass = BinaryClasses.Stressed if self.stressed > 5 else BinaryClasses.NoStressed
 
     def ternaryClassify(self) -> None:
         if (
@@ -214,11 +214,13 @@ labels: dict[str, list[str | float]] = {
 }
 
 if __name__ == "__main__":
-    reported_data_full = pd.read_csv(input_file, sep=",")  # pyright: ignore[reportUnknownMemberType]
+    reported_data = pd.read_csv(input_file, sep=";", index_col=0, dtype=str, keep_default_na=False)  # pyright: ignore[reportUnknownMemberType]
 
-    for subjID, data in reported_data_full.iterrows():
-        tasks = row_to_tasks(int(subjID), data)  # pyright: ignore[reportArgumentType]
+    for subjID, data in reported_data.iterrows():
+        tasks = row_to_tasks(subjID, data)  # pyright: ignore[reportArgumentType]
         for taskName, values in tasks.items():
+            if values['R'] == "" or values["S"] == "":
+                continue
             task = Task(task=taskName, data=values)
             print(task)
             labels["subject/task"].append(task.task)
