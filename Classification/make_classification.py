@@ -203,7 +203,7 @@ def make_nclassif_random_splits(
     conf_matrices = []
     pipelines = {}
 
-    imputer = IterativeImputer() if impute else None
+    # imputer = IterativeImputer() if impute else None
     scaler = StandardScaler() if scale else None
 
     # Defaut classifiers tested: Logistic regression, Random Forests, Adaboost
