@@ -202,7 +202,6 @@ def make_nclassif_random_splits(
     df_res = pd.DataFrame({"n": [], "f1-score": [], "accuracy": [], "classifier": [], "time": []})
     conf_matrices = []
     pipelines = {}
-
     imputer = SimpleImputer() if impute else None
     scaler = StandardScaler() if scale else None
 

@@ -64,21 +64,21 @@ class Task:
         self.quaternaryClassify()
 
     def binaryClassify(self) -> None:
-        self.binaryClass = BinaryClasses.Stressed if self.stressed > 5 else BinaryClasses.NoStressed
+        self.binaryClass = BinaryClasses.Stressed if self.stressed >= 5 else BinaryClasses.NoStressed
 
     def ternaryClassify(self) -> None:
         if (
-            self.relaxed >= 5
-            and (self.arousal <= 5 if self.arousal else True)
-            and (self.valence >= 5 if self.valence else True)
-        ):
-            self.ternaryClass = TernaryClasses.Relaxed
-        elif (
             self.stressed >= 5
-            and (self.arousal > 5 if self.arousal else True)
-            and (self.valence < 5 if self.valence else True)
+            and (self.arousal >= 5 if self.arousal else True)
+            and (self.valence <= 5 if self.valence else True)
         ):
             self.ternaryClass = TernaryClasses.RealStress
+        elif (
+            (self.relaxed > 5 or ((self.relaxed - self.stressed) > 3))
+            and (self.arousal < 5 if self.arousal else True)
+            and (self.valence > 5 if self.valence else True)
+        ):
+            self.ternaryClass = TernaryClasses.Relaxed
         else:
             self.ternaryClass = TernaryClasses.Stressed
 
@@ -88,9 +88,15 @@ class Task:
         # DOI: 10.1007/s11042-015-3119-y
         # Stressed and relaxed reported levels follow StressID methodology
         if (
-            self.relaxed >= 5
-            and (self.arousal <= 5 if self.arousal else True)
-            and (self.valence >= 5 if self.valence else True)
+            self.stressed >= 5
+            and (self.arousal >= 5 if self.arousal else True)
+            and (self.valence <= 5 if self.valence else True)
+        ):
+            self.quaternaryClass = QuaternaryClasses.RealStress
+        elif (
+            (self.relaxed > 5 or ((self.relaxed - self.stressed) > 3))
+            and (self.arousal < 5 if self.arousal else True)
+            and (self.valence > 5 if self.valence else True)
         ):
             self.quaternaryClass = QuaternaryClasses.Relaxed
         elif (
@@ -99,12 +105,6 @@ class Task:
             and (self.valence >= 5 if self.valence else True)
         ):
             self.quaternaryClass = QuaternaryClasses.Amused
-        elif (
-            self.stressed >= 5
-            and (self.arousal > 5 if self.arousal else True)
-            and (self.valence < 5 if self.valence else True)
-        ):
-            self.quaternaryClass = QuaternaryClasses.RealStress
         else:
             self.quaternaryClass = QuaternaryClasses.Stressed
 
@@ -118,85 +118,69 @@ class Task:
         )
 
 
-COLUMNS_ORDER = [
-    "Breathing",
-    "Counting1",
-    "Counting2",
-    "Counting3",
-    "Math",
-    "Reading",
-    "Relax",
-    "Speaking",
-    "Stroop",
-    "Video1",
-    "Video2",
-]
-SUBCOL_NAMES = ["relax", "stress", "valence", "arousal"]
-
-
 def row_to_tasks(index: str, row_data: dict[str, str]) -> dict[str, dict[str, str]]:
     result = {
-        f"{index}-Breathing": {
+        f"{index}_Breathing": {
             "R": row_data["Breathing_relax"],
             "S": row_data["Breathing_stress"],
             "V": row_data["Breathing_valence"],
             "A": row_data["Breathing_arousal"],
         },
-        f"{index}-Counting1": {
+        f"{index}_Counting1": {
             "R": row_data["Counting1_relax"],
             "S": row_data["Counting1_stress"],
             "V": row_data["Counting1_valence"],
             "A": row_data["Counting1_arousal"],
         },
-        f"{index}-Counting2": {
+        f"{index}_Counting2": {
             "R": row_data["Counting2_relax"],
             "S": row_data["Counting2_stress"],
             "V": row_data["Counting2_valence"],
             "A": row_data["Counting2_arousal"],
         },
-        f"{index}-Counting3": {
+        f"{index}_Counting3": {
             "R": row_data["Counting3_relax"],
             "S": row_data["Counting3_stress"],
             "V": row_data["Counting3_valence"],
             "A": row_data["Counting3_arousal"],
         },
-        f"{index}-Math": {
+        f"{index}_Math": {
             "R": row_data["Math_relax"],
             "S": row_data["Math_stress"],
             "V": row_data["Math_valence"],
             "A": row_data["Math_arousal"],
         },
-        f"{index}-Reading": {
+        f"{index}_Reading": {
             "R": row_data["Reading_relax"],
             "S": row_data["Reading_stress"],
             "V": row_data["Reading_valence"],
             "A": row_data["Reading_arousal"],
         },
-        f"{index}-Relax": {
+        f"{index}_Relax": {
             "R": row_data["Relax_relax"],
             "S": row_data["Relax_stress"],
             "V": row_data["Relax_valence"],
             "A": row_data["Relax_arousal"],
         },
-        f"{index}-Speaking": {
+        f"{index}_Speaking": {
             "R": row_data["Speaking_relax"],
             "S": row_data["Speaking_stress"],
             "V": row_data["Speaking_valence"],
             "A": row_data["Speaking_arousal"],
         },
-        f"{index}-Stroop": {
+        f"{index}_Stroop": {
             "R": row_data["Stroop_relax"],
             "S": row_data["Stroop_stress"],
             "V": row_data["Stroop_valence"],
             "A": row_data["Stroop_arousal"],
         },
-        f"{index}-Video1": {
+        f"{index}_Video1": {
             "R": row_data["Video1_relax"],
             "S": row_data["Video1_stress"],
             "V": row_data["Video1_valence"],
             "A": row_data["Video1_arousal"],
         },
-        f"{index}-Video2": {
+        f"{index}_Video2": {
             "R": row_data["Video2_relax"],
             "S": row_data["Video2_stress"],
             "V": row_data["Video2_valence"],
@@ -219,7 +203,7 @@ if __name__ == "__main__":
     for subjID, data in reported_data.iterrows():
         tasks = row_to_tasks(subjID, data)  # pyright: ignore[reportArgumentType]
         for taskName, values in tasks.items():
-            if values['R'] == "" or values["S"] == "":
+            if values["R"] == "" or values["S"] == "":
                 continue
             task = Task(task=taskName, data=values)
             print(task)
@@ -229,4 +213,6 @@ if __name__ == "__main__":
             labels["affect4-class"].append(task.quaternaryClass.value)
 
     df = pd.DataFrame(labels)
+    df.set_index("subject/task")
+    df.sort_index()
     df.to_csv(output_file, sep=",", index=False)
