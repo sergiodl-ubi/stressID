@@ -22,7 +22,7 @@ from sklearn.metrics import balanced_accuracy_score, f1_score
 from sklearn.decomposition import PCA
 
 from sklearn.experimental import enable_iterative_imputer
-from sklearn.impute import IterativeImputer
+from sklearn.impute import IterativeImputer, SimpleImputer
 from sklearn.preprocessing import StandardScaler
 
 from sklearn.utils import shuffle, resample
@@ -149,7 +149,7 @@ def make_nclassif_random_splits(
     list_classifiers: list | None = None,
     impute: bool = True,
     scale: bool = True,
-    verbose: bool = True,
+    verbose: bool = False,
     random_seed: int | None = None,
     test_size: float = 0.2,
     useStratification: bool = False,
@@ -203,7 +203,7 @@ def make_nclassif_random_splits(
     conf_matrices = []
     pipelines = {}
 
-    # imputer = IterativeImputer() if impute else None
+    imputer = SimpleImputer() if impute else None
     scaler = StandardScaler() if scale else None
 
     # Defaut classifiers tested: Logistic regression, Random Forests, Adaboost
@@ -224,15 +224,17 @@ def make_nclassif_random_splits(
             X, y, test_size=test_size, random_state=current_seed, stratify=stratify
         )
 
-        if verbose:
-            print("Split {0:2d}/{1:2d}".format(s + 1, n_splits))
+        print("Split {0:2d}/{1:2d}".format(s + 1, n_splits))
 
         # Fit each model
         for model in list_classifiers:
+            model_name = model.__class__.__name__
+            if verbose:
+                print(f"Training: {model_name}")
             if feature_selector == "L1":
                 clf = PMMLPipeline(
                     [
-                        # ("impute", imputer),
+                        ("impute", imputer),
                         ("scale", scaler),
                         (
                             "feature_selection",
@@ -246,7 +248,7 @@ def make_nclassif_random_splits(
             elif feature_selector == "RFE":
                 clf = PMMLPipeline(
                     [
-                        # ("impute", imputer),
+                        ("impute", imputer),
                         ("scale", scaler),
                         ("feature_selection", RFECV(RandomForestClassifier(max_depth=5), step=2, cv=2)),
                         ("classification", model),
@@ -256,7 +258,7 @@ def make_nclassif_random_splits(
                 pca = PCA(n_components=0.95, svd_solver="full")
                 clf = PMMLPipeline(
                     [
-                        # ("impute", imputer),
+                        ("impute", imputer),
                         ("scale", scaler),
                         ("pca", pca),
                         ("classification", model),
@@ -265,7 +267,7 @@ def make_nclassif_random_splits(
             else:
                 clf = PMMLPipeline(
                     [
-                        # ("impute", imputer),
+                        ("impute", imputer),
                         ("scale", scaler),
                         ("classification", model),
                     ]
@@ -278,7 +280,6 @@ def make_nclassif_random_splits(
             # Retrieve accuracy and F1-score
             y_pred = clf.predict(x_test)
             conf_matrices.append(confusion_matrix(y_test, y_pred))
-            model_name = model.__class__.__name__
             if model_name == "MLPClassifier":
                 suffix = (
                     f"_HLs{len(model.hidden_layer_sizes)}_FL{model.hidden_layer_sizes[0]}"
