@@ -67,17 +67,20 @@ class Task:
         self.binaryClass = BinaryClasses.Stressed if self.stressed >= 5 else BinaryClasses.NoStressed
 
     def ternaryClassify(self) -> None:
-        if (
-            self.stressed >= 5
-            and (self.arousal >= 5 if self.arousal else True)
-            and (self.valence <= 5 if self.valence else True)
-        ):
+        isStressed = self.stressed >= 5
+        isRelaxed = self.relaxed >= 5
+        isAroused = self.arousal >= 5 if self.arousal else True
+        isNotAroused = self.arousal <= 5 if self.arousal else True
+        positiveValence = self.valence >= 5 if self.valence else True
+        negativeValence = self.valence <= 5 if self.valence else True
+        clearStress = (self.stressed - self.relaxed) >= 3
+        realStress = (isStressed and clearStress) or ((self.stressed - self.relaxed) >= 5)
+        clearRelax = (self.relaxed - self.stressed) >= 3
+        realRelax = (isRelaxed and clearRelax) or ((self.relaxed - self.stressed) >= 5)
+
+        if (isStressed and isAroused and (negativeValence or clearStress)) or realStress:
             self.ternaryClass = TernaryClasses.RealStress
-        elif (
-            (self.relaxed > 5 or ((self.relaxed - self.stressed) > 3))
-            and (self.arousal < 5 if self.arousal else True)
-            and (self.valence > 5 if self.valence else True)
-        ):
+        elif (isRelaxed and (isNotAroused or clearRelax) and positiveValence) or realRelax:
             self.ternaryClass = TernaryClasses.Relaxed
         else:
             self.ternaryClass = TernaryClasses.Stressed
@@ -95,8 +98,8 @@ class Task:
             self.quaternaryClass = QuaternaryClasses.RealStress
         elif (
             (self.relaxed > 5 or ((self.relaxed - self.stressed) > 3))
-            and (self.arousal < 5 if self.arousal else True)
-            and (self.valence > 5 if self.valence else True)
+            and (self.arousal <= 5 if self.arousal else True)
+            and (self.valence >= 5 if self.valence else True)
         ):
             self.quaternaryClass = QuaternaryClasses.Relaxed
         elif (
@@ -213,6 +216,5 @@ if __name__ == "__main__":
             labels["affect4-class"].append(task.quaternaryClass.value)
 
     df = pd.DataFrame(labels)
-    df.set_index("subject/task")
-    df.sort_index()
+    df.sort_values(by="subject/task", inplace=True)
     df.to_csv(output_file, sep=",", index=False)
