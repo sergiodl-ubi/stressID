@@ -49,12 +49,23 @@ for i in filelist:
         file_rsp = np.array(file["RR"])
 
         # Normalization
-        data_ecg[i.split(".")[0]] = (file_ecg - file_ecg.mean()) / file_ecg.std()
-        data_eda[i.split(".")[0]] = (file_eda - file_eda.mean()) / file_eda.std()
-        data_rsp[i.split(".")[0]] = (file_rsp - file_rsp.mean()) / file_rsp.std()
+        filename = i.split(".")[0]
+        task = filename.split("_")[1]
 
+        ecg_std = file_ecg.std()
+        ecg_out = np.zeros_like(file_ecg, dtype=float)
+        np.divide(file_ecg - file_ecg.mean(), ecg_std, out=ecg_out, where=ecg_std != 0)
+        data_ecg[filename] = ecg_out
 
-del data_eda["r5s8_Counting3"]
+        eda_std = file_eda.std()
+        eda_out = np.zeros_like(file_eda, dtype=float)
+        np.divide(file_eda - file_eda.mean(), eda_std, out=eda_out, where=eda_std != 0)
+        data_eda[filename] = eda_out
+
+        rsp_std = file_rsp.std()
+        rsp_out = np.zeros_like(file_rsp, dtype=float)
+        np.divide(file_rsp - file_rsp.mean(), rsp_std, out=rsp_out, where=rsp_std != 0)
+        data_rsp[filename] = rsp_out
 
 
 ####### CLEAN USING NK
@@ -65,18 +76,25 @@ rsp_clean = data_rsp.copy()
 for ecg, eda, rsp in zip(data_ecg.items(), data_eda.items(), data_rsp.items()):
     task = ecg[0].split("_")[1]
     seek = sample_seek[task]
-    ecg_clean[ecg[0]] = nk.ecg_clean(ecg[1], sampling_rate=500, method="biosppy").iloc[seek, num_samples]
+    ecg_clean[ecg[0]] = nk.ecg_clean(ecg[1], sampling_rate=500, method="biosppy")[seek : seek + num_samples]
+
     task = eda[0].split("_")[1]
     seek = sample_seek[task]
-    eda_clean[eda[0]] = nk.eda_clean(eda[1], sampling_rate=500, method="biosppy").iloc[seek, num_samples]
+    eda_clean[eda[0]] = nk.eda_clean(eda[1], sampling_rate=500, method="biosppy")[seek : seek + num_samples]
+
     task = rsp[0].split("_")[1]
     seek = sample_seek[task]
-    rsp_clean[rsp[0]] = nk.rsp_clean(rsp[1], sampling_rate=500, method="biosppy").iloc[seek, num_samples]
-
-######## MERGE
-df = pd.concat([ecg_clean, rsp_clean], axis=1).merge(eda_clean, left_index=True, right_index=True)
+    rsp_clean[rsp[0]] = nk.rsp_clean(rsp[1], sampling_rate=500, method="biosppy")[seek : seek + num_samples]
 
 ####### EXPORT
-eda_clean.to_csv(f"{path_data}/eda_windowed.csv", sep=",", index=True)
-rsp_clean.to_csv(f"{path_data}/rsp_windowed.csv", sep=",", index=True)
-ecg_clean.to_csv(f"{path_data}/ecg_windowed.csv", sep=",", index=True)
+ecg_df = pd.DataFrame(ecg_clean)
+print(f"ECG shape: {ecg_df.shape}")
+eda_df = pd.DataFrame(eda_clean)
+eda_df = eda_df.drop("r5s8_Counting3", axis=1)
+print(f"EDA shape: {eda_df.shape}")
+rsp_df = pd.DataFrame(rsp_clean)
+print(f"RSP shape: {rsp_df.shape}")
+
+ecg_df.to_csv(f"{path_data}/ecg_windowed.csv", sep=",", index=False)
+eda_df.to_csv(f"{path_data}/eda_windowed.csv", sep=",", index=False)
+rsp_df.to_csv(f"{path_data}/rsp_windowed.csv", sep=",", index=False)
