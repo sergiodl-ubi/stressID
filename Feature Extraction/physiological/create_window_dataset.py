@@ -4,7 +4,7 @@ import pandas as pd
 import neurokit2 as nk
 
 ####### Parameters
-clean_signal = True
+normalize = False
 sampling_rate = 500
 task_length_secs = 60  # seconds
 num_samples = sampling_rate * task_length_secs
@@ -52,20 +52,25 @@ for i in filelist:
         filename = i.split(".")[0]
         task = filename.split("_")[1]
 
-        ecg_std = file_ecg.std()
-        ecg_out = np.zeros_like(file_ecg, dtype=float)
-        np.divide(file_ecg - file_ecg.mean(), ecg_std, out=ecg_out, where=ecg_std != 0)
-        data_ecg[filename] = ecg_out
+        if normalize:
+            ecg_std = file_ecg.std()
+            ecg_out = np.zeros_like(file_ecg, dtype=float)
+            np.divide(file_ecg - file_ecg.mean(), ecg_std, out=ecg_out, where=ecg_std != 0)
+            data_ecg[filename] = ecg_out
 
-        eda_std = file_eda.std()
-        eda_out = np.zeros_like(file_eda, dtype=float)
-        np.divide(file_eda - file_eda.mean(), eda_std, out=eda_out, where=eda_std != 0)
-        data_eda[filename] = eda_out
+            eda_std = file_eda.std()
+            eda_out = np.zeros_like(file_eda, dtype=float)
+            np.divide(file_eda - file_eda.mean(), eda_std, out=eda_out, where=eda_std != 0)
+            data_eda[filename] = eda_out
 
-        rsp_std = file_rsp.std()
-        rsp_out = np.zeros_like(file_rsp, dtype=float)
-        np.divide(file_rsp - file_rsp.mean(), rsp_std, out=rsp_out, where=rsp_std != 0)
-        data_rsp[filename] = rsp_out
+            rsp_std = file_rsp.std()
+            rsp_out = np.zeros_like(file_rsp, dtype=float)
+            np.divide(file_rsp - file_rsp.mean(), rsp_std, out=rsp_out, where=rsp_std != 0)
+            data_rsp[filename] = rsp_out
+        else:
+            data_ecg[filename] = file_ecg
+            data_eda[filename] = file_eda
+            data_rsp[filename] = file_rsp
 
 
 ####### CLEAN USING NK
@@ -95,6 +100,7 @@ print(f"EDA shape: {eda_df.shape}")
 rsp_df = pd.DataFrame(rsp_clean)
 print(f"RSP shape: {rsp_df.shape}")
 
-ecg_df.to_csv(f"{path_data}/ecg_windowed.csv", sep=",", index=False)
-eda_df.to_csv(f"{path_data}/eda_windowed.csv", sep=",", index=False)
-rsp_df.to_csv(f"{path_data}/rsp_windowed.csv", sep=",", index=False)
+normalized_str = ".norm" if normalize else ""
+ecg_df.to_csv(f"{path_data}/../ecg_windowed{normalized_str}.csv", sep=",", index=False)
+eda_df.to_csv(f"{path_data}/../eda_windowed{normalized_str}.csv", sep=",", index=False)
+rsp_df.to_csv(f"{path_data}/../rsp_windowed{normalized_str}.csv", sep=",", index=False)
