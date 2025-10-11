@@ -26,7 +26,7 @@ from sklearn.decomposition import PCA
 
 from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import IterativeImputer, SimpleImputer
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, MaxAbsScaler, RobustScaler
 
 from sklearn.utils import shuffle, resample
 
@@ -157,7 +157,7 @@ def make_nclassif_random_splits(
     conf_matrices: dict[str, np.ndarray] = {}
     pipelines: dict[str, Pipeline] = {}
     imputer = SimpleImputer() if impute else None
-    scaler = StandardScaler() if scale else None
+    scaler = MaxAbsScaler() if scale else None
 
     # Defaut classifiers tested: Logistic regression, Random Forests, Adaboost
     if not list_classifiers:
