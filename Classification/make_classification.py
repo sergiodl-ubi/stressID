@@ -156,8 +156,8 @@ def make_nclassif_random_splits(
     df_res = pd.DataFrame({"n": [], "f1-score": [], "accuracy": [], "classifier": [], "time": []})
     conf_matrices: dict[str, np.ndarray] = {}
     pipelines: dict[str, Pipeline] = {}
-    imputer = SimpleImputer() if impute else None
-    scaler = MaxAbsScaler() if scale else None
+    imputer = IterativeImputer() if impute else None
+    scaler = StandardScaler() if scale else None
 
     # Defaut classifiers tested: Logistic regression, Random Forests, Adaboost
     if not list_classifiers:
@@ -236,7 +236,7 @@ def make_nclassif_kfold(
     conf_matrices: dict[str, np.ndarray] = {}
     pipelines: dict[str, Pipeline] = {}
 
-    imputer = SimpleImputer() if impute else None
+    imputer = IterativeImputer() if impute else None
     scaler = StandardScaler() if scale else None
 
     if not list_classifiers:
