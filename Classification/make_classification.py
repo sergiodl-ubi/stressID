@@ -107,7 +107,7 @@ def make_nclassif_random_splits(
     random_seed: int | None = None,
     test_size: float = 0.2,
     useStratification: bool = False,
-) -> tuple[pd.DataFrame, dict[str, np.ndarray], dict[str, Pipeline]]:
+) -> tuple[pd.DataFrame, dict[str, np.ndarray], dict[str, Pipeline], dict]:
     """
     Perform repeated random train/test splits to evaluate multiple classifiers on a dataset.
 
@@ -156,6 +156,8 @@ def make_nclassif_random_splits(
     df_res = pd.DataFrame({"n": [], "f1-score": [], "accuracy": [], "classifier": [], "time": []})
     conf_matrices: dict[str, np.ndarray] = {}
     pipelines: dict[str, Pipeline] = {}
+    test_probs: dict[str, dict[str, str | np.ndarray]] = {}
+
     imputer = IterativeImputer() if impute else None
     scaler = StandardScaler() if scale else None
 
@@ -195,6 +197,9 @@ def make_nclassif_random_splits(
             cm = confusion_matrix(y_test, y_pred)
             conf_matrices[model_name] = cm
 
+            probs = clf.predict_proba(x_test)
+            test_probs[model_name] = {"test_idx": y_test.index, "probs": probs}
+
             new_row = {
                 "n": int(s),
                 "f1-score": f1_score(y_test, y_pred, average="weighted"),
@@ -211,7 +216,7 @@ def make_nclassif_random_splits(
         clf.fit(X, y)
         pipelines[model_name] = clf
 
-    return df_res, conf_matrices, pipelines
+    return df_res, conf_matrices, pipelines, test_probs
 
 
 ##########################################################################################
@@ -228,13 +233,14 @@ def make_nclassif_kfold(
     verbose=False,
     stratified=True,
     random_seed: int | None = None,
-):
+) -> tuple[pd.DataFrame, dict[str, np.ndarray], dict[str, Pipeline], dict]:
     """
     Evaluate classifiers using K-fold cross-validation.
     """
     df_res = pd.DataFrame({"n": [], "f1-score": [], "accuracy": [], "classifier": [], "time": []})
     conf_matrices: dict[str, np.ndarray] = {}
     pipelines: dict[str, Pipeline] = {}
+    test_probs: dict[str, dict[str, str | np.ndarray]] = {}
 
     imputer = IterativeImputer() if impute else None
     scaler = StandardScaler() if scale else None
@@ -273,6 +279,9 @@ def make_nclassif_kfold(
             cm = confusion_matrix(y_test, y_pred)
             conf_matrices[model_name] = cm
 
+            probs = clf.predict_proba(x_test)
+            test_probs[model_name] = {"test_idx": y_test.index, "probs": probs}
+
             new_row = {
                 "n": int(s),
                 "f1-score": f1_score(y_test, y_pred, average="weighted"),
@@ -289,4 +298,4 @@ def make_nclassif_kfold(
         clf.fit(X, y)
         pipelines[model_name] = clf
 
-    return df_res, conf_matrices, pipelines
+    return df_res, conf_matrices, pipelines, test_probs
