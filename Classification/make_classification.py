@@ -156,7 +156,7 @@ def make_nclassif_random_splits(
     df_res = pd.DataFrame({"n": [], "f1-score": [], "accuracy": [], "classifier": [], "time": []})
     conf_matrices: dict[str, np.ndarray] = {}
     pipelines: dict[str, Pipeline] = {}
-    probs_dict: dict[str, pd.DataFrame] = {}
+    probs_dict: dict[str, list[pd.DataFrame]] = {get_model_name(model): [] for model in list_classifiers}
 
     imputer = IterativeImputer() if impute else None
     scaler = StandardScaler() if scale else None
@@ -202,7 +202,8 @@ def make_nclassif_random_splits(
             probs_cols = {}
             for cls_idx in range(n_classes):
                 probs_cols[cls_idx] = probs[:, cls_idx]
-            probs_dict[model_name] = pd.DataFrame(probs_cols, index=y_test.index)
+            fold_pd = pd.DataFrame(probs_cols, index=y_test.index)
+            probs_dict[model_name].append(fold_pd)
 
             new_row = {
                 "n": int(s),
@@ -216,6 +217,8 @@ def make_nclassif_random_splits(
     # Training final models
     for model in list_classifiers:
         model_name = get_model_name(model)
+        # Concatenate all fold results
+        probs_dict[model_name] = pd.concat(probs_dict[model_name])
         clf = make_pipeline(model, feature_selector, imputer, scaler)
         clf.fit(X, y)
         pipelines[model_name] = clf
