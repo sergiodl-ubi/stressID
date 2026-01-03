@@ -28,8 +28,6 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.utils import shuffle, resample
 from imblearn.over_sampling import SMOTE
 
-from sklearn2pmml import PMMLPipeline
-
 
 # Compare several classification models over K repetition, using K group splits, grouped by subjects
 def make_nclassif(
@@ -153,7 +151,7 @@ def make_nclassif_random_splits(
     random_seed: int | None = None,
     test_size: float = 0.2,
     useStratification: bool = False,
-) -> tuple[pd.DataFrame, list[np.ndarray], dict[str, PMMLPipeline]]:
+) -> tuple[pd.DataFrame, list[np.ndarray], dict[str, Pipeline]]:
     """
     Perform repeated random train/test splits to evaluate multiple classifiers on a dataset.
 
@@ -230,7 +228,7 @@ def make_nclassif_random_splits(
         # Fit each model
         for model in list_classifiers:
             if feature_selector == "L1":
-                clf = PMMLPipeline(
+                clf = Pipeline(
                     [
                         # ("impute", imputer),
                         ("scale", scaler),
@@ -244,7 +242,7 @@ def make_nclassif_random_splits(
                     ]
                 )
             elif feature_selector == "RFE":
-                clf = PMMLPipeline(
+                clf = Pipeline(
                     [
                         # ("impute", imputer),
                         ("scale", scaler),
@@ -254,7 +252,7 @@ def make_nclassif_random_splits(
                 )
             elif feature_selector == "PCA":
                 pca = PCA(n_components=0.95, svd_solver="full")
-                clf = PMMLPipeline(
+                clf = Pipeline(
                     [
                         # ("impute", imputer),
                         ("scale", scaler),
@@ -263,7 +261,7 @@ def make_nclassif_random_splits(
                     ]
                 )
             else:
-                clf = PMMLPipeline(
+                clf = Pipeline(
                     [
                         # ("impute", imputer),
                         ("scale", scaler),
